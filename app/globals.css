@@ -78,3 +78,40 @@ body {
   position: absolute;
   right: 20px;
 }
+
+/* MOBILE */
+
+/* @media screen and (max-width: 412px) and (max-width: 429px) {
+  .super_heroes {
+    width: 65%;
+    top: 37%;
+  }
+} */
+
+@media screen and (max-width: 430px) {
+  .bg_img {
+    background: url("./../public/enter_bg.png") -110px -100px / cover;
+  }
+
+  .super_heroes {
+    width: 50%;
+    position: absolute;
+    top: 31%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .text_area {
+    top: 75%;
+    transform: translate(-50%, -50%);
+  }
+
+  .text_area .text {
+    font-size: 1.8em;
+    line-height: 35px;
+  }
+
+  .spider_man {
+    display: none;
+  }
+}

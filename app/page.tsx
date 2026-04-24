@@ -10,7 +10,7 @@ export default function Home() {
         <div className="spider_man"><img className="spider_man_img" src="/spider-man.png" /></div>
         <div className="text_area">
           <div className="text primary_font">
-            <h1>Create Your own Team of Superheroes</h1>
+            <h1>Create Your own Team of Superheroesas</h1>
           </div>
           <div className="enter_button">ENTER</div>
         </div>
