@@ -60,6 +60,11 @@
   color: white;
 }
 
+.enter_button:hover {
+  background-color: #eb6e1c;
+  cursor: pointer;
+}
+
 .spider_man {
   width: 25%;
   position: absolute;
