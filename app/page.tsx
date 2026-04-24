@@ -1,9 +1,12 @@
 import React from "react";
+import HomeComponent from "./Components/HomeComponent/HomeComponent";
 
 export default function Home() {
   return (
-    <div className="bg_img">
-      <div className="main">
+    <>
+      <HomeComponent />
+      {/* <div className="bg_img"> */}
+        {/* <div className="main">
         <div className="super_heroes">
           <img className="super_heroes_img" src="/all-heroes.png" />
         </div>
@@ -14,7 +17,8 @@ export default function Home() {
           </div>
           <div className="enter_button">ENTER</div>
         </div>
-      </div>
-    </div>
+      </div> */}
+      {/* </div> */}
+    </>
   );
 }
