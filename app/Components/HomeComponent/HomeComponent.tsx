@@ -13,7 +13,7 @@ export default function HomeComponent() {
         <div className={style.spider_man}><img className={style.spider_man_img} src="/spider-man.png" /></div>
         <div className={style.text_area}>
           <div className={`${style.text} ${style.primary_font}`}>
-            <h1>Create Your own Team of Superheroesass</h1>
+            <h1>Create Your own Team of Superheroes</h1>
           </div>
           <div className={style.enter_button}>ENTER</div>
         </div>

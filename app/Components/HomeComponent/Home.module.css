@@ -115,4 +115,8 @@
     top: 50%;
     transform: translateY(-50%);
   }
+
+  .spider_man{
+    width: 30%;
+  }
 }
