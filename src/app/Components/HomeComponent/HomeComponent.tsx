@@ -1,11 +1,18 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 import style from "./Home.module.css";
 
 import "animate.css";
 
 export default function HomeComponent() {
+  const router = useRouter();
+
+  const changeRoute = () => {    
+    router.push("/list");
+  };
+
   return (
     <div className={style.bg_img}>
       <div className={style.main}>
@@ -21,7 +28,9 @@ export default function HomeComponent() {
           <div className={`${style.text} ${style.primary_font}`}>
             <h1>Create Your own Team of Superheroes</h1>
           </div>
-          <div className={style.enter_button}>ENTER</div>
+          <div className={style.enter_button} onClick={changeRoute}>
+            ENTER
+          </div>
         </div>
       </div>
     </div>
