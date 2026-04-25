@@ -8,5 +8,9 @@
 body {
   margin: 0 !important;
   padding: 0 !important;
+  background-color: #f8f8f8 !important;
+}
+
+.obelix {
   font-family: "Obelix Pro" !important;
 }

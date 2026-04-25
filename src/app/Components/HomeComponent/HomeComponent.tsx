@@ -25,7 +25,7 @@ export default function HomeComponent() {
           <img className={style.spider_man_img} src="/spider-man.png" />
         </div>
         <div className={style.text_area}>
-          <div className={`${style.text} ${style.primary_font}`}>
+          <div className={`${style.text} ${style.primary_font} obelix`}>
             <h1>Create Your own Team of Superheroes</h1>
           </div>
           <div className={style.enter_button} onClick={changeRoute}>

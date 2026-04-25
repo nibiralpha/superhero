@@ -1,0 +1,31 @@
+.header {
+  /* background-color: #fff; */
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 60px;
+  border-bottom: 1px solid #cfcfcf;
+  margin: 0 15px;
+}
+
+.left_side {
+  display: flex;
+  margin-right: 20px;
+
+  /* align-items: center; */
+}
+
+.menus {
+  display: flex;
+  margin-left: 40px;
+}
+
+.menus .menu{
+  margin-right: 40px;
+}
+
+.logo {
+  font-family: "Obelix Pro";
+  font-size: 20px;
+}

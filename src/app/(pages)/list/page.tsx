@@ -1,9 +1,12 @@
 import React from "react";
+import HeaderComponent from "../../Components/HeaderComponent/HeaderComponent";
 
 export default function Search() {
   return (
     <>
-      Search
+      <div>
+        <HeaderComponent />
+      </div>
     </>
   );
 }
