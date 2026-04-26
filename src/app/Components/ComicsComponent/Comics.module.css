@@ -35,11 +35,17 @@
   justify-content: center;
 }
 
-.text{
-    margin-right: 10px;
+.text {
+  margin-right: 10px;
 }
 
 .img_container:hover {
   outline: 3px solid #f9873d;
   outline-offset: -3px;
+}
+
+@media screen and (max-width: 430px) {
+  .layout {
+    margin: 30px 30px;
+  }
 }
