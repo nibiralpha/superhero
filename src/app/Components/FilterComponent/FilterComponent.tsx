@@ -10,7 +10,6 @@ export default function FilterComponent() {
   const handleChange = () => {};
   return (
     <div className={style.bar}>
-      <MenuComponent />
       <div className={style.filter_bar}>
         <Row gutter={[16, 24]}>
           <Col xs={24} md={4}>

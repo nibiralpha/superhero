@@ -15,7 +15,6 @@
   align-items: center;
 }
 
-
 .left_side {
   display: flex;
   margin-right: 20px;
@@ -38,4 +37,28 @@
   font-family: "Obelix Pro";
   font-size: 20px;
   font-weight: 700;
+}
+
+@media screen and (max-width: 430px) {
+  .desktop {
+    display: none;
+  }
+
+  .mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .top_bar {
+    padding: 30px 20px;
+  }
+
+  .logo {
+    font-size: 16px;
+  }
+
+  .menu{
+    width: 25px;
+  }
 }

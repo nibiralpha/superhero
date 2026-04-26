@@ -1,10 +1,14 @@
-.filter_bar{
+.bar {
+  margin: 0 15px;
+}
+
+.filter_bar {
   background-color: #ffffff;
   padding: 20px 60px;
   border-bottom: 2px solid #dddddd;
 }
 
-.key{
+.key {
   margin-bottom: 5px;
   color: rgba(0, 0, 0, 0.65);
 }
