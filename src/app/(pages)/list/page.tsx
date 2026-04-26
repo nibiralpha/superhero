@@ -7,7 +7,7 @@ export default function Search() {
     <>
       <div>
         <HeaderComponent />
-        {/* <ComicComponent /> */}
+        <ComicComponent />
       </div>
     </>
   );

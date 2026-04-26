@@ -1,0 +1,18 @@
+.filter_bar{
+  background-color: #ffffff;
+  padding: 20px 60px;
+  border-bottom: 2px solid #dddddd;
+}
+
+.key{
+  margin-bottom: 5px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.ant-select-selection-item {
+  color: #1890ff !important;
+}
+
+/* .ant-select-content.ant-select-content-has-value{
+  color: red !important;
+} */
