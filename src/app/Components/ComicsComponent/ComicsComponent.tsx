@@ -13,18 +13,18 @@ import { Col, Row } from "antd";
 export default function ComicsComponent() {
   const router = useRouter();
 
-  const onChange = (checked: any) => {
+  const onChange = (checked) => {
     console.log(`switch to ${checked}`);
   };
-  // const changeRoute = () => {
-  //   router.push("/list");
-  // };
+  const changeRoute = () => {
+    router.push("/details/11");
+  };
 
   return (
     <div className={style.layout}>
       <Row gutter={[24, 24]}>
         <Col xs={24} md={8} lg={6}>
-          <div className={style.img_container}>
+          <div onClick={changeRoute} className={style.img_container}>
             <img src={"/10060.jpg"} />
             <div className={style.content}>
               <div className={style.name}>A-Bomb</div>

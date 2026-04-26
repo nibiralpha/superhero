@@ -1,5 +1,6 @@
 .bar {
   margin: 0 15px;
+  height: 15vh;
 }
 
 .top_bar {
@@ -39,11 +40,11 @@
   font-weight: 700;
 }
 
-.mobile{
+.mobile {
   display: none;
 }
 
-.desktop{
+.desktop {
   display: initial;
 }
 

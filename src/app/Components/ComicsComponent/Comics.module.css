@@ -2,10 +2,6 @@
   margin: 50px 120px;
 }
 
-.img_container {
-  position: relative;
-}
-
 .content {
   position: absolute;
   width: 100%;
@@ -37,6 +33,11 @@
 
 .text {
   margin-right: 10px;
+}
+
+.img_container {
+  position: relative;
+  cursor: pointer;
 }
 
 .img_container:hover {
