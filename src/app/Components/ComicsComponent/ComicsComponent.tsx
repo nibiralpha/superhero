@@ -23,7 +23,7 @@ export default function ComicsComponent() {
   return (
     <div className={style.layout}>
       <Row gutter={[24, 24]}>
-        <Col xs={24} md={6}>
+        <Col xs={24} md={8} lg={6}>
           <div className={style.img_container}>
             <img src={"/10060.jpg"} />
             <div className={style.content}>
@@ -44,7 +44,7 @@ export default function ComicsComponent() {
             </div>
           </div>
         </Col>
-        <Col xs={24} md={6}>
+        <Col xs={24} md={8} lg={6}>
           <div className={style.img_container}>
             <img src={"/10060.jpg"} />
             <div className={style.content}>
@@ -65,7 +65,7 @@ export default function ComicsComponent() {
             </div>
           </div>
         </Col>
-        <Col xs={24} md={6}>
+        <Col xs={24} md={8} lg={6}>
           <div className={style.img_container}>
             <img src={"/10060.jpg"} />
             <div className={style.content}>
@@ -86,7 +86,7 @@ export default function ComicsComponent() {
             </div>
           </div>
         </Col>
-        <Col xs={24} md={6}>
+        <Col xs={24} md={8} lg={6}>
           <div className={style.img_container}>
             <img src={"/10060.jpg"} />
             <div className={style.content}>
@@ -107,7 +107,7 @@ export default function ComicsComponent() {
             </div>
           </div>
         </Col>
-        <Col xs={24} md={6}>
+        <Col xs={24} md={8} lg={6}>
           <div className={style.img_container}>
             <img src={"/10060.jpg"} />
             <div className={style.content}>
