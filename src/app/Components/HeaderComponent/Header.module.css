@@ -39,9 +39,21 @@
   font-weight: 700;
 }
 
+.mobile{
+  display: none;
+}
+
+.desktop{
+  display: initial;
+}
+
 @media screen and (max-width: 430px) {
   .desktop {
     display: none;
+  }
+
+  .mobile {
+    display: initial;
   }
 
   .mobile {
@@ -58,7 +70,7 @@
     font-size: 16px;
   }
 
-  .menu{
+  .menu {
     width: 25px;
   }
 }

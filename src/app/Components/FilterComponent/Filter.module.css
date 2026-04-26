@@ -20,3 +20,9 @@
 /* .ant-select-content.ant-select-content-has-value{
   color: red !important;
 } */
+
+@media screen and (max-width: 430px) {
+  .filter_bar {
+    padding: 20px;
+  }
+}
