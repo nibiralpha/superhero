@@ -32,11 +32,11 @@ export default function HeaderComponent() {
       </div>
       <div className={style.filter_bar}>
         <Row gutter={[16, 24]}>
-          <Col span={4}>
+          <Col xs={24} md={4}>
             <div className={style.key}>Keyword</div>
             <Input placeholder="Keyword" />
           </Col>
-          <Col span={4}>
+          <Col xs={24} md={4}>
             <div className={style.key}>Gender</div>
             <Select
               defaultValue="Choose Gender"
@@ -48,7 +48,7 @@ export default function HeaderComponent() {
               ]}
             />
           </Col>
-          <Col span={4}>
+          <Col xs={24} md={4}>
             <div className={style.key}>Alignment</div>
             <Select
               defaultValue="Choose Alignment"
@@ -60,7 +60,7 @@ export default function HeaderComponent() {
               ]}
             />
           </Col>
-          <Col span={4}>
+          <Col xs={24} md={4}>
             <div className={style.key}>Powerstats</div>
             <Select
               mode="multiple"
@@ -77,13 +77,13 @@ export default function HeaderComponent() {
               ]}
             />
           </Col>
-          <Col span={4}>
+          <Col xs={24} md={4}>
             <div className={style.key}>Intelligence</div>
             <Slider range defaultValue={[20, 50]} />
             <div className={style.key}>Power</div>
             <Slider range defaultValue={[20, 50]} />
           </Col>
-          <Col span={4}>
+          <Col xs={24} md={4}>
             <div className={style.key}>Speed</div>
             <Slider range defaultValue={[20, 50]} />
             <div className={style.key}>Durability</div>
