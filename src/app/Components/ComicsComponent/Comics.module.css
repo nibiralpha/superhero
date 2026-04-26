@@ -38,3 +38,8 @@
 .text{
     margin-right: 10px;
 }
+
+.img_container:hover {
+  outline: 3px solid #f9873d;
+  outline-offset: -3px;
+}
