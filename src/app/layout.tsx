@@ -23,6 +23,18 @@ export default function RootLayout({
                 colorText: "#f9873d",
                 colorBorder: "#f9873d",
               },
+              Switch: {
+                /* The background color when it is ON */
+                colorPrimary: "#f9873d",
+                colorPrimaryHover: "#ff9c5e",
+
+                /* The background color when it is OFF */
+                colorTextQuaternary: "rgb(162 162 162)",
+                colorTextTertiary: "rgb(172, 172, 172)", // Hover state for OFF
+
+                /* The handle (circle) color */
+                colorWhite: "#fff",
+              },
             },
           }}
         >
