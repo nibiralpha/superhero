@@ -30,7 +30,7 @@ export default function HeroesComponent() {
     >
       <img src={"/10060.jpg"} onClick={changeRoute} />
 
-      <div className={`${style.red_overlay} ${showDetail ? style.show : ""}`}>
+      <div className={`${style.overlay_detail} ${showDetail ? style.show : ""}`}>
         <div className={style.show_list}>
           <div className={style.title}>A TEAM</div>
           <div className={style.add_team}>

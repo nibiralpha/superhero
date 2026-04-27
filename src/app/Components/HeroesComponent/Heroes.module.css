@@ -44,7 +44,7 @@
   overflow: hidden;
 }
 
-.red_overlay {
+.overlay_detail {
   position: absolute;
   top: 0;
   left: 0;
@@ -61,7 +61,7 @@
   transform: translateY(0);
 }
 
-.img_container:has(.detail_icon:hover) .red_overlay {
+.img_container:has(.detail_icon:hover) .overlay_detail {
   transform: translateY(0);
 }
 
@@ -87,7 +87,7 @@
   width: 100%;
   text-align: center;
   color: #fff;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .add_team {
