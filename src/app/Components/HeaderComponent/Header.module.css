@@ -1,6 +1,7 @@
 .bar {
   margin: 0 15px;
-  height: 15vh;
+  height: 93px;
+  /* height: 15vh; */
 }
 
 .top_bar {
@@ -30,14 +31,22 @@
 
 .menus .menu {
   margin-right: 40px;
-  border-bottom: 3px solid #0084ff;
   font-size: 14px;
+}
+
+.menu:hover {
+  cursor: pointer;
+}
+
+.menu.active {
+  border-bottom: 3px solid #0084ff;
 }
 
 .logo {
   font-family: "Obelix Pro";
   font-size: 20px;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .mobile {

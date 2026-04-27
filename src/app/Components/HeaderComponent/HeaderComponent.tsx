@@ -1,11 +1,17 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { MenuUnfoldOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 
 import style from "./Header.module.css";
 
-export default function HeaderComponent({ showMenu }) {
+export default function HeaderComponent({ showMenu = true }) {
+  const pathname = usePathname();
+  const path = pathname.split("/");
+
+  const route = path[1];
+
   return (
     <div className={style.bar}>
       <div className={style.top_bar}>
@@ -14,18 +20,21 @@ export default function HeaderComponent({ showMenu }) {
             <div className={style.left_side}>
               <div className={style.logo}>SUPERSEARCH</div>
               <div className={style.menus}>
-                <div className={style.menu}>Super Heroes</div>
-                <div className={style.menu}>Team</div>
+                <div
+                  className={`${style.menu} ${route === "list" ? style.active : ""}`}
+                >
+                  Super Heroes
+                </div>
+                <div
+                  className={`${style.menu} ${route === "team" ? style.active : ""}`}
+                >
+                  Team
+                </div>
               </div>
             </div>
             <div className={style.right_side}>
               {showMenu && (
-                <Button
-                // style={{
-                //   color: "#f9873d",
-                //   borderColor: "#f9873d",
-                // }}
-                >
+                <Button>
                   <MenuUnfoldOutlined /> Filter
                 </Button>
               )}
