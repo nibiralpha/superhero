@@ -8,7 +8,7 @@ export default function DetailComponent() {
   return (
     <div>
       <Row>
-        <Col md={12}>
+        <Col xs={24} sm={24} md={12}>
           <div className={style.box}>
             <div>
               <div className={`obelix ${style.title}`}>Powerstatee</div>
@@ -43,7 +43,7 @@ export default function DetailComponent() {
             </div>
           </div>
         </Col>
-        <Col md={12}>
+        <Col xs={24} sm={24} md={12}>
           <div className={style.box}>
             <div>
               <div className={`obelix ${style.title}`}>Appearance</div>
@@ -76,7 +76,7 @@ export default function DetailComponent() {
         </Col>
       </Row>
       <Row>
-        <Col md={24}>
+        <Col xs={24} sm={24} md={24}>
           <div className={style.box}>
             <div>
               <div className={`obelix ${style.title}`}>Biography</div>
@@ -112,7 +112,7 @@ export default function DetailComponent() {
         </Col>
       </Row>
       <Row>
-        <Col md={24}>
+        <Col xs={24} sm={24} md={24}>
           <div className={style.box}>
             <div>
               <div className={`obelix ${style.title}`}>Work</div>
