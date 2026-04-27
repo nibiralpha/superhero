@@ -10,6 +10,9 @@
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
+
+  z-index: 10;
+  position: absolute;
 }
 
 .team {
@@ -38,11 +41,76 @@
 .img_container {
   position: relative;
   cursor: pointer;
+  overflow: hidden;
+}
+
+.red_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 0, 0, 0.9);
+  z-index: 5;
+  /* FOR ANIMATION */
+  transform: translateY(100%);
+  transition: transform 0.4s ease-in-out;
+}
+
+.show {
+  transform: translateY(0);
+}
+
+.img_container:has(.detail_icon:hover) .red_overlay {
+  transform: translateY(0);
+}
+
+.detail_icon {
+  transition: transform 0.5s ease;
+}
+
+.rot_button:hover .detail_icon {
+  transform: rotate(180deg);
 }
 
 .img_container:hover {
   outline: 3px solid #f9873d;
   outline-offset: -3px;
+}
+
+.add_team {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.show_list {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  margin-top: 20px;
+}
+
+.add_team {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.title {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+.list{
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.content,
+.title,
+.list {
+  font-family: "Obelix Pro" !important;
 }
 
 /* MOBILE */
