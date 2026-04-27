@@ -12,9 +12,6 @@ export default function HeroesComponent() {
   const [showDetail, setShowDetail] = useState(false);
   const router = useRouter();
 
-  const onChange = (checked) => {
-    console.log(`switch to ${checked}`);
-  };
   const changeRoute = () => {
     router.push("/details/11");
   };
@@ -30,7 +27,9 @@ export default function HeroesComponent() {
     >
       <img src={"/10060.jpg"} onClick={changeRoute} />
 
-      <div className={`${style.overlay_detail} ${showDetail ? style.show : ""}`}>
+      <div
+        className={`${style.overlay_detail} ${showDetail ? style.show : ""}`}
+      >
         <div className={style.show_list}>
           <div className={style.title}>A TEAM</div>
           <div className={style.add_team}>

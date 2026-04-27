@@ -18,7 +18,7 @@ export default function HeaderComponent({ showMenu = true }) {
         <div className={style.desktop}>
           <div className={style.menu_bar}>
             <div className={style.left_side}>
-              <div className={style.logo}>SUPERSEARCH</div>
+              <div className={style.logo}>SUPERSEARaCH</div>
               <div className={style.menus}>
                 <div
                   className={`${style.menu} ${route === "list" ? style.active : ""}`}

@@ -14,3 +14,8 @@ body {
 .obelix {
   font-family: "Obelix Pro" !important;
 }
+
+::selection {
+  color: #fff;
+  background: #f9873d;
+}
