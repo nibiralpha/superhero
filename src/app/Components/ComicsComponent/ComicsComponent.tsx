@@ -31,10 +31,9 @@ export default function ComicsComponent() {
         <Col xs={24} md={8} lg={6}>
           <div
             onMouseLeave={() => showDetailCard(false)}
-            onClick={changeRoute}
             className={style.img_container}
           >
-            <img src={"/10060.jpg"} />
+            <img src={"/10060.jpg"} onClick={changeRoute}/>
 
             <div
               className={`${style.red_overlay} ${showDetail ? style.show : ""}`}
