@@ -7,7 +7,7 @@ export default function Search() {
   return (
     <>
       <div>
-        <HeaderComponent />
+        <HeaderComponent showMenu={true} />
         <FilterComponent />
         <ComicComponent />
       </div>

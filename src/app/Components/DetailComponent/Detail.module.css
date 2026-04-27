@@ -1,0 +1,30 @@
+.title {
+  font-size: 1.5em;
+  margin-bottom: 14px;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.state_detail {
+}
+
+.data {
+  display: flex;
+  padding: 5px 0;
+}
+
+.detail {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.box{
+    padding: 40px 20px 0 20px;
+}
+
+/* MOBILE */
+
+/* @media screen and (max-width: 430px) {
+ 
+} */

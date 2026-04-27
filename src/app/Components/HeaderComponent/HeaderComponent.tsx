@@ -5,7 +5,7 @@ import { Button } from "antd";
 
 import style from "./Header.module.css";
 
-export default function HeaderComponent() {
+export default function HeaderComponent({ showMenu }) {
   return (
     <div className={style.bar}>
       <div className={style.top_bar}>
@@ -19,14 +19,16 @@ export default function HeaderComponent() {
               </div>
             </div>
             <div className={style.right_side}>
-              <Button
-              // style={{
-              //   color: "#f9873d",
-              //   borderColor: "#f9873d",
-              // }}
-              >
-                <MenuUnfoldOutlined /> Filter
-              </Button>
+              {showMenu && (
+                <Button
+                // style={{
+                //   color: "#f9873d",
+                //   borderColor: "#f9873d",
+                // }}
+                >
+                  <MenuUnfoldOutlined /> Filter
+                </Button>
+              )}
             </div>
           </div>
         </div>

@@ -10,7 +10,7 @@ import style from "./Details.module.css";
 export default function Detail() {
   return (
     <div>
-      <HeaderComponent />
+      <HeaderComponent showMenu={false} />
       <div className={style.wrapper}>
         <Row>
           <Col xs={24} md={12}>
