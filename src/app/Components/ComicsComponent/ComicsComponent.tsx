@@ -6,10 +6,6 @@ import { Col, Row } from "antd";
 import HeroesComponent from "../HeroesComponent/HeroesComponent";
 
 export default function ComicsComponent() {
-  // const [showDetail, setShowDetail] = useState(false);
-  // const router = useRouter();
-
- 
 
   return (
     <div className={style.layout}>
