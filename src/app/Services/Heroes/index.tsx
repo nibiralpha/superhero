@@ -4,7 +4,7 @@ const fetchHeroes = () => {
   return async () => {
     try {
       const heroResponse = await getHeroes();
-      // return Promise.resolve(usersRes);
+      // return Promise.resolve(b);
     } catch (error) {
       console.log(error);
       // dispatch(stopUserListLoading())

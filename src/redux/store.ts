@@ -1,8 +1,8 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { heroSlice } from "./heroSlice";
+import heroSlice from "./heroSlice";
 
 const rootReducer = combineReducers({
-  heroSlice: heroSlice,
+  heros: heroSlice,
 });
 
 export default configureStore({
