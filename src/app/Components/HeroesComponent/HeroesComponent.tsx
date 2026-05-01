@@ -8,7 +8,7 @@ import "animate.css";
 import { Switch } from "antd";
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 
-export default function HeroesComponent() {
+export default function HeroesComponent({ hero }) {
   const [showDetail, setShowDetail] = useState(false);
   const router = useRouter();
 
@@ -31,7 +31,7 @@ export default function HeroesComponent() {
         className={`${style.overlay_detail} ${showDetail ? style.show : ""}`}
       >
         <div className={style.show_list}>
-          <div className={style.title}>A TEAM</div>
+          <div className={style.title}>{hero.name}</div>
           <div className={style.add_team}>
             <div className={style.text}>Add to team</div>
             <div className={style.switch}>
@@ -43,18 +43,18 @@ export default function HeroesComponent() {
             </div>
           </div>
           <div className={style.contents}>
-            <div className={style.list}>Intelligence : 38</div>
-            <div className={style.list}>strength : 47</div>
-            <div className={style.list}>Speed : 17</div>
-            <div className={style.list}>Durability : 36</div>
-            <div className={style.list}>Power : 15</div>
-            <div className={style.list}>Combat : 81</div>
+            <div className={style.list}>Intelligence : {hero?.powerstats?.intelligence}</div>
+            <div className={style.list}>strength : {hero?.powerstats?.strength}</div>
+            <div className={style.list}>Speed : {hero?.powerstats?.speed}</div>
+            <div className={style.list}>Durability : {hero?.powerstats?.durability}</div>
+            <div className={style.list}>Power : {hero?.powerstats?.power}</div>
+            <div className={style.list}>Combat : {hero?.powerstats?.combat}</div>
           </div>
         </div>
       </div>
 
       <div className={style.content}>
-        {showDetail ? "" : <div className={style.name}>A-Bomb</div>}
+        {showDetail ? "" : <div className={style.name}>{hero.name}</div>}
         <div className={style.team}>
           {showDetail ? (
             <></>
