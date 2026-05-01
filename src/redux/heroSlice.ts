@@ -17,7 +17,7 @@ export const heroSlice = createSlice({
       return { ...state, list: action.payload };
     },
     singleHero: (state, action) => {
-      return { ...state, data: action.payload };
+      return { ...state, details: action.payload };
     },
   },
 });

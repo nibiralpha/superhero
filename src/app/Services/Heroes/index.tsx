@@ -23,9 +23,7 @@ const fetchHeroes = () => {
 
 const getHeroDetail = (id) => {
   return async (dispatch) => {
-    try {
-      console.log("zzzzzzzzzzzzzzzz");
-      
+    try {      
       dispatch(startHeroLoading(true));
       const heroResponse = await getHero(id);
       const hero = heroResponse.data;

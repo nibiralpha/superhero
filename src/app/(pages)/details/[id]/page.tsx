@@ -20,7 +20,7 @@ export default function Detail() {
   const heroDetail = useSelector((state) => state.heros);
 
   useEffect(() => {
-    console.log(heroDetail);
+    console.log("detail", heroDetail.details.images);
   }, [heroDetail]);
 
   useEffect(() => {
@@ -33,7 +33,9 @@ export default function Detail() {
       <div className={style.wrapper}>
         <Row>
           <Col xs={24} md={12}>
-            <PosterComponent />
+            <PosterComponent
+              data={{ images: heroDetail?.details?.images, name: heroDetail?.details?.name }}
+            />
           </Col>
           <Col xs={24} md={12}>
             <DetailComponent />
