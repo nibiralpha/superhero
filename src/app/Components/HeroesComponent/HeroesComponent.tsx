@@ -25,7 +25,7 @@ export default function HeroesComponent({ hero }) {
       onMouseLeave={() => showDetailCard(false)}
       className={style.img_container}
     >
-      <img src={"/10060.jpg"} onClick={changeRoute} />
+      <img src={hero.images.lg} onClick={changeRoute} />
 
       <div
         className={`${style.overlay_detail} ${showDetail ? style.show : ""}`}
