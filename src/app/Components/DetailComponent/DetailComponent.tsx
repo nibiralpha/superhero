@@ -6,7 +6,7 @@ import { Col, Row } from "antd";
 
 export default function DetailComponent({ data }) {
   console.log(data, "detaiiiiils");
-  
+
   return (
     <div>
       <Row>
@@ -19,15 +19,21 @@ export default function DetailComponent({ data }) {
               <div className={style.col_table}>
                 <div className={style.data}>
                   <div className={style.name}>Intelligence:</div>
-                  <div className={style.detail}>{data?.powerstats?.intelligence}</div>
+                  <div className={style.detail}>
+                    {data?.powerstats?.intelligence}
+                  </div>
                 </div>
                 <div className={style.data}>
                   <div className={style.name}>Durability:</div>
-                  <div className={style.detail}>{data?.powerstats?.durability}</div>
+                  <div className={style.detail}>
+                    {data?.powerstats?.durability}
+                  </div>
                 </div>
                 <div className={style.data}>
                   <div className={style.name}>Strength:</div>
-                  <div className={style.detail}>{data?.powerstats?.strength}</div>
+                  <div className={style.detail}>
+                    {data?.powerstats?.strength}
+                  </div>
                 </div>
                 <div className={style.data}>
                   <div className={style.name}>Power:</div>
@@ -54,23 +60,35 @@ export default function DetailComponent({ data }) {
               <div className={style.col_table}>
                 <div className={style.data}>
                   <div className={style.name}>Gender:</div>
-                  <div className={style.detail}>Male</div>
+                  <div className={style.detail}>{data?.appearance?.gender}</div>
                 </div>
                 <div className={style.data}>
                   <div className={style.name}>Weight:</div>
-                  <div className={style.detail}>145 lb, 65 kg,</div>
+                  <div className={style.detail}>
+                    {data?.appearance?.weight.join(", ")}
+                  </div>
+                </div>
+                <div className={style.data}>
+                  <div className={style.name}>Height:</div>
+                  <div className={style.detail}>
+                    {data?.appearance?.height?.join(", ")}
+                  </div>
                 </div>
                 <div className={style.data}>
                   <div className={style.name}>Race:</div>
-                  <div className={style.detail}>Icthyo Sapien</div>
+                  <div className={style.detail}>{data?.appearance?.race}</div>
                 </div>
                 <div className={style.data}>
                   <div className={style.name}>Eye Color:</div>
-                  <div className={style.detail}>Blue</div>
+                  <div className={style.detail}>
+                    {data?.appearance?.eyeColor}
+                  </div>
                 </div>
                 <div className={style.data}>
                   <div className={style.name}>Hair Color:</div>
-                  <div className={style.detail}>No Hair</div>
+                  <div className={style.detail}>
+                    {data?.appearance?.hairColor}
+                  </div>
                 </div>
               </div>
             </div>
@@ -88,25 +106,34 @@ export default function DetailComponent({ data }) {
               <div className={style.col_table}>
                 <div className={style.data}>
                   <div className={style.name}>Full Name:</div>
-                  <div className={style.detail}>Abe Sapien</div>
+                  <div className={style.detail}>
+                    {" "}
+                    {data?.biography?.fullName}
+                  </div>
                 </div>
                 <div className={style.data}>
                   <div className={style.name}>Alter Egos:</div>
-                  <div className={style.detail}>No alter egos found.</div>
+                  <div className={style.detail}>
+                    {data?.biography?.alterEgos}
+                  </div>
                 </div>
                 <div className={style.data}>
                   <div className={style.name}>Aliases:</div>
                   <div className={style.detail}>
-                    "Langdon Everett Caul","Abraham Sapien","Langdon Caul"
+                    {data?.biography?.aliases.join(", ")}
                   </div>
                 </div>
                 <div className={style.data}>
                   <div className={style.name}>Place of Birth:</div>
-                  <div className={style.detail}>~</div>
+                  <div className={style.detail}>
+                    {data?.biography?.placeOfBirth}
+                  </div>
                 </div>
                 <div className={style.data}>
                   <div className={style.name}>Alignment:</div>
-                  <div className={style.detail}>good</div>
+                  <div className={style.detail}>
+                    {data?.biography?.alignment}
+                  </div>
                 </div>
               </div>
             </div>
@@ -124,11 +151,11 @@ export default function DetailComponent({ data }) {
               <div className={style.col_table}>
                 <div className={style.data}>
                   <div className={style.name}>Occupation:</div>
-                  <div className={style.detail}>Paranormal Investigator</div>
+                  <div className={style.detail}>{data?.work?.occupation}</div>
                 </div>
                 <div className={style.data}>
                   <div className={style.name}>Base:</div>
-                  <div className={style.detail}>-</div>
+                  <div className={style.detail}>{data?.work?.base}</div>
                 </div>
               </div>
             </div>
