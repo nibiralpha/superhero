@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
   border: 1px solid #dcdcdc;
+  border-top: 0;
 }
 
 .image {

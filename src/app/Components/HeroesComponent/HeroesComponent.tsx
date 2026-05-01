@@ -65,7 +65,7 @@ export default function HeroesComponent({ hero }) {
                 <Switch
                   checkedChildren={<CheckOutlined />}
                   unCheckedChildren={<CloseOutlined />}
-                  defaultChecked
+                  // defaultChecked
                 />
               </div>
             </>

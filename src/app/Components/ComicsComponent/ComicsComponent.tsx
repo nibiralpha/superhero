@@ -35,7 +35,7 @@ export default function ComicsComponent() {
         ) : (
           <Row gutter={[24, 24]}>
             {heroList.list.map((hero: any) => (
-              <Col key={hero.id} xs={24} md={8} lg={6}>
+              <Col key={hero.id} sm={24} xs={24} md={8} lg={6}>
                 <HeroesComponent hero={hero} />
               </Col>
             ))}
