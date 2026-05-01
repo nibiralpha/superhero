@@ -4,6 +4,7 @@ export const heroSlice = createSlice({
   name: "hero",
   initialState: {
     list: [],
+    details: {},
     loading: false,
     error: false,
     errorResponse: {},
@@ -12,11 +13,14 @@ export const heroSlice = createSlice({
     startHeroLoading: (state, action) => {
       return { ...state, loading: action.payload };
     },
-    heroData: (state, action) => {      
-      return {...state, list: action.payload}
-    }
+    heroData: (state, action) => {
+      return { ...state, list: action.payload };
+    },
+    singleHero: (state, action) => {
+      return { ...state, data: action.payload };
+    },
   },
 });
 
-export const { startHeroLoading, heroData } = heroSlice.actions;
+export const { startHeroLoading, heroData, singleHero } = heroSlice.actions;
 export default heroSlice.reducer;

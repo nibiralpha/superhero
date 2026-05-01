@@ -13,7 +13,7 @@ export default function HeroesComponent({ hero }) {
   const router = useRouter();
 
   const changeRoute = () => {
-    router.push("/details/11");
+    router.push("/details/" + hero.id);
   };
 
   const showDetailCard = (status: boolean) => {
