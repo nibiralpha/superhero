@@ -10,10 +10,13 @@ export const heroSlice = createSlice({
   },
   reducers: {
     startHeroLoading: (state, action) => {
-      return { ...state, loading: true };
+      return { ...state, loading: action.payload };
     },
+    heroData: (state, action) => {      
+      return {...state, list: action.payload}
+    }
   },
 });
 
-export const { startHeroLoading } = heroSlice.actions;
+export const { startHeroLoading, heroData } = heroSlice.actions;
 export default heroSlice.reducer;

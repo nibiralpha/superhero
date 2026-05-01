@@ -1,10 +1,14 @@
+import { startHeroLoading, heroData } from "@/src/redux/heroSlice";
 import { getHeroes } from "../../Api/Heroes";
 
 const fetchHeroes = () => {
-  return async () => {
+  return async (dispatch) => {
     try {
+      dispatch(startHeroLoading(true));
       const heroResponse = await getHeroes();
-      // return Promise.resolve(b);
+      const heroes = heroResponse.data;
+      dispatch(heroData(heroes));
+      dispatch(startHeroLoading(false));
     } catch (error) {
       console.log(error);
       // dispatch(stopUserListLoading())

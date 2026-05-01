@@ -2,18 +2,22 @@
 import style from "./Comics.module.css";
 
 import "animate.css";
-import { Col, Row } from "antd";
+import { Col, Row, Spin } from "antd";
 import HeroesComponent from "../HeroesComponent/HeroesComponent";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchHeroes } from "../../Services/Heroes";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function ComicsComponent() {
+  const [heroes, serHero] = useState({});
   const dispatch = useDispatch();
+  const getHeroData = useSelector((state) => state.heros);
 
   const heroData = async () => {
-    const data = await dispatch(fetchHeroes());
-    // console.log(data);
+    const data = dispatch(fetchHeroes());
+    // serHero(getHeroData)
+
+    // console.log("heroData", data);
 
     return data;
   };
@@ -24,20 +28,25 @@ export default function ComicsComponent() {
 
   return (
     <div className={style.layout}>
-      <Row gutter={[24, 24]}>
-        <Col xs={24} md={8} lg={6}>
-          <HeroesComponent />
-        </Col>
-        <Col xs={24} md={8} lg={6}>
-          <HeroesComponent />
-        </Col>
-        <Col xs={24} md={8} lg={6}>
-          <HeroesComponent />
-        </Col>
-        <Col xs={24} md={8} lg={6}>
-          <HeroesComponent />
-        </Col>
-      </Row>
+      <div className={style.center}>
+        <Spin />
+      </div>
+      <div>
+        <Row gutter={[24, 24]}>
+          <Col xs={24} md={8} lg={6}>
+            <HeroesComponent />
+          </Col>
+          <Col xs={24} md={8} lg={6}>
+            <HeroesComponent />
+          </Col>
+          <Col xs={24} md={8} lg={6}>
+            <HeroesComponent />
+          </Col>
+          <Col xs={24} md={8} lg={6}>
+            <HeroesComponent />
+          </Col>
+        </Row>
+      </div>
     </div>
   );
 }
