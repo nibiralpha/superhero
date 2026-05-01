@@ -4,40 +4,42 @@ import React from "react";
 import style from "./Detail.module.css";
 import { Col, Row } from "antd";
 
-export default function DetailComponent() {
+export default function DetailComponent({ data }) {
+  console.log(data, "detaiiiiils");
+  
   return (
     <div>
       <Row>
         <Col xs={24} sm={24} md={12}>
           <div className={style.box}>
             <div>
-              <div className={`obelix ${style.title}`}>Powerstatee</div>
+              <div className={`obelix ${style.title}`}>Powerstate</div>
             </div>
             <div className={style.state_detail}>
               <div className={style.col_table}>
                 <div className={style.data}>
                   <div className={style.name}>Intelligence:</div>
-                  <div className={style.detail}>88</div>
+                  <div className={style.detail}>{data?.powerstats?.intelligence}</div>
                 </div>
                 <div className={style.data}>
                   <div className={style.name}>Durability:</div>
-                  <div className={style.detail}>88</div>
+                  <div className={style.detail}>{data?.powerstats?.durability}</div>
                 </div>
                 <div className={style.data}>
                   <div className={style.name}>Strength:</div>
-                  <div className={style.detail}>88</div>
+                  <div className={style.detail}>{data?.powerstats?.strength}</div>
                 </div>
                 <div className={style.data}>
                   <div className={style.name}>Power:</div>
-                  <div className={style.detail}>88</div>
+                  <div className={style.detail}>{data?.powerstats?.power}</div>
                 </div>
                 <div className={style.data}>
                   <div className={style.name}>Speed:</div>
-                  <div className={style.detail}>88</div>
+                  <div className={style.detail}>{data?.powerstats?.speed}</div>
                 </div>
                 <div className={style.data}>
                   <div className={style.name}>Combat:</div>
-                  <div className={style.detail}>88</div>
+                  <div className={style.detail}>{data?.powerstats?.combat}</div>
                 </div>
               </div>
             </div>

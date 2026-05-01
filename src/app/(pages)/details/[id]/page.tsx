@@ -38,7 +38,7 @@ export default function Detail() {
             />
           </Col>
           <Col xs={24} md={12}>
-            <DetailComponent />
+            <DetailComponent data={heroDetail?.details}/>
           </Col>
         </Row>
       </div>
