@@ -28,18 +28,18 @@ export default function ComicsComponent() {
   return (
     <div className={style.layout}>
       <div>
-        {!heroList.loading ? (
-          <Row gutter={[24, 24]}>
-            {heroList.list.map((hero: any) => (
-              <Col key={hero.id} xs={24} md={8} lg={6}>
-                <HeroesComponent hero={hero}/>
-              </Col>
-            ))}
-          </Row>
-        ) : (
+        {heroList.loading ? (
           <div className={style.center}>
             <Spin />
           </div>
+        ) : (
+          <Row gutter={[24, 24]}>
+            {heroList.list.map((hero: any) => (
+              <Col key={hero.id} xs={24} md={8} lg={6}>
+                <HeroesComponent hero={hero} />
+              </Col>
+            ))}
+          </Row>
         )}
       </div>
     </div>
