@@ -18,7 +18,7 @@ export default function ComicsComponent() {
   };
 
   useEffect(() => {
-    console.log(heroList);
+    // console.log(heroList);
   }, [heroList]);
 
   useEffect(() => {

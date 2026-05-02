@@ -3,9 +3,7 @@ import { getHero, getHeroes } from "../../Api/Heroes";
 
 const fetchHeroes = () => {
   return async (dispatch) => {
-    try {
-      console.log("aaaaaaaaaaaaa");
-      
+    try {      
       dispatch(startHeroLoading(true));
       const heroResponse = await getHeroes();
       const heroes = heroResponse.data;

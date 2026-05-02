@@ -19,7 +19,7 @@ export default function PosterComponent({ data }) {
             <Switch
               checkedChildren={<CheckOutlined />}
               unCheckedChildren={<CloseOutlined />}
-              defaultChecked
+              // defaultChecked
             />
           </div>
         </div>

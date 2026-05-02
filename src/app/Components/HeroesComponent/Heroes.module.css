@@ -5,12 +5,12 @@
 .content {
   position: absolute;
   width: 100%;
-  bottom: 10px;
+  bottom: 0px;
   color: #fff;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  background-color: #04040442;
+  /* background-color: #04040442; */
   padding: 20px 0;
   z-index: 10;
   position: absolute;
