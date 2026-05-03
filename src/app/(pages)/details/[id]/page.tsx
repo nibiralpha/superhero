@@ -34,11 +34,15 @@ export default function Detail() {
         <Row>
           <Col xs={24} md={12}>
             <PosterComponent
-              data={{ images: heroDetail?.details?.images, name: heroDetail?.details?.name }}
+              hero={heroDetail?.details}
+              data={{
+                images: heroDetail?.details?.images,
+                name: heroDetail?.details?.name,
+              }}
             />
           </Col>
           <Col xs={24} md={12}>
-            <DetailComponent data={heroDetail?.details}/>
+            <DetailComponent data={heroDetail?.details} />
           </Col>
         </Row>
       </div>

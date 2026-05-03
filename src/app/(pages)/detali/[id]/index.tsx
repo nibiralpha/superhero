@@ -6,7 +6,6 @@ export default function Detail() {
     <>
       <div>
         <HeaderComponent />
-        asd
       </div>
     </>
   );

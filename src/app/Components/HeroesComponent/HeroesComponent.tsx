@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import style from "./Heroes.module.css";
@@ -25,31 +26,32 @@ export default function HeroesComponent({ hero }) {
     if (status) {
       let data = [];
       let newEntry = true;
-      let heroes = JSON.parse(localStorage.getItem("heroes")) || [];
+      // let heroes = JSON.parse(localStorage.getItem("heroes")) || [];
 
-      heroes.forEach((dbhero) => {
+      heroesOnTeam.forEach((dbhero) => {
         if (dbhero.id == hero.id) {
           newEntry = false;
           return;
         }
       });
 
-      data.push(...heroes);
+      // data.push(...heroes);
+      data.push(...heroesOnTeam);
       if (newEntry) {
         data.push(hero);
       }
 
       localStorage.setItem("heroes", JSON.stringify(data));
     } else {
-      let heroes = JSON.parse(localStorage.getItem("heroes")) || [];
+      // let heroes = JSON.parse(localStorage.getItem("heroes")) || [];
 
-      heroes.forEach((dbHero, index) => {
+      heroesOnTeam.forEach((dbHero, index) => {
         if (dbHero.id == hero.id) {
-          heroes.splice(index, 1);
+          heroesOnTeam.splice(index, 1);
         }
       });
 
-      localStorage.setItem("heroes", JSON.stringify(heroes));
+      localStorage.setItem("heroes", JSON.stringify(heroesOnTeam));
     }
   };
 
@@ -122,6 +124,7 @@ export default function HeroesComponent({ hero }) {
                   unCheckedChildren={<CloseOutlined />}
                   onChange={onClickAddRemoveToTeam}
                   defaultChecked={isOnTeam()}
+                  // checked={isOnTeam()}
                 />
               </div>
             </>
