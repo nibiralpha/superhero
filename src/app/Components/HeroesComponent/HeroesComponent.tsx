@@ -9,6 +9,7 @@ import { Switch } from "antd";
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 
 export default function HeroesComponent({ hero }) {
+  let heroesOnTeam = JSON.parse(localStorage.getItem("heroes")) || [];
   const [showDetail, setShowDetail] = useState(false);
   const router = useRouter();
 
@@ -34,15 +35,25 @@ export default function HeroesComponent({ hero }) {
         }
       });
 
-      if (heroes !== null) {
-        data.push(...heroes);
-      }
-      if(newEntry){
+      data.push(...heroes);
+      if (newEntry) {
         data.push(hero);
       }
 
       localStorage.setItem("heroes", JSON.stringify(data));
     }
+  };
+
+  const isOnTeam = () => {
+    let isOnTheTeam = false;
+    heroesOnTeam.forEach((heroeOnTeam) => {
+      if (heroeOnTeam.id == hero.id) {
+        isOnTheTeam = true;
+        return;
+      }
+    });
+
+    return isOnTheTeam;
   };
 
   return (
@@ -100,7 +111,10 @@ export default function HeroesComponent({ hero }) {
                   checkedChildren={<CheckOutlined />}
                   unCheckedChildren={<CloseOutlined />}
                   onChange={onClickAddRemoveToTeam}
-                  // defaultChecked
+                  defaultChecked={isOnTeam()}
+                  // checked={isOnTeam()}
+                  // value={test}
+                  // checked={update()}
                 />
               </div>
             </>
