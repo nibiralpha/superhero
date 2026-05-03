@@ -26,7 +26,6 @@ export default function HeroesComponent({ hero }) {
       let data = [];
       let newEntry = true;
       let heroes = JSON.parse(localStorage.getItem("heroes")) || [];
-      // console.log(heroes);
 
       heroes.forEach((dbhero) => {
         if (dbhero.id == hero.id) {
@@ -41,6 +40,16 @@ export default function HeroesComponent({ hero }) {
       }
 
       localStorage.setItem("heroes", JSON.stringify(data));
+    } else {
+      let heroes = JSON.parse(localStorage.getItem("heroes")) || [];
+
+      heroes.forEach((dbHero, index) => {
+        if (dbHero.id == hero.id) {
+          heroes.splice(index, 1);
+        }
+      });
+
+      localStorage.setItem("heroes", JSON.stringify(heroes));
     }
   };
 
@@ -75,7 +84,8 @@ export default function HeroesComponent({ hero }) {
                 checkedChildren={<CheckOutlined />}
                 unCheckedChildren={<CloseOutlined />}
                 onChange={onClickAddRemoveToTeam}
-                // defaultChecked
+                defaultChecked={isOnTeam()}
+                // checked={isOnTeam()}
               />
             </div>
           </div>
@@ -112,9 +122,6 @@ export default function HeroesComponent({ hero }) {
                   unCheckedChildren={<CloseOutlined />}
                   onChange={onClickAddRemoveToTeam}
                   defaultChecked={isOnTeam()}
-                  // checked={isOnTeam()}
-                  // value={test}
-                  // checked={update()}
                 />
               </div>
             </>
