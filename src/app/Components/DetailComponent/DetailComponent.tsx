@@ -5,7 +5,6 @@ import style from "./Detail.module.css";
 import { Col, Row } from "antd";
 
 export default function DetailComponent({ data }) {
-  console.log(data, "detaiiiiils");
 
   return (
     <div>

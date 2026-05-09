@@ -13,6 +13,7 @@ export default function HeroesComponent({ hero }) {
   const [showDetail, setShowDetail] = useState(false);
   const [onTeam, setOnTeam] = useState(false);
   const router = useRouter();
+  
   useEffect(() => {    
     let team = isOnTeam()
     setOnTeam(team);
