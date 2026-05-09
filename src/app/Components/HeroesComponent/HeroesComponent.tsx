@@ -10,9 +10,13 @@ import { Switch } from "antd";
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 
 export default function HeroesComponent({ hero }) {
-  let heroesOnTeam = JSON.parse(localStorage.getItem("heroes")) || [];
   const [showDetail, setShowDetail] = useState(false);
+  const [onTeam, setOnTeam] = useState(false);
   const router = useRouter();
+  useEffect(() => {    
+    let team = isOnTeam()
+    setOnTeam(team);
+  }, []);
 
   const changeRoute = () => {
     router.push("/details/" + hero.id);
@@ -23,25 +27,27 @@ export default function HeroesComponent({ hero }) {
   };
 
   const onClickAddRemoveToTeam = (status) => {
+    let heroesOnTeam = JSON.parse(localStorage.getItem("heroes")) || [];
     if (status) {
       let data = [];
       let newEntry = true;
       // let heroes = JSON.parse(localStorage.getItem("heroes")) || [];
 
-      heroesOnTeam.forEach((dbhero) => {
-        if (dbhero.id == hero.id) {
+      for (let i = 0; i < heroesOnTeam.length; i++) {
+        if (heroesOnTeam[i].id == hero.id) {
           newEntry = false;
-          return;
+          break;
         }
-      });
+      }
 
       // data.push(...heroes);
       data.push(...heroesOnTeam);
       if (newEntry) {
         data.push(hero);
       }
-
+      setOnTeam(true);
       localStorage.setItem("heroes", JSON.stringify(data));
+      isOnTeam();
     } else {
       // let heroes = JSON.parse(localStorage.getItem("heroes")) || [];
 
@@ -50,21 +56,22 @@ export default function HeroesComponent({ hero }) {
           heroesOnTeam.splice(index, 1);
         }
       });
-
+      setOnTeam(false);
       localStorage.setItem("heroes", JSON.stringify(heroesOnTeam));
+      isOnTeam();
     }
   };
 
   const isOnTeam = () => {
-    let isOnTheTeam = false;
-    heroesOnTeam.forEach((heroeOnTeam) => {
-      if (heroeOnTeam.id == hero.id) {
-        isOnTheTeam = true;
-        return;
-      }
-    });
+    const heroesOnTeam = JSON.parse(localStorage.getItem("heroes")) || [];
 
-    return isOnTheTeam;
+    for (let i = 0; i < heroesOnTeam.length; i++) {
+      if (heroesOnTeam[i].id == hero.id) {
+        return true;
+      }
+    }
+
+    return false;
   };
 
   return (
@@ -86,8 +93,7 @@ export default function HeroesComponent({ hero }) {
                 checkedChildren={<CheckOutlined />}
                 unCheckedChildren={<CloseOutlined />}
                 onChange={onClickAddRemoveToTeam}
-                defaultChecked={isOnTeam()}
-                // checked={isOnTeam()}
+                checked={onTeam}
               />
             </div>
           </div>
@@ -123,8 +129,7 @@ export default function HeroesComponent({ hero }) {
                   checkedChildren={<CheckOutlined />}
                   unCheckedChildren={<CloseOutlined />}
                   onChange={onClickAddRemoveToTeam}
-                  defaultChecked={isOnTeam()}
-                  // checked={isOnTeam()}
+                  checked={onTeam}
                 />
               </div>
             </>
