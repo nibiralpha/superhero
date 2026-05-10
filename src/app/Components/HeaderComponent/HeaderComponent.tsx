@@ -15,7 +15,7 @@ export default function HeaderComponent({ showMenu = true }) {
   const route = path[1];
 
   const changePage = (page) => {
-    router.push(page);
+    router.push(`/${page}`);
   };
 
   return (

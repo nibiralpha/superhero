@@ -8,6 +8,10 @@ import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 import ModalComponent from "../ModalComponent/ModalComponent";
 
 export default function PosterComponent({ data, hero }) {
+  const [modalMessage, setModalMessage] = useState({
+    mainText: "",
+    subText: "",
+  });
   const [heroesOnTeam, setHeroesOnTeam] = useState([]);
   const [openModal, setOpenModal] = useState(false);
 
@@ -25,10 +29,32 @@ export default function PosterComponent({ data, hero }) {
     if (status) {
       let teamMemberCount = getTeamMembersCount();
 
-      if (teamMemberCount >= 8) { 
+      //teams cant be more than 8
+      if (teamMemberCount >= 8) {
+        setModalMessage({
+          mainText: "Ops! You have too many team members",
+          subText: "You may only select 8 team members at a time",
+        });
         setOpenModal(true);
         return;
       }
+      //end
+
+      //only able to add good/bad
+      if (heroesOnTeam[0] !== undefined && heroesOnTeam[0] !== null) {
+        if (
+          heroesOnTeam[0]?.biography?.alignment !== hero?.biography?.alignment
+        ) {
+          setModalMessage({
+            mainText: "Ops! You can't create mixed type of super team",
+            subText: "Team can only contain one type of hero (Good or Bad)",
+          });
+          setOpenModal(true);
+          return;
+        }
+      }
+      //end
+
       const exists = updatedList.some((h) => h.id == id);
       if (!exists) {
         updatedList.push(hero);
@@ -66,7 +92,7 @@ export default function PosterComponent({ data, hero }) {
           </div>
         </div>
       </div>
-      <ModalComponent openModal={openModal} setOpenModal={setOpenModal} />
+      <ModalComponent  message={modalMessage} openModal={openModal} setOpenModal={setOpenModal} />
     </div>
   );
 }

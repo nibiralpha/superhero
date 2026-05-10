@@ -30,8 +30,8 @@ const ModalComponent: React.FC = ({ openModal, setOpenModal, message }) => {
         }}
       >
         <div className={style.content}>
-          <div className={`${style.title} obelix`}>{message.mainText}</div>
-          <div>{message.subText}</div>
+          <div className={`${style.title} obelix`}>{message?.mainText}</div>
+          <div>{message?.subText}</div>
         </div>
       </Modal>
     </>
