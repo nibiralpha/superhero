@@ -9,13 +9,13 @@ import "animate.css";
 import { Switch } from "antd";
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 
-export default function HeroesComponent({ hero }) {
+export default function HeroesComponent({ hero, reRednder }) {
   const [showDetail, setShowDetail] = useState(false);
   const [onTeam, setOnTeam] = useState(false);
   const router = useRouter();
-  
-  useEffect(() => {    
-    let team = isOnTeam()
+
+  useEffect(() => {
+    let team = isOnTeam();
     setOnTeam(team);
   }, []);
 
@@ -59,6 +59,7 @@ export default function HeroesComponent({ hero }) {
       });
       setOnTeam(false);
       localStorage.setItem("heroes", JSON.stringify(heroesOnTeam));
+      reRednder?.();
       isOnTeam();
     }
   };

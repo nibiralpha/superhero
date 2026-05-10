@@ -12,9 +12,16 @@ export default function TeamsComponent() {
   const [heroList, setHeroList] = useState([]);
 
   useEffect(() => {
+    console.log("zzzzzzz");
+
     let heroList = JSON.parse(localStorage.getItem("heroes")) || [];
-    setHeroList(heroList)
+    setHeroList(heroList);
   }, []);
+
+  const reRednder = () => {
+    let heroList = JSON.parse(localStorage.getItem("heroes")) || [];
+    setHeroList(heroList);
+  };
 
   return (
     <div className={style.layout}>
@@ -22,7 +29,7 @@ export default function TeamsComponent() {
         <Row gutter={[24, 24]}>
           {heroList.map((hero: any) => (
             <Col key={hero.id} sm={24} xs={24} md={8} lg={6}>
-              <HeroesComponent hero={hero} />
+              <HeroesComponent hero={hero} reRednder={reRednder} />
             </Col>
           ))}
         </Row>
