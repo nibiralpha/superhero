@@ -5,9 +5,12 @@ import React, { useEffect, useState } from "react";
 import style from "./Poster.module.css";
 import { Switch } from "antd";
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
+import ModalComponent from "../ModalComponent/ModalComponent";
 
 export default function PosterComponent({ data, hero }) {
   const [heroesOnTeam, setHeroesOnTeam] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
+
   const params = useParams();
   const id = params.id;
 
@@ -17,9 +20,15 @@ export default function PosterComponent({ data, hero }) {
   }, []);
 
   const onClickAddRemoveToTeam = (status) => {
-    let updatedList = [...heroesOnTeam]; 
+    let updatedList = [...heroesOnTeam];
 
     if (status) {
+      let teamMemberCount = getTeamMembersCount();
+
+      if (teamMemberCount >= 8) {
+        setOpenModal(true);
+        return;
+      }
       const exists = updatedList.some((h) => h.id == id);
       if (!exists) {
         updatedList.push(hero);
@@ -30,6 +39,11 @@ export default function PosterComponent({ data, hero }) {
 
     localStorage.setItem("heroes", JSON.stringify(updatedList));
     setHeroesOnTeam(updatedList);
+  };
+
+  const getTeamMembersCount = () => {
+    const heroesOnTeam = JSON.parse(localStorage.getItem("heroes")) || [];
+    return heroesOnTeam.length;
   };
 
   const isCurrentlyOnTeam = heroesOnTeam.some((h) => h.id == id);
@@ -47,11 +61,12 @@ export default function PosterComponent({ data, hero }) {
               checkedChildren={<CheckOutlined />}
               unCheckedChildren={<CloseOutlined />}
               onChange={onClickAddRemoveToTeam}
-              checked={isCurrentlyOnTeam} 
+              checked={isCurrentlyOnTeam}
             />
           </div>
         </div>
       </div>
+      <ModalComponent openModal={openModal} setOpenModal={setOpenModal} />
     </div>
   );
 }

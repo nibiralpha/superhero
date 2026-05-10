@@ -33,6 +33,13 @@ export default function HeroesComponent({ hero, reRednder }) {
   const onClickAddRemoveToTeam = (status) => {
     let heroesOnTeam = JSON.parse(localStorage.getItem("heroes")) || [];
     if (status) {
+      let teamMemberCount = getTeamMembersCount();
+
+      if (teamMemberCount >= 8) {
+        setOpenModal(true);
+        return;
+      }
+
       let data = [];
       let newEntry = true;
       // let heroes = JSON.parse(localStorage.getItem("heroes")) || [];
@@ -77,6 +84,11 @@ export default function HeroesComponent({ hero, reRednder }) {
     }
 
     return false;
+  };
+
+  const getTeamMembersCount = () => {
+    const heroesOnTeam = JSON.parse(localStorage.getItem("heroes")) || [];
+    return heroesOnTeam.length;
   };
 
   return (
@@ -150,7 +162,7 @@ export default function HeroesComponent({ hero, reRednder }) {
           />
         </div>
       </div>
-      {/* <ModalComponent openModal={openModal} setOpenModal={setOpenModal}/> */}
+      <ModalComponent openModal={openModal} setOpenModal={setOpenModal} />
     </div>
   );
 }
