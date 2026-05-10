@@ -1,6 +1,7 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+
 import { MenuUnfoldOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 
@@ -8,9 +9,14 @@ import style from "./Header.module.css";
 
 export default function HeaderComponent({ showMenu = true }) {
   const pathname = usePathname();
+  const router = useRouter();
   const path = pathname.split("/");
 
   const route = path[1];
+
+  const changePage = (page) => {
+    router.push(page);
+  };
 
   return (
     <div className={style.bar}>
@@ -22,11 +28,13 @@ export default function HeaderComponent({ showMenu = true }) {
               <div className={style.menus}>
                 <div
                   className={`${style.menu} ${route === "list" ? style.active : ""}`}
+                  onClick={() => changePage("list")}
                 >
                   Super Heroes
                 </div>
                 <div
                   className={`${style.menu} ${route === "team" ? style.active : ""}`}
+                  onClick={() => changePage("team")}
                 >
                   Team
                 </div>
