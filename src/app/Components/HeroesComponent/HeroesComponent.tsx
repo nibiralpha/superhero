@@ -12,9 +12,12 @@ import ModalComponent from "../ModalComponent/ModalComponent";
 
 export default function HeroesComponent({ hero, reRednder }) {
   const [showDetail, setShowDetail] = useState(false);
+  const [modalMessage, setModalMessage] = useState({
+    mainText: "",
+    subText: "",
+  });
   const [onTeam, setOnTeam] = useState(false);
   const router = useRouter();
-
   const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
@@ -35,10 +38,31 @@ export default function HeroesComponent({ hero, reRednder }) {
     if (status) {
       let teamMemberCount = getTeamMembersCount();
 
+      //teams cant be more than 8
       if (teamMemberCount >= 8) {
+        setModalMessage({
+          mainText: "Ops! You have too many team members",
+          subText: "You may only select 8 team members at a time",
+        });
         setOpenModal(true);
         return;
       }
+      //end
+
+      //only able to add good/bad
+      if (heroesOnTeam[0] !== undefined && heroesOnTeam[0] !== null) {
+        console.log(heroesOnTeam[0]);
+        
+        if (heroesOnTeam[0]?.biography?.alignment !== hero?.biography?.alignment) {
+          setModalMessage({
+            mainText: "Ops! You can't create mixed type of super team",
+            subText: "Team can only contain one type of hero (Good or Bad)",
+          });
+          setOpenModal(true);
+          return;
+        }
+      }
+      //end
 
       let data = [];
       let newEntry = true;
@@ -162,7 +186,11 @@ export default function HeroesComponent({ hero, reRednder }) {
           />
         </div>
       </div>
-      <ModalComponent openModal={openModal} setOpenModal={setOpenModal} />
+      <ModalComponent
+        message={modalMessage}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      />
     </div>
   );
 }

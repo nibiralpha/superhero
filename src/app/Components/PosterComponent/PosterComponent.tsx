@@ -25,7 +25,7 @@ export default function PosterComponent({ data, hero }) {
     if (status) {
       let teamMemberCount = getTeamMembersCount();
 
-      if (teamMemberCount >= 8) {
+      if (teamMemberCount >= 8) { 
         setOpenModal(true);
         return;
       }

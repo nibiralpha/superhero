@@ -1,22 +1,10 @@
 import style from "./Modal.module.css";
 
-import React, { useState } from "react";
-import { Button, Modal } from "antd";
+import React from "react";
+import { Modal } from "antd";
 
-const ModalComponent: React.FC = ({ openModal, setOpenModal }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  //   const [isModalOpen, setIsModalOpen] = useState(openModal);
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
+const ModalComponent: React.FC = ({ openModal, setOpenModal, message }) => {
   const handleCancel = () => {
-    // setIsModalOpen(false);
     setOpenModal(false);
   };
 
@@ -40,10 +28,8 @@ const ModalComponent: React.FC = ({ openModal, setOpenModal }) => {
         }}
       >
         <div className={style.content}>
-          <div className={`${style.title} obelix`}>
-            Ops! You have too many team members
-          </div>
-          <div>You may only select 8 team members at a time</div>
+          <div className={`${style.title} obelix`}>{message.mainText}</div>
+          <div>{message.subText}</div>
         </div>
       </Modal>
     </>
