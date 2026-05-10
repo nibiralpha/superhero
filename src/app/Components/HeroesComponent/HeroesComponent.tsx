@@ -8,11 +8,14 @@ import style from "./Heroes.module.css";
 import "animate.css";
 import { Switch } from "antd";
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
+import ModalComponent from "../ModalComponent/ModalComponent";
 
 export default function HeroesComponent({ hero, reRednder }) {
   const [showDetail, setShowDetail] = useState(false);
   const [onTeam, setOnTeam] = useState(false);
   const router = useRouter();
+
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     let team = isOnTeam();
@@ -81,6 +84,7 @@ export default function HeroesComponent({ hero, reRednder }) {
       onMouseLeave={() => showDetailCard(false)}
       className={style.img_container}
     >
+      {/* <div onClick={() => setOpenModal(true)}>Open</div> */}
       <img src={hero.images.lg} onClick={changeRoute} />
 
       <div
@@ -146,6 +150,7 @@ export default function HeroesComponent({ hero, reRednder }) {
           />
         </div>
       </div>
+      {/* <ModalComponent openModal={openModal} setOpenModal={setOpenModal}/> */}
     </div>
   );
 }

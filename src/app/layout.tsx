@@ -33,6 +33,9 @@ export default function RootLayout({
                     colorTextTertiary: "rgb(172, 172, 172)",
                     colorWhite: "#fff",
                   },
+                  Modal: {
+                    borderRadiusLG: 0,
+                  },
                 },
               }}
             >
