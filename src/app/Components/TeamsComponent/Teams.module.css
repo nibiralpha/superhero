@@ -1,0 +1,11 @@
+.layout {
+  margin: 50px 120px;
+}
+
+/* MOBILE */
+
+@media screen and (max-width: 430px) {
+  .layout {
+    margin: 30px 30px;
+  }
+}
