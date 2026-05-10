@@ -24,6 +24,8 @@ const ModalComponent: React.FC = ({ openModal, setOpenModal, message }) => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
+            paddingLeft: "20px",
+            paddingRight: "20px",
           },
         }}
       >
