@@ -2,6 +2,18 @@
   margin: 50px 120px;
 }
 
+.alt_layout{
+    margin: 50px 20px;
+}
+
+.no_team {
+  font-size: 18px;
+}
+
+.list_page {
+  color: #0084ff;
+}
+
 /* MOBILE */
 
 @media screen and (max-width: 430px) {

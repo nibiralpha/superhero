@@ -2,20 +2,15 @@
 import style from "./Teams.module.css";
 
 import "animate.css";
-import { Col, Row, Spin } from "antd";
+import { Col, Row } from "antd";
 import HeroesComponent from "../HeroesComponent/HeroesComponent";
 import { useEffect, useState } from "react";
-import { fetchHeroes } from "../../Services/Heroes";
-import { useDispatch, useSelector } from "react-redux";
 
 export default function TeamsComponent() {
   const [heroList, setHeroList] = useState([]);
 
   useEffect(() => {
-    console.log("zzzzzzz");
-
-    let heroList = JSON.parse(localStorage.getItem("heroes")) || [];
-    setHeroList(heroList);
+    reRednder();
   }, []);
 
   const reRednder = () => {
@@ -24,16 +19,27 @@ export default function TeamsComponent() {
   };
 
   return (
-    <div className={style.layout}>
+    <div className={heroList.length === 0 ? style.alt_layout : style.layout}>
       <div>
-        <Row gutter={[24, 24]}>
-          {heroList.map((hero: any) => (
-            <Col key={hero.id} sm={24} xs={24} md={8} lg={6}>
-              <HeroesComponent hero={hero} reRednder={reRednder} />
-            </Col>
-          ))}
-        </Row>
-        {/* )} */}
+        {heroList.length === 0 && (
+          <div className={style.no_team}>
+            <div>
+              You do not have any team members selected. Please make selections
+              on
+            </div>
+            <div className={style.list_page}>Superheroes page</div>
+          </div>
+        )}
+
+        {heroList.length > 0 && (
+          <Row gutter={[24, 24]}>
+            {heroList.map((hero: any) => (
+              <Col key={hero.id} sm={24} xs={24} md={8} lg={6}>
+                <HeroesComponent hero={hero} reRednder={reRednder} />
+              </Col>
+            ))}
+          </Row>
+        )}
       </div>
     </div>
   );
