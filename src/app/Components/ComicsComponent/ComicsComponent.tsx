@@ -1,7 +1,7 @@
 "use client";
-import style from "./Comics.module.css";
 
 import "animate.css";
+import style from "./Comics.module.css";
 import { Col, Row, Spin } from "antd";
 import HeroesComponent from "../HeroesComponent/HeroesComponent";
 import { useEffect, useState } from "react";
@@ -9,17 +9,14 @@ import { fetchHeroes } from "../../Services/Heroes";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function ComicsComponent() {
+  const [searchResults, setSearchResults] = useState([]);
+
   const dispatch = useDispatch();
-  // const [heroes, serHero] = useState({});
   const heroList = useSelector((state) => state.heros);
 
   const getHeroData = async () => {
     dispatch(fetchHeroes());
   };
-
-  useEffect(() => {
-    // console.log(heroList);
-  }, [heroList]);
 
   useEffect(() => {
     getHeroData();

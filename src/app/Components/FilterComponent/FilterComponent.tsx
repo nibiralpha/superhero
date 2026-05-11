@@ -5,23 +5,39 @@ import { Button, Col, Row, Input, Select, Slider } from "antd";
 
 import style from "./Filter.module.css";
 import MenuComponent from "../HeaderComponent/HeaderComponent";
+import { searchBykeyword, searchByGender, searchByAlignment } from "@/src/redux/searchSlice";
+import { useDispatch } from "react-redux";
 
 export default function FilterComponent() {
+   const dispatch = useDispatch();
   const handleChange = () => {};
+
+  const onchangeKeyword = (input) => {
+    dispatch(searchBykeyword(input.target.value));
+  };
+  
+  const onchangeGender = (value) => {
+    dispatch(searchByGender(value));
+  };
+  
+  const onchangeAlignment = (value) => {
+    dispatch(searchByAlignment(value));
+  };
+
   return (
     <div className={style.bar}>
       <div className={style.filter_bar}>
         <Row gutter={[16, 24]}>
           <Col xs={24} md={4}>
             <div className={style.key}>Keyword</div>
-            <Input placeholder="Keyword" />
+            <Input placeholder="Keyword" onChange={onchangeKeyword} />
           </Col>
           <Col xs={24} md={4}>
             <div className={style.key}>Gender</div>
             <Select
               defaultValue="Choose Gender"
               style={{ width: "100%" }}
-              // onChange={handleChange}
+              onChange={onchangeGender}
               options={[
                 { value: "male", label: "Male" },
                 { value: "female", label: "Female" },
@@ -33,7 +49,7 @@ export default function FilterComponent() {
             <Select
               defaultValue="Choose Alignment"
               style={{ width: "100%" }}
-              // onChange={handleChange}
+              onChange={onchangeAlignment}
               options={[
                 { value: "good", label: "Good" },
                 { value: "bad", label: "Bad" },
