@@ -17,9 +17,10 @@
   color: #1890ff !important;
 }
 
-/* .ant-select-content.ant-select-content-has-value{
-  color: red !important;
+/* .ant-select-content .ant-select-content-has-value {
+  color: #bfbfd6 !important;
 } */
+
 
 @media screen and (max-width: 430px) {
   .filter_bar {

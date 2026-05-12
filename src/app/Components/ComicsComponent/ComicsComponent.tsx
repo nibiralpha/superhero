@@ -7,9 +7,9 @@ import HeroesComponent from "../HeroesComponent/HeroesComponent";
 import { useEffect, useState } from "react";
 import { fetchHeroes } from "../../Services/Heroes";
 import { useDispatch, useSelector } from "react-redux";
+import { heroSelectors } from '../../Selectors/heroSelectors';
 
 export default function ComicsComponent() {
-  const [searchResults, setSearchResults] = useState([]);
 
   const dispatch = useDispatch();
   const heroList = useSelector((state) => state.heros);
