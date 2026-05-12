@@ -5,23 +5,31 @@ import { Button, Col, Row, Input, Select, Slider } from "antd";
 
 import style from "./Filter.module.css";
 import MenuComponent from "../HeaderComponent/HeaderComponent";
-import { searchBykeyword, searchByGender, searchByAlignment } from "@/src/redux/searchSlice";
+import {
+  searchBykeyword,
+  searchByGender,
+  searchByAlignment,
+} from "@/src/redux/searchSlice";
 import { useDispatch } from "react-redux";
 
 export default function FilterComponent() {
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const handleChange = () => {};
 
   const onchangeKeyword = (input) => {
     dispatch(searchBykeyword(input.target.value));
   };
-  
+
   const onchangeGender = (value) => {
     dispatch(searchByGender(value));
   };
-  
+
   const onchangeAlignment = (value) => {
     dispatch(searchByAlignment(value));
+  };
+
+  const handleChangeSlider = (name, value) => {
+    console.log("zzzzzzzzzz", name, value);
   };
 
   return (
@@ -64,7 +72,7 @@ export default function FilterComponent() {
               style={{ width: "100%" }}
               placeholder="Please select"
               // defaultValue={["a10", "c12"]}
-              onChange={handleChange}
+              // onChange={handleChangeSlider}
               options={[
                 { label: "Speed", value: "speed" },
                 { label: "Intelligence", value: "intelligence" },
@@ -75,15 +83,39 @@ export default function FilterComponent() {
           </Col>
           <Col xs={24} md={4}>
             <div className={style.key}>Intelligence</div>
-            <Slider range defaultValue={[20, 50]} />
+            <Slider
+              onChange={(intelligence) =>
+                handleChangeSlider("intelligence", intelligence)
+              }
+              range
+              defaultValue={[20, 50]}
+            />
             <div className={style.key}>Power</div>
-            <Slider range defaultValue={[20, 50]} />
+            <Slider
+              range
+              onChange={(power) =>
+                handleChangeSlider("intellipowergence", power)
+              }
+              defaultValue={[20, 50]}
+            />
           </Col>
           <Col xs={24} md={4}>
             <div className={style.key}>Speed</div>
-            <Slider range defaultValue={[20, 50]} />
+            <Slider
+              range
+              onChange={(intelligence) =>
+                handleChangeSlider("speed", intelligence)
+              }
+              defaultValue={[20, 50]}
+            />
             <div className={style.key}>Durability</div>
-            <Slider range defaultValue={[20, 50]} />
+            <Slider
+              range
+              onChange={(durability) =>
+                handleChangeSlider("durability", durability)
+              }
+              defaultValue={[20, 50]}
+            />
           </Col>
         </Row>
       </div>
