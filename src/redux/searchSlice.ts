@@ -22,9 +22,28 @@ export const searchSlice = createSlice({
     searchByAlignment: (state, action) => {
       return { ...state, alignment: action.payload };
     },
+    searchByIntelligence: (state, action) => {
+      return { ...state, intelligence: action.payload };
+    },
+    searchBySpeed: (state, action) => {
+      return { ...state, speed: action.payload };
+    },
+    searchByPower: (state, action) => {
+      return { ...state, power: action.payload };
+    },
+    searchByDurability: (state, action) => {
+      return { ...state, durability: action.payload };
+    },
   },
 });
 
-export const { searchBykeyword, searchByGender, searchByAlignment } =
-  searchSlice.actions;
+export const {
+  searchBykeyword,
+  searchByGender,
+  searchByAlignment,
+  searchByIntelligence,
+  searchBySpeed,
+  searchByPower,
+  searchByDurability,
+} = searchSlice.actions;
 export default searchSlice.reducer;

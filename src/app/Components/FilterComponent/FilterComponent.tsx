@@ -1,10 +1,8 @@
 "use client";
 
-import { MenuUnfoldOutlined } from "@ant-design/icons";
-import { Button, Col, Row, Input, Select, Slider } from "antd";
+import { Col, Row, Input, Select, Slider } from "antd";
 
 import style from "./Filter.module.css";
-import MenuComponent from "../HeaderComponent/HeaderComponent";
 import {
   searchBykeyword,
   searchByGender,
@@ -14,7 +12,6 @@ import { useDispatch } from "react-redux";
 
 export default function FilterComponent() {
   const dispatch = useDispatch();
-  const handleChange = () => {};
 
   const onchangeKeyword = (input) => {
     dispatch(searchBykeyword(input.target.value));
