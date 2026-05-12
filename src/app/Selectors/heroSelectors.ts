@@ -29,6 +29,14 @@ export const selectFilteredHeroes = createSelector(
       )
         return false;
 
+        //search with alignment
+      if (
+        alignment &&
+        hero.biography?.alignment?.toLowerCase().trim() !==
+          alignment.toLowerCase().trim()
+      )
+        return false;
+
       return true;
     });
   },
