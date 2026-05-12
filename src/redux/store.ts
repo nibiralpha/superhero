@@ -3,7 +3,7 @@ import heroSlice from "./heroSlice";
 import searchSlice from "./searchSlice";
 
 const rootReducer = combineReducers({
-  heros: heroSlice,
+  heroes: heroSlice,
   search: searchSlice
 });
 

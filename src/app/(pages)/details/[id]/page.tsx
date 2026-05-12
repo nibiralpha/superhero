@@ -17,7 +17,7 @@ export default function Detail() {
   const dispatch = useDispatch();
   const id = params.id;
 
-  const heroDetail = useSelector((state) => state.heros);
+  const heroDetail = useSelector((state) => state.heroes);
 
   useEffect(() => {
     console.log("detail", heroDetail.details.images);
