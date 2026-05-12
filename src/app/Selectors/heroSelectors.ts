@@ -22,6 +22,13 @@ export const selectFilteredHeroes = createSelector(
       if (keyword && !hero.name.toLowerCase().includes(keyword.toLowerCase()))
         return false;
 
+      //search with gender
+      if (
+        gender &&
+        hero.appearance.gender.toLowerCase() !== gender.toLowerCase()
+      )
+        return false;
+
       return true;
     });
   },
