@@ -45,8 +45,14 @@ export const selectFilteredHeroes = createSelector(
         return false;
       }
 
-      // if (intelligence && hero.powerstats.intelligence < intelligence) return false;
-      // if (speed && hero.powerstats.speed < speed) return false;
+      //Search with speed
+      if (
+        hero.powerstats?.speed < speed[0] ||
+        hero.powerstats?.speed > speed[1]
+      ) {
+        return false;
+      }
+
       // if (power && hero.powerstats.power < power) return false;
       // if (durability && hero.powerstats.durability < durability) return false;
 
