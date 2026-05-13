@@ -10,7 +10,6 @@ export const selectFilteredHeroes = createSelector(
       keyword,
       gender,
       alignment,
-      powerstate,
       intelligence,
       speed,
       power,
@@ -41,26 +40,29 @@ export const selectFilteredHeroes = createSelector(
       if (
         hero.powerstats?.intelligence < intelligence[0] ||
         hero.powerstats?.intelligence > intelligence[1]
-      ) {
+      )
         return false;
-      }
 
       //Search with speed
       if (
         hero.powerstats?.speed < speed[0] ||
         hero.powerstats?.speed > speed[1]
-      ) {
+      )
         return false;
-      }
 
       //Search with power
       if (
         hero.powerstats?.power < power[0] ||
         hero.powerstats?.power > power[1]
-      ) {
+      )
         return false;
-      }
-      // if (durability && hero.powerstats.durability < durability) return false;
+
+      //Search with durability
+      if (
+        hero.powerstats?.durability < durability[0] ||
+        hero.powerstats?.durability > durability[1]
+      )
+        return false;
 
       return true;
     });

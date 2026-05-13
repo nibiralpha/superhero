@@ -102,13 +102,13 @@ export default function FilterComponent() {
                 handleChangeSlider("intelligence", intelligence)
               }
               range
-              defaultValue={[20, 50]}
+              defaultValue={[0, 100]}
             />
             <div className={style.key}>Power</div>
             <Slider
               range
               onChange={(power) => handleChangeSlider("power", power)}
-              defaultValue={[20, 50]}
+              defaultValue={[0, 100]}
             />
           </Col>
           <Col xs={24} md={4}>
@@ -118,7 +118,7 @@ export default function FilterComponent() {
               onChange={(intelligence) =>
                 handleChangeSlider("speed", intelligence)
               }
-              defaultValue={[20, 50]}
+              defaultValue={[0, 100]}
             />
             <div className={style.key}>Durability</div>
             <Slider
@@ -126,7 +126,7 @@ export default function FilterComponent() {
               onChange={(durability) =>
                 handleChangeSlider("durability", durability)
               }
-              defaultValue={[20, 50]}
+              defaultValue={[0, 100]}
             />
           </Col>
         </Row>
