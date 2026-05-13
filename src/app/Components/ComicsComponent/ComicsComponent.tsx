@@ -13,6 +13,7 @@ export default function ComicsComponent() {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.heroes);
   const filteredHeroes = useSelector(selectFilteredHeroes);
+// console.log(filteredHeroes);
 
   useEffect(() => {
     // optimized fetch

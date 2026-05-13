@@ -16,55 +16,91 @@ export const selectFilteredHeroes = createSelector(
       durability,
     } = filters;
 
-    return heroes.filter((hero) => {
-      //search with name
-      if (keyword && !hero.name.toLowerCase().includes(keyword.toLowerCase()))
-        return false;
+    const searchByName = (heroes) => {
+      return heroes.filter((hero) => {
+        let heroLowerCase = hero.name.toLowerCase();
+        let result = heroLowerCase.startsWith(keyword.toLowerCase())     
+        
+        return result;
+      });
+    };
 
-      //search with gender
-      if (
-        gender &&
-        hero.appearance.gender.toLowerCase() !== gender.toLowerCase()
-      )
-        return false;
+    const filterHerores = () => {
+      let filterData = [...heroes];
+      const result = searchByName(filterData);
 
-      //search with alignment
-      if (
-        alignment &&
-        hero.biography?.alignment?.toLowerCase().trim() !==
-          alignment.toLowerCase().trim()
-      )
-        return false;
+      return result;
+    };
 
-      //search with intelligence
-      if (
-        hero.powerstats?.intelligence < intelligence[0] ||
-        hero.powerstats?.intelligence > intelligence[1]
-      )
-        return false;
+    // return heroes.filter((hero) => {
+    //   //search with name
+    //   console.log("baaaaaaal");
 
-      //Search with speed
-      if (
-        hero.powerstats?.speed < speed[0] ||
-        hero.powerstats?.speed > speed[1]
-      )
-        return false;
+    //   if (keyword && !hero.name.toLowerCase().includes(keyword.toLowerCase())) {
+    //     console.log("============ search");
 
-      //Search with power
-      if (
-        hero.powerstats?.power < power[0] ||
-        hero.powerstats?.power > power[1]
-      )
-        return false;
+    //     return false;
+    //   }
 
-      //Search with durability
-      if (
-        hero.powerstats?.durability < durability[0] ||
-        hero.powerstats?.durability > durability[1]
-      )
-        return false;
+    //   //search with gender
+    //   if (
+    //     gender &&
+    //     hero.appearance.gender.toLowerCase() !== gender.toLowerCase()
+    //   ) {
+    //     console.log("================= gender");
+    //     return false;
+    //   }
 
-      return true;
-    });
+    //   //search with alignment
+    //   if (
+    //     alignment &&
+    //     hero.biography?.alignment?.toLowerCase().trim() !==
+    //       alignment.toLowerCase().trim()
+    //   ) {
+    //     console.log("============== alignment");
+    //     return false;
+    //   }
+
+    //   //search with intelligence
+    //   if (
+    //     hero.powerstats?.intelligence < intelligence[0] ||
+    //     hero.powerstats?.intelligence > intelligence[1]
+    //   ) {
+    //     console.log("================= intelligence");
+    //     return false;
+    //   }
+
+    //   //Search with speed
+    //   if (
+    //     hero.powerstats?.speed < speed[0] ||
+    //     hero.powerstats?.speed > speed[1]
+    //   ) {
+    //     console.log("============= speed");
+    //     return false;
+    //   }
+
+    //   //Search with power
+    //   if (
+    //     hero.powerstats?.power < power[0] ||
+    //     hero.powerstats?.power > power[1]
+    //   ) {
+    //     console.log("=================== power");
+    //     return false;
+    //   }
+
+    //   //Search with durability
+    //   if (
+    //     hero.powerstats?.durability < durability[0] ||
+    //     hero.powerstats?.durability > durability[1]
+    //   ) {
+    //     console.log("================== durability");
+    //     return false;
+    //   }
+
+    //   return true;
+    // });
+    const filteredData = filterHerores();
+    return filteredData;
+    // return [];
   },
 );
