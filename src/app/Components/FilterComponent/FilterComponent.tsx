@@ -78,7 +78,7 @@ export default function FilterComponent() {
               ]}
             />
           </Col>
-          <Col xs={24} md={4}>
+          {/* <Col xs={24} md={4}>
             <div className={style.key}>Powerstats</div>
             <Select
               mode="multiple"
@@ -94,7 +94,7 @@ export default function FilterComponent() {
                 { label: "Durability", value: "durability" },
               ]}
             />
-          </Col>
+          </Col> */}
           <Col xs={24} md={4}>
             <div className={style.key}>Intelligence</div>
             <Slider
