@@ -53,7 +53,13 @@ export const selectFilteredHeroes = createSelector(
         return false;
       }
 
-      // if (power && hero.powerstats.power < power) return false;
+      //Search with power
+      if (
+        hero.powerstats?.power < power[0] ||
+        hero.powerstats?.power > power[1]
+      ) {
+        return false;
+      }
       // if (durability && hero.powerstats.durability < durability) return false;
 
       return true;
