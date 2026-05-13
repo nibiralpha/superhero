@@ -37,9 +37,14 @@ export const selectFilteredHeroes = createSelector(
       )
         return false;
 
-      // // Powerstats (Numerical - assuming hero.powerstats object)
-      // // We check if the hero stat is greater than or equal to the filter value
-      // if (powerstate && hero.powerstats.power < powerstate) return false;
+      //search with intelligence
+      if (
+        hero.powerstats?.intelligence < intelligence[0] ||
+        hero.powerstats?.intelligence > intelligence[1]
+      ) {
+        return false;
+      }
+
       // if (intelligence && hero.powerstats.intelligence < intelligence) return false;
       // if (speed && hero.powerstats.speed < speed) return false;
       // if (power && hero.powerstats.power < power) return false;

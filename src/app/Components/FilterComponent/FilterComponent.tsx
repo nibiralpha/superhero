@@ -7,6 +7,10 @@ import {
   searchBykeyword,
   searchByGender,
   searchByAlignment,
+  searchByIntelligence,
+  searchByPower,
+  searchBySpeed,
+  searchByDurability,
 } from "@/src/redux/searchSlice";
 import { useDispatch } from "react-redux";
 
@@ -26,7 +30,18 @@ export default function FilterComponent() {
   };
 
   const handleChangeSlider = (name, value) => {
-    console.log("zzzzzzzzzz", name, value);
+    if (name == "intelligence") {
+      dispatch(searchByIntelligence(value));
+    }
+    if (name == "power") {
+      dispatch(searchByPower(value));
+    }
+    if (name == "speed") {
+      dispatch(searchBySpeed(value));
+    }
+    if (name == "durability") {
+      dispatch(searchByDurability(value));
+    }
   };
 
   return (
@@ -44,6 +59,7 @@ export default function FilterComponent() {
               style={{ width: "100%" }}
               onChange={onchangeGender}
               options={[
+                { value: "all", label: "All" },
                 { value: "male", label: "Male" },
                 { value: "female", label: "Female" },
               ]}
@@ -56,6 +72,7 @@ export default function FilterComponent() {
               style={{ width: "100%" }}
               onChange={onchangeAlignment}
               options={[
+                { value: "all", label: "All" },
                 { value: "good", label: "Good" },
                 { value: "bad", label: "Bad" },
               ]}
@@ -90,9 +107,7 @@ export default function FilterComponent() {
             <div className={style.key}>Power</div>
             <Slider
               range
-              onChange={(power) =>
-                handleChangeSlider("intellipowergence", power)
-              }
+              onChange={(power) => handleChangeSlider("power", power)}
               defaultValue={[20, 50]}
             />
           </Col>
