@@ -19,17 +19,29 @@ export const selectFilteredHeroes = createSelector(
     const searchByName = (heroes) => {
       return heroes.filter((hero) => {
         let heroLowerCase = hero.name.toLowerCase();
-        let result = heroLowerCase.startsWith(keyword.toLowerCase())     
-        
+        let result = heroLowerCase.startsWith(keyword.toLowerCase());
+
         return result;
+      });
+    };
+
+    const searchByGender = (heroes) => {
+
+      if(gender == "all") return heroes;
+      
+      return heroes.filter((hero) => {        
+        return hero.appearance.gender.toLowerCase() == gender.toLowerCase();
       });
     };
 
     const filterHerores = () => {
       let filterData = [...heroes];
-      const result = searchByName(filterData);
+      console.log(filterData);
 
-      return result;
+      let nameSearch = searchByName(filterData);
+      let genderSearch = searchByGender(nameSearch);
+
+      return genderSearch;
     };
 
     // return heroes.filter((hero) => {
@@ -100,6 +112,8 @@ export const selectFilteredHeroes = createSelector(
     //   return true;
     // });
     const filteredData = filterHerores();
+    console.log(filteredData);
+    
     return filteredData;
     // return [];
   },
