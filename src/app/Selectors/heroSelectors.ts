@@ -26,22 +26,30 @@ export const selectFilteredHeroes = createSelector(
     };
 
     const searchByGender = (heroes) => {
+      if (gender == "all" || gender == "") return heroes;
 
-      if(gender == "all") return heroes;
-      
-      return heroes.filter((hero) => {        
+      return heroes.filter((hero) => {
         return hero.appearance.gender.toLowerCase() == gender.toLowerCase();
+      });
+    };
+
+    const searchByAlignment = (heroes) => {
+      if (alignment == "all" || alignment == "") return heroes;
+
+      return heroes.filter((hero) => {
+        return hero.biography.alignment.toLowerCase() == alignment.toLowerCase();
       });
     };
 
     const filterHerores = () => {
       let filterData = [...heroes];
-      console.log(filterData);
 
       let nameSearch = searchByName(filterData);
       let genderSearch = searchByGender(nameSearch);
+      console.log(genderSearch);
+      let alignmentSearch = searchByAlignment(genderSearch);
 
-      return genderSearch;
+      return alignmentSearch;
     };
 
     // return heroes.filter((hero) => {
@@ -113,7 +121,7 @@ export const selectFilteredHeroes = createSelector(
     // });
     const filteredData = filterHerores();
     console.log(filteredData);
-    
+
     return filteredData;
     // return [];
   },
