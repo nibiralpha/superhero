@@ -72,81 +72,18 @@ export const selectFilteredHeroes = createSelector(
 
       let speedSearch = searchByPowerState(intelligenceSearch, "speed", speed);
       let powerSearch = searchByPowerState(speedSearch, "power", power);
+      let durabilitySearch = searchByPowerState(
+        powerSearch,
+        "durability",
+        durability,
+      );
 
-      return powerSearch;
+      return durabilitySearch;
     };
 
-    // return heroes.filter((hero) => {
-    //   //search with name
-    //   console.log("baaaaaaal");
-
-    //   if (keyword && !hero.name.toLowerCase().includes(keyword.toLowerCase())) {
-    //     console.log("============ search");
-
-    //     return false;
-    //   }
-
-    //   //search with gender
-    //   if (
-    //     gender &&
-    //     hero.appearance.gender.toLowerCase() !== gender.toLowerCase()
-    //   ) {
-    //     console.log("================= gender");
-    //     return false;
-    //   }
-
-    //   //search with alignment
-    //   if (
-    //     alignment &&
-    //     hero.biography?.alignment?.toLowerCase().trim() !==
-    //       alignment.toLowerCase().trim()
-    //   ) {
-    //     console.log("============== alignment");
-    //     return false;
-    //   }
-
-    //   //search with intelligence
-    //   if (
-    //     hero.powerstats?.intelligence < intelligence[0] ||
-    //     hero.powerstats?.intelligence > intelligence[1]
-    //   ) {
-    //     console.log("================= intelligence");
-    //     return false;
-    //   }
-
-    //   //Search with speed
-    //   if (
-    //     hero.powerstats?.speed < speed[0] ||
-    //     hero.powerstats?.speed > speed[1]
-    //   ) {
-    //     console.log("============= speed");
-    //     return false;
-    //   }
-
-    //   //Search with power
-    //   if (
-    //     hero.powerstats?.power < power[0] ||
-    //     hero.powerstats?.power > power[1]
-    //   ) {
-    //     console.log("=================== power");
-    //     return false;
-    //   }
-
-    //   //Search with durability
-    //   if (
-    //     hero.powerstats?.durability < durability[0] ||
-    //     hero.powerstats?.durability > durability[1]
-    //   ) {
-    //     console.log("================== durability");
-    //     return false;
-    //   }
-
-    //   return true;
-    // });
     const filteredData = filterHerores();
     console.log(filteredData);
 
     return filteredData;
-    // return [];
   },
 );
