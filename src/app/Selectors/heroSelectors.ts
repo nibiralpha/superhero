@@ -69,7 +69,6 @@ export const selectFilteredHeroes = createSelector(
         "intelligence",
         intelligence,
       );
-
       let speedSearch = searchByPowerState(intelligenceSearch, "speed", speed);
       let powerSearch = searchByPowerState(speedSearch, "power", power);
       let durabilitySearch = searchByPowerState(
