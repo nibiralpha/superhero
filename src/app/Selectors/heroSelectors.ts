@@ -71,8 +71,9 @@ export const selectFilteredHeroes = createSelector(
       );
 
       let speedSearch = searchByPowerState(intelligenceSearch, "speed", speed);
+      let powerSearch = searchByPowerState(speedSearch, "power", power);
 
-      return speedSearch;
+      return powerSearch;
     };
 
     // return heroes.filter((hero) => {
