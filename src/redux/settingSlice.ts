@@ -7,7 +7,7 @@ export const settingSlice = createSlice({
   },
   reducers: {
     setFilter: (state, action) => {
-      return { ...state, showMenu: action.payload };
+      return { ...state, showFilter: action.payload };
     },
   },
 });

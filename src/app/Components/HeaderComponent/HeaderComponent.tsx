@@ -6,16 +6,25 @@ import { MenuUnfoldOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 
 import style from "./Header.module.css";
+import { setFilter } from "@/src/redux/settingSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function HeaderComponent({ showMenu = true }) {
+  const dispatch = useDispatch();
   const pathname = usePathname();
   const router = useRouter();
   const path = pathname.split("/");
+
+  const showFilter = useSelector((state) => state.filter.showFilter);
 
   const route = path[1];
 
   const changePage = (page) => {
     router.push(`/${page}`);
+  };
+
+  const visibleMenu = () => {
+    dispatch(setFilter(!showFilter));
   };
 
   return (
@@ -42,7 +51,7 @@ export default function HeaderComponent({ showMenu = true }) {
             </div>
             <div className={style.right_side}>
               {showMenu && (
-                <Button>
+                <Button onClick={visibleMenu}>
                   <MenuUnfoldOutlined /> Filter
                 </Button>
               )}
