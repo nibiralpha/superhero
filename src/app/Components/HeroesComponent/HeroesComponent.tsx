@@ -51,7 +51,6 @@ export default function HeroesComponent({ hero, reRednder }) {
 
       //only able to add good/bad
       if (heroesOnTeam[0] !== undefined && heroesOnTeam[0] !== null) {
-        console.log(heroesOnTeam[0]);
         
         if (heroesOnTeam[0]?.biography?.alignment !== hero?.biography?.alignment) {
           setModalMessage({

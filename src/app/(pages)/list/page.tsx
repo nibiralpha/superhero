@@ -8,7 +8,7 @@ export default function Search() {
     <>
       <div>
         <HeaderComponent showMenu={true} />
-        <FilterComponent />
+        <FilterComponent visible={false} />
         <ComicComponent />
       </div>
     </>

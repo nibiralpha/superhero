@@ -81,7 +81,7 @@ export const selectFilteredHeroes = createSelector(
     };
 
     const filteredData = filterHerores();
-    console.log(filteredData);
+    // console.log(filteredData);
 
     return filteredData;
   },
