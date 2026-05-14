@@ -48,7 +48,7 @@ export default function FilterComponent() {
     <div className={style.bar}>
       <div className={style.filter_bar}>
         <Row gutter={[16, 24]}>
-          <Col xs={24} md={4}>
+          <Col xs={24} md={5}>
             <div className={style.key}>Keyword</div>
             <Input placeholder="Keyword" onChange={onchangeKeyword} />
           </Col>
@@ -95,7 +95,7 @@ export default function FilterComponent() {
               ]}
             />
           </Col> */}
-          <Col xs={24} md={4}>
+          <Col xs={24} md={5}>
             <div className={style.key}>Intelligence</div>
             <Slider
               onChange={(intelligence) =>
@@ -111,7 +111,7 @@ export default function FilterComponent() {
               defaultValue={[0, 100]}
             />
           </Col>
-          <Col xs={24} md={4}>
+          <Col xs={24} md={5}>
             <div className={style.key}>Speed</div>
             <Slider
               range

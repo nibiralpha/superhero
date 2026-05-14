@@ -37,7 +37,24 @@ export const selectFilteredHeroes = createSelector(
       if (alignment == "all" || alignment == "") return heroes;
 
       return heroes.filter((hero) => {
-        return hero.biography.alignment.toLowerCase() == alignment.toLowerCase();
+        return (
+          hero.biography.alignment.toLowerCase() == alignment.toLowerCase()
+        );
+      });
+    };
+
+    const searchByPowerState = (heroes, name, value) => {
+      if (value == "") {
+        value = [0, 100];
+      }
+      return heroes.filter((hero) => {
+        if (
+          hero.powerstats[name] > value[0] &&
+          hero.powerstats[name] < value[1]
+        ) {
+          return hero;
+        }
+        // return data;
       });
     };
 
@@ -46,10 +63,14 @@ export const selectFilteredHeroes = createSelector(
 
       let nameSearch = searchByName(filterData);
       let genderSearch = searchByGender(nameSearch);
-      console.log(genderSearch);
       let alignmentSearch = searchByAlignment(genderSearch);
+      let intelligenceSearch = searchByPowerState(
+        alignmentSearch,
+        "intelligence",
+        intelligence,
+      );
 
-      return alignmentSearch;
+      return intelligenceSearch;
     };
 
     // return heroes.filter((hero) => {
