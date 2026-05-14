@@ -14,6 +14,7 @@ import {
 } from "@/src/redux/searchSlice";
 import { useDispatch } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 export default function FilterComponent({ visible }) {
   const searchParams = useSearchParams();
@@ -21,6 +22,8 @@ export default function FilterComponent({ visible }) {
   const router = useRouter();
 
   const addSearchParam = (key, value) => {
+    // console.log("addSearchParam", key, value);
+
     const params = new URLSearchParams(searchParams.toString());
     params.set(key, value);
     const cleanQueryString = decodeURIComponent(params.toString());
@@ -28,9 +31,9 @@ export default function FilterComponent({ visible }) {
     router.push(`?${cleanQueryString}`, { scroll: false });
   };
 
-  const onchangeKeyword = (input) => {
-    addSearchParam("search", input.target.value);
-    dispatch(searchBykeyword(input.target.value));
+  const onchangeKeyword = (value) => {
+    addSearchParam("search", value);
+    dispatch(searchBykeyword(value));
   };
 
   const onchangeGender = (value) => {
@@ -44,6 +47,19 @@ export default function FilterComponent({ visible }) {
   };
 
   const handleChangeSlider = (name, value) => {
+    // console.log("aaaaaaaaa", name, value, typeof value);
+    // let val;
+    // if (typeof value === "string") {
+    //   console.log("string");
+    //   val = value;
+    // } else {
+    //   console.log("arraayyyyyy");
+    //   val = value.join(",");
+    // }
+
+    // console.log("converted data", val);
+
+    // addSearchParam(name, val);
     addSearchParam(name, value.join(","));
     if (name == "intelligence") {
       dispatch(searchByIntelligence(value));
@@ -59,6 +75,35 @@ export default function FilterComponent({ visible }) {
     }
   };
 
+  useEffect(() => {
+    searchParams.forEach((value, key) => {
+      if (key == "search") {
+        onchangeKeyword(value);
+      }
+
+      if (key == "gender") {
+        onchangeGender(value);
+      }
+
+      if (key == "alignment") {
+        onchangeAlignment(value);
+      }
+
+      if (key == "intelligence") {
+        handleChangeSlider(key, value);
+      }
+      if (key == "power") {
+        handleChangeSlider(key, value);
+      }
+      if (key == "speed") {
+        handleChangeSlider(key, value);
+      }
+      if (key == "durability") {
+        handleChangeSlider(key, value);
+      }
+    });
+  }, []);
+
   return (
     <>
       {visible && (
@@ -67,7 +112,10 @@ export default function FilterComponent({ visible }) {
             <Row gutter={[16, 24]}>
               <Col xs={24} md={5}>
                 <div className={style.key}>Keyword</div>
-                <Input placeholder="Keyword" onChange={onchangeKeyword} />
+                <Input
+                  placeholder="Keyword"
+                  onChange={(e) => onchangeKeyword(e.target.value)}
+                />
               </Col>
               <Col xs={24} md={4}>
                 <div className={style.key}>Gender</div>
