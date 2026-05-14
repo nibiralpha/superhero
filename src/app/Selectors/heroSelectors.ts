@@ -54,7 +54,6 @@ export const selectFilteredHeroes = createSelector(
         ) {
           return hero;
         }
-        // return data;
       });
     };
 
@@ -64,13 +63,16 @@ export const selectFilteredHeroes = createSelector(
       let nameSearch = searchByName(filterData);
       let genderSearch = searchByGender(nameSearch);
       let alignmentSearch = searchByAlignment(genderSearch);
+
       let intelligenceSearch = searchByPowerState(
         alignmentSearch,
         "intelligence",
         intelligence,
       );
 
-      return intelligenceSearch;
+      let speedSearch = searchByPowerState(intelligenceSearch, "speed", speed);
+
+      return speedSearch;
     };
 
     // return heroes.filter((hero) => {
