@@ -13,23 +13,38 @@ import {
   searchByDurability,
 } from "@/src/redux/searchSlice";
 import { useDispatch } from "react-redux";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function FilterComponent({ visible }) {
+  const searchParams = useSearchParams();
   const dispatch = useDispatch();
+  const router = useRouter();
+
+  const addSearchParam = (key, value) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set(key, value);
+    const cleanQueryString = decodeURIComponent(params.toString());
+
+    router.push(`?${cleanQueryString}`, { scroll: false });
+  };
 
   const onchangeKeyword = (input) => {
+    addSearchParam("search", input.target.value);
     dispatch(searchBykeyword(input.target.value));
   };
 
   const onchangeGender = (value) => {
+    addSearchParam("gender", value);
     dispatch(searchByGender(value));
   };
 
   const onchangeAlignment = (value) => {
+    addSearchParam("alignment", value);
     dispatch(searchByAlignment(value));
   };
 
   const handleChangeSlider = (name, value) => {
+    addSearchParam(name, value.join(","));
     if (name == "intelligence") {
       dispatch(searchByIntelligence(value));
     }
