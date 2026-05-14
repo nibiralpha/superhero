@@ -51,7 +51,7 @@ export default function HeaderComponent({ showMenu = true }) {
             </div>
             <div className={style.right_side}>
               {showMenu && (
-                <Button onClick={visibleMenu}>
+                <Button type={showFilter ? "primary" : "default"} onClick={visibleMenu}>
                   <MenuUnfoldOutlined /> Filter
                 </Button>
               )}
