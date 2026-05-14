@@ -47,31 +47,28 @@ export default function FilterComponent({ visible }) {
   };
 
   const handleChangeSlider = (name, value) => {
-    // console.log("aaaaaaaaa", name, value, typeof value);
-    // let val;
-    // if (typeof value === "string") {
-    //   console.log("string");
-    //   val = value;
-    // } else {
-    //   console.log("arraayyyyyy");
-    //   val = value.join(",");
-    // }
+    let val;
+    if (typeof value === "string") {
+      val = value;
+    } else {
+      val = value.join(",");
+    }
 
-    // console.log("converted data", val);
+    const data = val.split(",");
 
-    // addSearchParam(name, val);
-    addSearchParam(name, value.join(","));
+    addSearchParam(name, data);
+
     if (name == "intelligence") {
-      dispatch(searchByIntelligence(value));
+      dispatch(searchByIntelligence(data));
     }
     if (name == "power") {
-      dispatch(searchByPower(value));
+      dispatch(searchByPower(data));
     }
     if (name == "speed") {
-      dispatch(searchBySpeed(value));
+      dispatch(searchBySpeed(data));
     }
     if (name == "durability") {
-      dispatch(searchByDurability(value));
+      dispatch(searchByDurability(data));
     }
   };
 
