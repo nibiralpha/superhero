@@ -7,6 +7,7 @@ const fetchHeroes = () => {
       dispatch(startHeroLoading(true));
       const heroResponse = await getHeroes();
       const heroes = heroResponse.data;
+      
       dispatch(heroData(heroes));
       dispatch(startHeroLoading(false));
     } catch (error) {

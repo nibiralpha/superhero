@@ -49,8 +49,8 @@ export const selectFilteredHeroes = createSelector(
       }
       return heroes.filter((hero) => {
         if (
-          hero.powerstats[name] > value[0] &&
-          hero.powerstats[name] < value[1]
+          hero.powerstats[name] >= value[0] &&
+          hero.powerstats[name] <= value[1]
         ) {
           return hero;
         }
@@ -76,7 +76,7 @@ export const selectFilteredHeroes = createSelector(
         "durability",
         durability,
       );
-
+    
       return durabilitySearch;
     };
 
