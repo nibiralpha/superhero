@@ -8,6 +8,15 @@ import { Button } from "antd";
 import style from "./Header.module.css";
 import { setFilter } from "@/src/redux/settingSlice";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  searchBykeyword,
+  searchByGender,
+  searchByAlignment,
+  searchByIntelligence,
+  searchBySpeed,
+  searchByPower,
+  searchByDurability,
+} from "@/src/redux/searchSlice";
 
 export default function HeaderComponent({ showMenu = true }) {
   const dispatch = useDispatch();
@@ -25,6 +34,17 @@ export default function HeaderComponent({ showMenu = true }) {
 
   const visibleMenu = () => {
     dispatch(setFilter(!showFilter));
+  };
+
+  const clearFilter = () => {
+    
+    dispatch(searchBykeyword(""));
+    dispatch(searchByGender(""));
+    dispatch(searchByAlignment(""));
+    dispatch(searchByIntelligence(""));
+    dispatch(searchBySpeed(""));
+    dispatch(searchByPower(""));
+    dispatch(searchByDurability(""));
   };
 
   return (
@@ -60,7 +80,12 @@ export default function HeaderComponent({ showMenu = true }) {
                         src="/close.png"
                       />
                     </div>
-                    <div className={style.clear_filter_text}>Clear filter</div>
+                    <div
+                      onClick={clearFilter}
+                      className={style.clear_filter_text}
+                    >
+                      Clear filter
+                    </div>
                   </div>
                   <div className={style.clear_filter_button}>
                     <Button
