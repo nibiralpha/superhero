@@ -22,8 +22,6 @@ export default function FilterComponent({ visible }) {
   const router = useRouter();
 
   const addSearchParam = (key, value) => {
-    // console.log("addSearchParam", key, value);
-
     const params = new URLSearchParams(searchParams.toString());
     params.set(key, value);
     const cleanQueryString = decodeURIComponent(params.toString());
@@ -48,56 +46,28 @@ export default function FilterComponent({ visible }) {
 
   const handleChangeSlider = (name, value) => {
     let val;
-    if (typeof value === "string") {
-      val = value;
-    } else {
-      val = value.join(",");
-    }
+    typeof value === "string" ? (val = value) : (val = value.join(","));
 
     const data = val.split(",");
 
     addSearchParam(name, data);
 
-    if (name == "intelligence") {
-      dispatch(searchByIntelligence(data));
-    }
-    if (name == "power") {
-      dispatch(searchByPower(data));
-    }
-    if (name == "speed") {
-      dispatch(searchBySpeed(data));
-    }
-    if (name == "durability") {
-      dispatch(searchByDurability(data));
-    }
+    if (name == "intelligence") dispatch(searchByIntelligence(data));
+    if (name == "power") dispatch(searchByPower(data));
+    if (name == "speed") dispatch(searchBySpeed(data));
+    if (name == "durability") dispatch(searchByDurability(data));
   };
 
   useEffect(() => {
     searchParams.forEach((value, key) => {
-      if (key == "search") {
-        onchangeKeyword(value);
-      }
+      if (key == "search") onchangeKeyword(value);
+      if (key == "gender") onchangeGender(value);
+      if (key == "alignment") onchangeAlignment(value);
 
-      if (key == "gender") {
-        onchangeGender(value);
-      }
-
-      if (key == "alignment") {
-        onchangeAlignment(value);
-      }
-
-      if (key == "intelligence") {
-        handleChangeSlider(key, value);
-      }
-      if (key == "power") {
-        handleChangeSlider(key, value);
-      }
-      if (key == "speed") {
-        handleChangeSlider(key, value);
-      }
-      if (key == "durability") {
-        handleChangeSlider(key, value);
-      }
+      if (key == "intelligence") handleChangeSlider(key, value);
+      if (key == "power") handleChangeSlider(key, value);
+      if (key == "speed") handleChangeSlider(key, value);
+      if (key == "durability") handleChangeSlider(key, value);
     });
   }, []);
 
