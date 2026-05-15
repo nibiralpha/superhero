@@ -58,6 +58,10 @@ export default function FilterComponent({ visible }) {
     if (name == "durability") dispatch(searchByDurability(data));
   };
 
+  const covertToArray = (data) => {
+    return data.split(",");
+  };
+
   useEffect(() => {
     searchParams.forEach((value, key) => {
       if (key == "search") onchangeKeyword(value);
@@ -81,13 +85,19 @@ export default function FilterComponent({ visible }) {
                 <div className={style.key}>Keyword</div>
                 <Input
                   placeholder="Keyword"
+                  defaultValue={searchParams.get("search")}
                   onChange={(e) => onchangeKeyword(e.target.value)}
                 />
               </Col>
               <Col xs={24} md={4}>
                 <div className={style.key}>Gender</div>
                 <Select
-                  defaultValue="Choose Gender"
+                  defaultValue={
+                    searchParams.get("gender") == null
+                      ? "Choose Gender"
+                      : searchParams.get("gender")
+                  }
+                  // defaultValue="Choose Gender"
                   style={{ width: "100%" }}
                   onChange={onchangeGender}
                   options={[
@@ -100,7 +110,12 @@ export default function FilterComponent({ visible }) {
               <Col xs={24} md={4}>
                 <div className={style.key}>Alignment</div>
                 <Select
-                  defaultValue="Choose Alignment"
+                  defaultValue={
+                    searchParams.get("alignment") == null
+                      ? "Choose Alignment"
+                      : searchParams.get("alignment")
+                  }
+                  // defaultValue="Choose Alignment"
                   style={{ width: "100%" }}
                   onChange={onchangeAlignment}
                   options={[
@@ -134,7 +149,11 @@ export default function FilterComponent({ visible }) {
                     handleChangeSlider("intelligence", intelligence)
                   }
                   range
-                  defaultValue={[0, 100]}
+                  defaultValue={
+                    searchParams.get("intelligence")
+                      ? covertToArray(searchParams.get("intelligence"))
+                      : [0, 100]
+                  }
                 />
                 <div className={style.key}>Power</div>
                 <Slider
@@ -142,7 +161,11 @@ export default function FilterComponent({ visible }) {
                   onChangeComplete={(power) =>
                     handleChangeSlider("power", power)
                   }
-                  defaultValue={[0, 100]}
+                  defaultValue={
+                    searchParams.get("power")
+                      ? covertToArray(searchParams.get("power"))
+                      : [0, 100]
+                  }
                 />
               </Col>
               <Col xs={24} md={5}>
@@ -152,7 +175,11 @@ export default function FilterComponent({ visible }) {
                   onChangeComplete={(intelligence) =>
                     handleChangeSlider("speed", intelligence)
                   }
-                  defaultValue={[0, 100]}
+                  defaultValue={
+                    searchParams.get("speed")
+                      ? covertToArray(searchParams.get("speed"))
+                      : [0, 100]
+                  }
                 />
                 <div className={style.key}>Durability</div>
                 <Slider
@@ -160,7 +187,11 @@ export default function FilterComponent({ visible }) {
                   onChangeComplete={(durability) =>
                     handleChangeSlider("durability", durability)
                   }
-                  defaultValue={[0, 100]}
+                  defaultValue={
+                    searchParams.get("durability")
+                      ? covertToArray(searchParams.get("durability"))
+                      : [0, 100]
+                  }
                 />
               </Col>
             </Row>
