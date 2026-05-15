@@ -51,9 +51,26 @@ export default function HeaderComponent({ showMenu = true }) {
             </div>
             <div className={style.right_side}>
               {showMenu && (
-                <Button type={showFilter ? "primary" : "default"} onClick={visibleMenu}>
-                  <MenuUnfoldOutlined /> Filter
-                </Button>
+                <div className={style.filter}>
+                  <div className={style.clear_filter}>
+                    <div className={style.close_icon}>
+                      <img
+                        className={style.close_icon_img}
+                        width="14px"
+                        src="/close.png"
+                      />
+                    </div>
+                    <div className={style.clear_filter_text}>Clear filter</div>
+                  </div>
+                  <div className={style.clear_filter_button}>
+                    <Button
+                      type={showFilter ? "primary" : "default"}
+                      onClick={visibleMenu}
+                    >
+                      <MenuUnfoldOutlined /> Filter
+                    </Button>
+                  </div>
+                </div>
               )}
             </div>
           </div>

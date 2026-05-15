@@ -57,6 +57,35 @@
   display: initial;
 }
 
+.filter {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: row;
+}
+
+.clear_filter {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.clear_filter:hover {
+  cursor: pointer;
+}
+
+.clear_filter_text {
+  font-size: 14px;
+}
+
+.close_icon {
+  margin-right: 5px;
+}
+
+.close_icon_img {
+  margin-bottom: 2px;
+}
+
 @media screen and (max-width: 430px) {
   .desktop {
     display: none;
