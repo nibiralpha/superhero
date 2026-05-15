@@ -37,7 +37,6 @@ export default function HeaderComponent({ showMenu = true }) {
   };
 
   const clearFilter = () => {
-    
     dispatch(searchBykeyword(""));
     dispatch(searchByGender(""));
     dispatch(searchByAlignment(""));
@@ -45,6 +44,8 @@ export default function HeaderComponent({ showMenu = true }) {
     dispatch(searchBySpeed(""));
     dispatch(searchByPower(""));
     dispatch(searchByDurability(""));
+
+    router.replace(window.location.pathname);
   };
 
   return (
