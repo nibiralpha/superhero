@@ -34,6 +34,16 @@ export const searchSlice = createSlice({
     searchByDurability: (state, action) => {
       return { ...state, durability: action.payload };
     },
+    clearFilter: (state, action) => {
+      state.keyword = "";
+      state.gender = "";
+      state.alignment = "";
+      state.powerstate = "";
+      state.intelligence = "";
+      state.speed = "";
+      state.power = "";
+      state.durability = "";
+    },
   },
 });
 
@@ -45,5 +55,6 @@ export const {
   searchBySpeed,
   searchByPower,
   searchByDurability,
+  clearFilter,
 } = searchSlice.actions;
 export default searchSlice.reducer;

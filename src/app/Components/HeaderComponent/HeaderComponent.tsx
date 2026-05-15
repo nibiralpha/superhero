@@ -8,15 +8,7 @@ import { Button } from "antd";
 import style from "./Header.module.css";
 import { setFilter } from "@/src/redux/settingSlice";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  searchBykeyword,
-  searchByGender,
-  searchByAlignment,
-  searchByIntelligence,
-  searchBySpeed,
-  searchByPower,
-  searchByDurability,
-} from "@/src/redux/searchSlice";
+import { clearFilter } from "@/src/redux/searchSlice";
 
 export default function HeaderComponent({ showMenu = true }) {
   const dispatch = useDispatch();
@@ -36,14 +28,8 @@ export default function HeaderComponent({ showMenu = true }) {
     dispatch(setFilter(!showFilter));
   };
 
-  const clearFilter = () => {
-    dispatch(searchBykeyword(""));
-    dispatch(searchByGender(""));
-    dispatch(searchByAlignment(""));
-    dispatch(searchByIntelligence(""));
-    dispatch(searchBySpeed(""));
-    dispatch(searchByPower(""));
-    dispatch(searchByDurability(""));
+  const clearFilterData = () => {
+    dispatch(clearFilter(""));
 
     router.replace(window.location.pathname);
   };
@@ -82,7 +68,7 @@ export default function HeaderComponent({ showMenu = true }) {
                       />
                     </div>
                     <div
-                      onClick={clearFilter}
+                      onClick={clearFilterData}
                       className={style.clear_filter_text}
                     >
                       Clear filter
