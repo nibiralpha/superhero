@@ -177,7 +177,7 @@ export default function FilterComponent({ clearFilterData, visible }) {
                   range
                   onChange={(power) => {
                     handleChangeSlider("power", power);
-                    searchParams.get("intelligence")
+                    searchParams.get("power")
                       ? covertToArray(searchParams.get("power")).map(Number)
                       : [0, 100];
                   }}
@@ -194,7 +194,7 @@ export default function FilterComponent({ clearFilterData, visible }) {
                   range
                   onChange={(speed) => {
                     handleChangeSlider("speed", speed);
-                    searchParams.get("intelligence")
+                    searchParams.get("speed")
                       ? covertToArray(searchParams.get("speed")).map(Number)
                       : [0, 100];
                   }}
@@ -207,12 +207,19 @@ export default function FilterComponent({ clearFilterData, visible }) {
                 <div className={style.key}>Durability</div>
                 <Slider
                   range
-                  onChangeComplete={(durability) =>
-                    handleChangeSlider("durability", durability)
-                  }
-                  defaultValue={
+                  onChange={(durability) => {
+                    handleChangeSlider("durability", durability);
                     searchParams.get("durability")
-                      ? covertToArray(searchParams.get("durability"))
+                      ? covertToArray(searchParams.get("durability")).map(
+                          Number,
+                        )
+                      : [0, 100];
+                  }}
+                  value={
+                    searchParams.get("durability")
+                      ? covertToArray(searchParams.get("durability")).map(
+                          Number,
+                        )
                       : [0, 100]
                   }
                 />
