@@ -192,12 +192,15 @@ export default function FilterComponent({ clearFilterData, visible }) {
                 <div className={style.key}>Speed</div>
                 <Slider
                   range
-                  onChangeComplete={(intelligence) =>
-                    handleChangeSlider("speed", intelligence)
-                  }
-                  defaultValue={
+                  onChange={(speed) => {
+                    handleChangeSlider("speed", speed);
+                    searchParams.get("intelligence")
+                      ? covertToArray(searchParams.get("speed")).map(Number)
+                      : [0, 100];
+                  }}
+                  value={
                     searchParams.get("speed")
-                      ? covertToArray(searchParams.get("speed"))
+                      ? covertToArray(searchParams.get("speed")).map(Number)
                       : [0, 100]
                   }
                 />
