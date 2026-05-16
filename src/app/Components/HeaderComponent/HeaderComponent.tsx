@@ -11,7 +11,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearFilter } from "@/src/redux/searchSlice";
 import { useState } from "react";
 
-export default function HeaderComponent({ showMenu = true }) {
+export default function HeaderComponent({
+  setClearFilterData,
+  showMenu = true,
+}) {
   const [showFilterClearBtn, setShowFilterClearBtn] = useState(false);
 
   const dispatch = useDispatch();
@@ -35,6 +38,8 @@ export default function HeaderComponent({ showMenu = true }) {
     dispatch(clearFilter(""));
     router.replace(window.location.pathname);
     setShowFilterClearBtn(false);
+
+    setClearFilterData(true)
   };
 
   return (

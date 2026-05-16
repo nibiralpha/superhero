@@ -16,7 +16,7 @@ import { useDispatch } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
-export default function FilterComponent({ visible }) {
+export default function FilterComponent({ clearFilterData, visible }) {
   const searchParams = useSearchParams();
   const dispatch = useDispatch();
   const router = useRouter();
@@ -153,14 +153,22 @@ export default function FilterComponent({ visible }) {
           </Col> */}
               <Col xs={24} md={5}>
                 <div className={style.key}>Intelligence</div>
+
                 <Slider
                   range
-                  onChangeComplete={(intelligence) =>
-                    handleChangeSlider("intelligence", intelligence)
-                  }
-                  defaultValue={
+                  onChange={(intelligence) => {
+                    handleChangeSlider("intelligence", intelligence);
                     searchParams.get("intelligence")
-                      ? covertToArray(searchParams.get("intelligence"))
+                      ? covertToArray(searchParams.get("intelligence")).map(
+                          Number,
+                        )
+                      : [0, 100];
+                  }}
+                  value={
+                    searchParams.get("intelligence")
+                      ? covertToArray(searchParams.get("intelligence")).map(
+                          Number,
+                        )
                       : [0, 100]
                   }
                 />
