@@ -9,8 +9,11 @@ import style from "./Header.module.css";
 import { setFilter } from "@/src/redux/settingSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { clearFilter } from "@/src/redux/searchSlice";
+import { useState } from "react";
 
 export default function HeaderComponent({ showMenu = true }) {
+  const [showFilterClearBtn, setShowFilterClearBtn] = useState(false);
+
   const dispatch = useDispatch();
   const pathname = usePathname();
   const router = useRouter();
@@ -30,8 +33,8 @@ export default function HeaderComponent({ showMenu = true }) {
 
   const clearFilterData = () => {
     dispatch(clearFilter(""));
-
     router.replace(window.location.pathname);
+    setShowFilterClearBtn(false);
   };
 
   return (
@@ -59,6 +62,7 @@ export default function HeaderComponent({ showMenu = true }) {
             <div className={style.right_side}>
               {showMenu && (
                 <div className={style.filter}>
+                  {/* {showFilterClearBtn && ( */}
                   <div className={style.clear_filter}>
                     <div className={style.close_icon}>
                       <img
@@ -74,6 +78,8 @@ export default function HeaderComponent({ showMenu = true }) {
                       Clear filter
                     </div>
                   </div>
+                  {/* )} */}
+
                   <div className={style.clear_filter_button}>
                     <Button
                       type={showFilter ? "primary" : "default"}

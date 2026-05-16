@@ -14,14 +14,12 @@ import {
 } from "@/src/redux/searchSlice";
 import { useDispatch } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function FilterComponent({ visible }) {
   const searchParams = useSearchParams();
   const dispatch = useDispatch();
   const router = useRouter();
-
-  const [searchInput, setSearchInput] = useState("");
 
   const addSearchParam = (key, value) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -32,7 +30,6 @@ export default function FilterComponent({ visible }) {
   };
 
   const onchangeKeyword = (value) => {
-    setSearchInput(value);
     addSearchParam("search", value);
     dispatch(searchBykeyword(value));
   };
@@ -89,7 +86,6 @@ export default function FilterComponent({ visible }) {
                 <Input
                   placeholder="Keyword"
                   defaultValue={searchParams.get("search")}
-                  value={searchInput}
                   onChange={(e) => onchangeKeyword(e.target.value)}
                 />
               </Col>
@@ -101,7 +97,11 @@ export default function FilterComponent({ visible }) {
                       ? "Choose Gender"
                       : searchParams.get("gender")
                   }
-                  // defaultValue="Choose Gender"
+                  value={
+                    searchParams.get("gender") == null
+                      ? "Choose Gender"
+                      : searchParams.get("gender")
+                  }
                   style={{ width: "100%" }}
                   onChange={onchangeGender}
                   options={[
@@ -119,7 +119,11 @@ export default function FilterComponent({ visible }) {
                       ? "Choose Alignment"
                       : searchParams.get("alignment")
                   }
-                  // defaultValue="Choose Alignment"
+                  value={
+                    searchParams.get("alignment") == null
+                      ? "Choose Alignment"
+                      : searchParams.get("alignment")
+                  }
                   style={{ width: "100%" }}
                   onChange={onchangeAlignment}
                   options={[
