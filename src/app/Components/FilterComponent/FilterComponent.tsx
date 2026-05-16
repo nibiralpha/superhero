@@ -153,7 +153,6 @@ export default function FilterComponent({ clearFilterData, visible }) {
           </Col> */}
               <Col xs={24} md={5}>
                 <div className={style.key}>Intelligence</div>
-
                 <Slider
                   range
                   onChange={(intelligence) => {
@@ -172,15 +171,19 @@ export default function FilterComponent({ clearFilterData, visible }) {
                       : [0, 100]
                   }
                 />
+
                 <div className={style.key}>Power</div>
                 <Slider
                   range
-                  onChangeComplete={(power) =>
-                    handleChangeSlider("power", power)
-                  }
-                  defaultValue={
+                  onChange={(power) => {
+                    handleChangeSlider("power", power);
+                    searchParams.get("intelligence")
+                      ? covertToArray(searchParams.get("power")).map(Number)
+                      : [0, 100];
+                  }}
+                  value={
                     searchParams.get("power")
-                      ? covertToArray(searchParams.get("power"))
+                      ? covertToArray(searchParams.get("power")).map(Number)
                       : [0, 100]
                   }
                 />
