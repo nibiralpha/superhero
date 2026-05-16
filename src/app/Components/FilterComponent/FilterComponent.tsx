@@ -87,6 +87,7 @@ export default function FilterComponent({ visible }) {
                   placeholder="Keyword"
                   defaultValue={searchParams.get("search")}
                   onChange={(e) => onchangeKeyword(e.target.value)}
+                  value={searchParams.get("search")}
                 />
               </Col>
               <Col xs={24} md={4}>
@@ -153,10 +154,10 @@ export default function FilterComponent({ visible }) {
               <Col xs={24} md={5}>
                 <div className={style.key}>Intelligence</div>
                 <Slider
+                  range
                   onChangeComplete={(intelligence) =>
                     handleChangeSlider("intelligence", intelligence)
                   }
-                  range
                   defaultValue={
                     searchParams.get("intelligence")
                       ? covertToArray(searchParams.get("intelligence"))
