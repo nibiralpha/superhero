@@ -14,9 +14,15 @@ import {
 } from "@/src/redux/searchSlice";
 import { useDispatch } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useRef } from "react";
 
 export default function FilterComponent({ clearFilterData, visible }) {
+  let searchTimer = 5000;
+  let timerRef = useRef(null);
+
+  const [search, setSearch] = useState("");
+
   const searchParams = useSearchParams();
   const dispatch = useDispatch();
   const router = useRouter();
@@ -29,9 +35,15 @@ export default function FilterComponent({ clearFilterData, visible }) {
     router.push(`?${cleanQueryString}`, { scroll: false });
   };
 
-  const onchangeKeyword = (value) => {
-    addSearchParam("search", value);
-    dispatch(searchBykeyword(value));
+  const onchangeKeyword = (value) => {    
+    setSearch(value);
+
+    clearTimeout(timerRef.current);
+
+    timerRef.current = setTimeout(() => {
+      addSearchParam("search", value);
+      dispatch(searchBykeyword(value));
+    }, searchTimer);
   };
 
   const onchangeGender = (value) => {
@@ -85,9 +97,11 @@ export default function FilterComponent({ clearFilterData, visible }) {
                 <div className={style.key}>Keyword</div>
                 <Input
                   placeholder="Keyword"
-                  defaultValue={searchParams.get("search")}
+                  // defaultValue={searchParams.get("search")}
                   onChange={(e) => onchangeKeyword(e.target.value)}
-                  value={searchParams.get("search")}
+                  value={search}
+                  // onChange={(e) => onchangeKeyword(e.target.value)}
+                  // value={searchParams.get("search")}
                 />
               </Col>
               <Col xs={24} md={4}>
