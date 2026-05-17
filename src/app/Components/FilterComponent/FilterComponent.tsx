@@ -18,10 +18,16 @@ import { useEffect, useState } from "react";
 import { useRef } from "react";
 
 export default function FilterComponent({ clearFilterData, visible }) {
-  let searchTimer = 5000;
+  let searchTimer = 2000;
   let timerRef = useRef(null);
 
   const [search, setSearch] = useState("");
+  const [powerState, setPowerState] = useState({
+    intelligence: [0, 100],
+    speed: [0, 100],
+    power: [0, 100],
+    durability: [0, 100],
+  });
 
   const searchParams = useSearchParams();
   const dispatch = useDispatch();
@@ -35,7 +41,7 @@ export default function FilterComponent({ clearFilterData, visible }) {
     router.push(`?${cleanQueryString}`, { scroll: false });
   };
 
-  const onchangeKeyword = (value) => {    
+  const onchangeKeyword = (value) => {
     setSearch(value);
 
     clearTimeout(timerRef.current);
@@ -57,17 +63,55 @@ export default function FilterComponent({ clearFilterData, visible }) {
   };
 
   const handleChangeSlider = (name, value) => {
+    let val = "";
+    // typeof value === "string" ? (val = value) : (val = value.join(","));
+    // val = Array.isArray(value) ? value.join(",") : value;
+    val = Array.isArray(value) ? value : covertToArray(value);
+
+    // const data = val.split(",");
+    // console.log("aaaaal", name, value);
+    // console.log(name, value, "val", val);
+    setPowerState((prev) => ({
+      ...prev,
+      [name]: val,
+    }));
+
+    // console.log(powerState);
+
+    // addSearchParam(name, data);
+
+    // if (name == "intelligence") dispatch(searchByIntelligence(data));
+    // if (name == "power") dispatch(searchByPower(data));
+    // if (name == "speed") dispatch(searchBySpeed(data));
+    // if (name == "durability") dispatch(searchByDurability(data));
+
+    // searchParams.get(name)
+    //   ? covertToArray(searchParams.get(name)).map(Number)
+    //   : [0, 100];
+  };
+  const handleChangeSliderEnter = (name, value) => {
+    // console.log("typeof value", typeof value, value);
+
     let val;
-    typeof value === "string" ? (val = value) : (val = value.join(","));
+    if (Array.isArray(value)) {
+      val = value.join(",");
+      // console.log("array", value, "after join", val);
+    } else {
+      val = value;
+      // console.log("string", val);
+    }
+    // typeof value === "string" ? (val = value) : (val = value.join(","));
 
-    const data = val.split(",");
+    // const data = val.split(",");
+    const stringData = val;
+    // console.log("typeof value", data, typeof data);
 
-    addSearchParam(name, data);
+    addSearchParam(name, stringData);
 
-    if (name == "intelligence") dispatch(searchByIntelligence(data));
-    if (name == "power") dispatch(searchByPower(data));
-    if (name == "speed") dispatch(searchBySpeed(data));
-    if (name == "durability") dispatch(searchByDurability(data));
+    if (name == "intelligence") dispatch(searchByIntelligence(value));
+    if (name == "power") dispatch(searchByPower(stringData));
+    if (name == "speed") dispatch(searchBySpeed(stringData));
+    if (name == "durability") dispatch(searchByDurability(stringData));
   };
 
   const covertToArray = (data) => {
@@ -167,23 +211,23 @@ export default function FilterComponent({ clearFilterData, visible }) {
           </Col> */}
               <Col xs={24} md={5}>
                 <div className={style.key}>Intelligence</div>
+
                 <Slider
                   range
                   onChange={(intelligence) => {
                     handleChangeSlider("intelligence", intelligence);
-                    searchParams.get("intelligence")
-                      ? covertToArray(searchParams.get("intelligence")).map(
-                          Number,
-                        )
-                      : [0, 100];
                   }}
-                  value={
-                    searchParams.get("intelligence")
-                      ? covertToArray(searchParams.get("intelligence")).map(
-                          Number,
-                        )
-                      : [0, 100]
-                  }
+                  onChangeComplete={(intelligence) => {
+                    handleChangeSliderEnter("intelligence", intelligence);
+                  }}
+                  // value={
+                  //   searchParams.get("intelligence")
+                  //     ? covertToArray(searchParams.get("intelligence")).map(
+                  //         Number,
+                  //       )
+                  //     : [0, 100]
+                  // }
+                  value={powerState.intelligence}
                 />
 
                 <div className={style.key}>Power</div>
@@ -191,9 +235,6 @@ export default function FilterComponent({ clearFilterData, visible }) {
                   range
                   onChange={(power) => {
                     handleChangeSlider("power", power);
-                    searchParams.get("power")
-                      ? covertToArray(searchParams.get("power")).map(Number)
-                      : [0, 100];
                   }}
                   value={
                     searchParams.get("power")
@@ -208,9 +249,6 @@ export default function FilterComponent({ clearFilterData, visible }) {
                   range
                   onChange={(speed) => {
                     handleChangeSlider("speed", speed);
-                    searchParams.get("speed")
-                      ? covertToArray(searchParams.get("speed")).map(Number)
-                      : [0, 100];
                   }}
                   value={
                     searchParams.get("speed")
@@ -223,11 +261,6 @@ export default function FilterComponent({ clearFilterData, visible }) {
                   range
                   onChange={(durability) => {
                     handleChangeSlider("durability", durability);
-                    searchParams.get("durability")
-                      ? covertToArray(searchParams.get("durability")).map(
-                          Number,
-                        )
-                      : [0, 100];
                   }}
                   value={
                     searchParams.get("durability")
