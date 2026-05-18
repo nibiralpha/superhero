@@ -76,8 +76,6 @@ export default function FilterComponent({ clearFilterData, visible }) {
       [name]: val,
     }));
 
-    // console.log(powerState);
-
     // addSearchParam(name, data);
 
     // if (name == "intelligence") dispatch(searchByIntelligence(data));
@@ -89,32 +87,42 @@ export default function FilterComponent({ clearFilterData, visible }) {
     //   ? covertToArray(searchParams.get(name)).map(Number)
     //   : [0, 100];
   };
+
+  useEffect(() => {
+    // console.log("Updated PowerState value is:", powerState);
+  }, [powerState]);
+
   const handleChangeSliderEnter = (name, value) => {
     // console.log("typeof value", typeof value, value);
 
-    let val;
+    let stringData;
     if (Array.isArray(value)) {
-      val = value.join(",");
+      stringData = value.join(",");
       // console.log("array", value, "after join", val);
     } else {
-      val = value;
+      stringData = value;
       // console.log("string", val);
     }
     // typeof value === "string" ? (val = value) : (val = value.join(","));
 
     // const data = val.split(",");
-    const stringData = val;
+
     // console.log("typeof value", data, typeof data);
 
     addSearchParam(name, stringData);
-
-    if (name == "intelligence") dispatch(searchByIntelligence(value));
+    // console.log("dispatch", stringData, value);
+    let data = covertToArray(value);
+    if (name == "intelligence") dispatch(searchByIntelligence(data));
     if (name == "power") dispatch(searchByPower(stringData));
     if (name == "speed") dispatch(searchBySpeed(stringData));
     if (name == "durability") dispatch(searchByDurability(stringData));
   };
 
   const covertToArray = (data) => {
+    if (Array.isArray(data)) {
+      return data;
+    }
+
     return data.split(",");
   };
 
@@ -124,7 +132,10 @@ export default function FilterComponent({ clearFilterData, visible }) {
       if (key == "gender") onchangeGender(value);
       if (key == "alignment") onchangeAlignment(value);
 
-      if (key == "intelligence") handleChangeSlider(key, value);
+      if (key == "intelligence") {
+        handleChangeSlider(key, value);
+        handleChangeSliderEnter(key, value);
+      }
       if (key == "power") handleChangeSlider(key, value);
       if (key == "speed") handleChangeSlider(key, value);
       if (key == "durability") handleChangeSlider(key, value);
