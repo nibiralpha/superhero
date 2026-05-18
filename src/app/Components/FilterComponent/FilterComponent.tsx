@@ -63,57 +63,26 @@ export default function FilterComponent({ clearFilterData, visible }) {
   };
 
   const handleChangeSlider = (name, value) => {
-    let val = "";
-    // typeof value === "string" ? (val = value) : (val = value.join(","));
-    // val = Array.isArray(value) ? value.join(",") : value;
-    val = Array.isArray(value) ? value : covertToArray(value);
+    const val = Array.isArray(value) ? value : covertToArray(value);
 
-    // const data = val.split(",");
-    // console.log("aaaaal", name, value);
-    // console.log(name, value, "val", val);
     setPowerState((prev) => ({
       ...prev,
       [name]: val,
     }));
-
-    // addSearchParam(name, data);
-
-    // if (name == "intelligence") dispatch(searchByIntelligence(data));
-    // if (name == "power") dispatch(searchByPower(data));
-    // if (name == "speed") dispatch(searchBySpeed(data));
-    // if (name == "durability") dispatch(searchByDurability(data));
-
-    // searchParams.get(name)
-    //   ? covertToArray(searchParams.get(name)).map(Number)
-    //   : [0, 100];
   };
 
-  useEffect(() => {
-    // console.log("Updated PowerState value is:", powerState);
-  }, [powerState]);
-
   const handleChangeSliderEnter = (name, value) => {
-    // console.log("typeof value", typeof value, value);
-
     let stringData;
     if (Array.isArray(value)) {
       stringData = value.join(",");
-      // console.log("array", value, "after join", val);
     } else {
       stringData = value;
-      // console.log("string", val);
     }
-    // typeof value === "string" ? (val = value) : (val = value.join(","));
-
-    // const data = val.split(",");
-
-    // console.log("typeof value", data, typeof data);
 
     addSearchParam(name, stringData);
-    // console.log("dispatch", stringData, value);
     let data = covertToArray(value);
     if (name == "intelligence") dispatch(searchByIntelligence(data));
-    if (name == "power") dispatch(searchByPower(stringData));
+    if (name == "power") dispatch(searchByPower(data));
     if (name == "speed") dispatch(searchBySpeed(stringData));
     if (name == "durability") dispatch(searchByDurability(stringData));
   };
@@ -132,13 +101,18 @@ export default function FilterComponent({ clearFilterData, visible }) {
       if (key == "gender") onchangeGender(value);
       if (key == "alignment") onchangeAlignment(value);
 
-      if (key == "intelligence") {
+      if (
+        key == "intelligence" ||
+        key == "power" ||
+        key == "speed" ||
+        key == "durability"
+      ) {
         handleChangeSlider(key, value);
         handleChangeSliderEnter(key, value);
       }
-      if (key == "power") handleChangeSlider(key, value);
-      if (key == "speed") handleChangeSlider(key, value);
-      if (key == "durability") handleChangeSlider(key, value);
+      // if (key == "power") handleChangeSlider(key, value);
+      // if (key == "speed") handleChangeSlider(key, value);
+      // if (key == "durability") handleChangeSlider(key, value);
     });
   }, []);
 
@@ -247,11 +221,15 @@ export default function FilterComponent({ clearFilterData, visible }) {
                   onChange={(power) => {
                     handleChangeSlider("power", power);
                   }}
-                  value={
-                    searchParams.get("power")
-                      ? covertToArray(searchParams.get("power")).map(Number)
-                      : [0, 100]
-                  }
+                  onChangeComplete={(power) => {
+                    handleChangeSliderEnter("power", power);
+                  }}
+                  // value={
+                  //   searchParams.get("power")
+                  //     ? covertToArray(searchParams.get("power")).map(Number)
+                  //     : [0, 100]
+                  // }
+                  value={powerState.power}
                 />
               </Col>
               <Col xs={24} md={5}>
