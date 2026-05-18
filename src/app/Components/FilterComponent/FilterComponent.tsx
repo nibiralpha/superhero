@@ -28,6 +28,7 @@ export default function FilterComponent({ clearFilterData, visible }) {
     power: [0, 100],
     durability: [0, 100],
   });
+  const [gender, setGender] = useState("all");
 
   const searchParams = useSearchParams();
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ export default function FilterComponent({ clearFilterData, visible }) {
   };
 
   const onchangeGender = (value) => {
+    setGender(value);
     addSearchParam("gender", value);
     dispatch(searchByGender(value));
   };
@@ -63,7 +65,7 @@ export default function FilterComponent({ clearFilterData, visible }) {
   };
 
   const handleChangeSlider = (name, value) => {
-    const val = Array.isArray(value) ? value : covertToArray(value);
+    const val = covertToArray(value);
 
     setPowerState((prev) => ({
       ...prev,
@@ -80,6 +82,7 @@ export default function FilterComponent({ clearFilterData, visible }) {
     }
 
     addSearchParam(name, stringData);
+
     let data = covertToArray(value);
     if (name == "intelligence") dispatch(searchByIntelligence(data));
     if (name == "power") dispatch(searchByPower(data));
@@ -110,9 +113,6 @@ export default function FilterComponent({ clearFilterData, visible }) {
         handleChangeSlider(key, value);
         handleChangeSliderEnter(key, value);
       }
-      // if (key == "power") handleChangeSlider(key, value);
-      // if (key == "speed") handleChangeSlider(key, value);
-      // if (key == "durability") handleChangeSlider(key, value);
     });
   }, []);
 
@@ -126,26 +126,24 @@ export default function FilterComponent({ clearFilterData, visible }) {
                 <div className={style.key}>Keyword</div>
                 <Input
                   placeholder="Keyword"
-                  // defaultValue={searchParams.get("search")}
                   onChange={(e) => onchangeKeyword(e.target.value)}
                   value={search}
-                  // onChange={(e) => onchangeKeyword(e.target.value)}
-                  // value={searchParams.get("search")}
                 />
               </Col>
               <Col xs={24} md={4}>
                 <div className={style.key}>Gender</div>
                 <Select
-                  defaultValue={
-                    searchParams.get("gender") == null
-                      ? "Choose Gender"
-                      : searchParams.get("gender")
-                  }
-                  value={
-                    searchParams.get("gender") == null
-                      ? "Choose Gender"
-                      : searchParams.get("gender")
-                  }
+                  // defaultValue={
+                  //   searchParams.get("gender") == null
+                  //     ? "Choose Gender"
+                  //     : searchParams.get("gender")
+                  // }
+                  value={gender}
+                  // value={
+                  //   searchParams.get("gender") == null
+                  //     ? "Choose Gender"
+                  //     : searchParams.get("gender")
+                  // }
                   style={{ width: "100%" }}
                   onChange={onchangeGender}
                   options={[
@@ -158,16 +156,17 @@ export default function FilterComponent({ clearFilterData, visible }) {
               <Col xs={24} md={4}>
                 <div className={style.key}>Alignment</div>
                 <Select
-                  defaultValue={
-                    searchParams.get("alignment") == null
-                      ? "Choose Alignment"
-                      : searchParams.get("alignment")
-                  }
-                  value={
-                    searchParams.get("alignment") == null
-                      ? "Choose Alignment"
-                      : searchParams.get("alignment")
-                  }
+                  // defaultValue={
+                  //   searchParams.get("alignment") == null
+                  //     ? "Choose Alignment"
+                  //     : searchParams.get("alignment")
+                  // }
+                  value={gender}
+                  // value={
+                  //   searchParams.get("alignment") == null
+                  //     ? "Choose Alignment"
+                  //     : searchParams.get("alignment")
+                  // }
                   style={{ width: "100%" }}
                   onChange={onchangeAlignment}
                   options={[
