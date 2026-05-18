@@ -83,8 +83,8 @@ export default function FilterComponent({ clearFilterData, visible }) {
     let data = covertToArray(value);
     if (name == "intelligence") dispatch(searchByIntelligence(data));
     if (name == "power") dispatch(searchByPower(data));
-    if (name == "speed") dispatch(searchBySpeed(stringData));
-    if (name == "durability") dispatch(searchByDurability(stringData));
+    if (name == "speed") dispatch(searchBySpeed(data));
+    if (name == "durability") dispatch(searchByDurability(data));
   };
 
   const covertToArray = (data) => {
@@ -205,13 +205,6 @@ export default function FilterComponent({ clearFilterData, visible }) {
                   onChangeComplete={(intelligence) => {
                     handleChangeSliderEnter("intelligence", intelligence);
                   }}
-                  // value={
-                  //   searchParams.get("intelligence")
-                  //     ? covertToArray(searchParams.get("intelligence")).map(
-                  //         Number,
-                  //       )
-                  //     : [0, 100]
-                  // }
                   value={powerState.intelligence}
                 />
 
@@ -224,11 +217,6 @@ export default function FilterComponent({ clearFilterData, visible }) {
                   onChangeComplete={(power) => {
                     handleChangeSliderEnter("power", power);
                   }}
-                  // value={
-                  //   searchParams.get("power")
-                  //     ? covertToArray(searchParams.get("power")).map(Number)
-                  //     : [0, 100]
-                  // }
                   value={powerState.power}
                 />
               </Col>
@@ -239,11 +227,10 @@ export default function FilterComponent({ clearFilterData, visible }) {
                   onChange={(speed) => {
                     handleChangeSlider("speed", speed);
                   }}
-                  value={
-                    searchParams.get("speed")
-                      ? covertToArray(searchParams.get("speed")).map(Number)
-                      : [0, 100]
-                  }
+                  onChangeComplete={(speed) => {
+                    handleChangeSliderEnter("speed", speed);
+                  }}
+                  value={powerState.speed}
                 />
                 <div className={style.key}>Durability</div>
                 <Slider
@@ -251,13 +238,10 @@ export default function FilterComponent({ clearFilterData, visible }) {
                   onChange={(durability) => {
                     handleChangeSlider("durability", durability);
                   }}
-                  value={
-                    searchParams.get("durability")
-                      ? covertToArray(searchParams.get("durability")).map(
-                          Number,
-                        )
-                      : [0, 100]
-                  }
+                  onChangeComplete={(durability) => {
+                    handleChangeSliderEnter("durability", durability);
+                  }}
+                  value={powerState.durability}
                 />
               </Col>
             </Row>
