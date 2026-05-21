@@ -21,18 +21,19 @@ export default function FilterComponent({ clearFilterData, visible }) {
   let searchTimer = 2000;
   let timerRef = useRef(null);
 
+  const searchParams = useSearchParams();
+  const dispatch = useDispatch();
+  const router = useRouter();
+
   const [search, setSearch] = useState("");
+  const [gender, setGender] = useState("all");
+  const [alignment, setAlignment] = useState("all");
   const [powerState, setPowerState] = useState({
     intelligence: [0, 100],
     speed: [0, 100],
     power: [0, 100],
     durability: [0, 100],
   });
-  const [gender, setGender] = useState("all");
-
-  const searchParams = useSearchParams();
-  const dispatch = useDispatch();
-  const router = useRouter();
 
   const addSearchParam = (key, value) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -60,21 +61,23 @@ export default function FilterComponent({ clearFilterData, visible }) {
   };
 
   const onchangeAlignment = (value) => {
+    setAlignment(value);
     addSearchParam("alignment", value);
     dispatch(searchByAlignment(value));
   };
 
   const handleChangeSlider = (name, value) => {
-    const val = covertToArray(value);
+    // const val = covertToArray(value);
 
     setPowerState((prev) => ({
       ...prev,
-      [name]: val,
+      [name]: value,
     }));
   };
 
   const handleChangeSliderEnter = (name, value) => {
     let stringData;
+    
     if (Array.isArray(value)) {
       stringData = value.join(",");
     } else {
@@ -98,6 +101,18 @@ export default function FilterComponent({ clearFilterData, visible }) {
     return data.split(",");
   };
 
+  const resetForm = () => {
+    setSearch("");
+    searchByGender("all");
+    setAlignment("all");
+    setPowerState({
+      intelligence: [0, 100],
+      speed: [0, 100],
+      power: [0, 100],
+      durability: [0, 100],
+    });
+  };
+
   useEffect(() => {
     searchParams.forEach((value, key) => {
       if (key == "search") onchangeKeyword(value);
@@ -116,6 +131,14 @@ export default function FilterComponent({ clearFilterData, visible }) {
     });
   }, []);
 
+  useEffect(() => {
+    console.log("calling", clearFilterData);
+
+    if (clearFilterData) {
+      resetForm();
+    }
+  }, [clearFilterData]);
+
   return (
     <>
       {visible && (
@@ -133,17 +156,7 @@ export default function FilterComponent({ clearFilterData, visible }) {
               <Col xs={24} md={4}>
                 <div className={style.key}>Gender</div>
                 <Select
-                  // defaultValue={
-                  //   searchParams.get("gender") == null
-                  //     ? "Choose Gender"
-                  //     : searchParams.get("gender")
-                  // }
                   value={gender}
-                  // value={
-                  //   searchParams.get("gender") == null
-                  //     ? "Choose Gender"
-                  //     : searchParams.get("gender")
-                  // }
                   style={{ width: "100%" }}
                   onChange={onchangeGender}
                   options={[
@@ -156,17 +169,7 @@ export default function FilterComponent({ clearFilterData, visible }) {
               <Col xs={24} md={4}>
                 <div className={style.key}>Alignment</div>
                 <Select
-                  // defaultValue={
-                  //   searchParams.get("alignment") == null
-                  //     ? "Choose Alignment"
-                  //     : searchParams.get("alignment")
-                  // }
-                  value={gender}
-                  // value={
-                  //   searchParams.get("alignment") == null
-                  //     ? "Choose Alignment"
-                  //     : searchParams.get("alignment")
-                  // }
+                  value={alignment}
                   style={{ width: "100%" }}
                   onChange={onchangeAlignment}
                   options={[

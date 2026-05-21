@@ -38,8 +38,8 @@ export default function HeaderComponent({
     dispatch(clearFilter(""));
     router.replace(window.location.pathname);
     setShowFilterClearBtn(false);
-
-    setClearFilterData(true)
+    
+    setClearFilterData(false)
   };
 
   return (
