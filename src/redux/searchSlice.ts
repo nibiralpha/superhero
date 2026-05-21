@@ -23,6 +23,8 @@ export const searchSlice = createSlice({
       return { ...state, alignment: action.payload };
     },
     searchByIntelligence: (state, action) => {
+      console.log("searchByIntelligence", action);
+      
       return { ...state, intelligence: action.payload };
     },
     searchBySpeed: (state, action) => {

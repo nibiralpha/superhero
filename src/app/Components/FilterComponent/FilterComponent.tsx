@@ -67,17 +67,15 @@ export default function FilterComponent({ clearFilterData, visible }) {
   };
 
   const handleChangeSlider = (name, value) => {
-    // const val = covertToArray(value);
-
     setPowerState((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: covertToArray(value),
     }));
   };
 
   const handleChangeSliderEnter = (name, value) => {
     let stringData;
-    
+
     if (Array.isArray(value)) {
       stringData = value.join(",");
     } else {
@@ -87,6 +85,7 @@ export default function FilterComponent({ clearFilterData, visible }) {
     addSearchParam(name, stringData);
 
     let data = covertToArray(value);
+
     if (name == "intelligence") dispatch(searchByIntelligence(data));
     if (name == "power") dispatch(searchByPower(data));
     if (name == "speed") dispatch(searchBySpeed(data));
@@ -95,15 +94,15 @@ export default function FilterComponent({ clearFilterData, visible }) {
 
   const covertToArray = (data) => {
     if (Array.isArray(data)) {
-      return data;
+      return data.map(Number);
     }
 
-    return data.split(",");
+    return data.split(",").map(Number);
   };
 
   const resetForm = () => {
     setSearch("");
-    searchByGender("all");
+    setGender("all");
     setAlignment("all");
     setPowerState({
       intelligence: [0, 100],
@@ -114,6 +113,7 @@ export default function FilterComponent({ clearFilterData, visible }) {
   };
 
   useEffect(() => {
+
     searchParams.forEach((value, key) => {
       if (key == "search") onchangeKeyword(value);
       if (key == "gender") onchangeGender(value);
@@ -126,6 +126,7 @@ export default function FilterComponent({ clearFilterData, visible }) {
         key == "durability"
       ) {
         handleChangeSlider(key, value);
+
         handleChangeSliderEnter(key, value);
       }
     });
