@@ -26,7 +26,7 @@ export default function HeroesComponent({ hero, reRednder }) {
   }, []);
 
   const changeRoute = () => {
-    router.push("/details/" + hero.id);
+    router.push(`/details/${hero.id}`);
   };
 
   const showDetailCard = (status: boolean) => {
@@ -51,8 +51,9 @@ export default function HeroesComponent({ hero, reRednder }) {
 
       //only able to add good/bad
       if (heroesOnTeam[0] !== undefined && heroesOnTeam[0] !== null) {
-        
-        if (heroesOnTeam[0]?.biography?.alignment !== hero?.biography?.alignment) {
+        if (
+          heroesOnTeam[0]?.biography?.alignment !== hero?.biography?.alignment
+        ) {
           setModalMessage({
             mainText: "Ops! You can't create mixed type of super team",
             subText: "Team can only contain one type of hero (Good or Bad)",

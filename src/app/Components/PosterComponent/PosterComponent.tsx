@@ -76,7 +76,7 @@ export default function PosterComponent({ data, hero }) {
 
   return (
     <div className={style.container}>
-      <img src={data?.images?.lg} className={style.image} />
+      <img key={id} src={data?.images?.lg} className={style.image} />
 
       <div className={style.detail}>
         <div className={`${style.title} obelix`}>{data?.name}</div>
@@ -92,7 +92,11 @@ export default function PosterComponent({ data, hero }) {
           </div>
         </div>
       </div>
-      <ModalComponent  message={modalMessage} openModal={openModal} setOpenModal={setOpenModal} />
+      <ModalComponent
+        message={modalMessage}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      />
     </div>
   );
 }

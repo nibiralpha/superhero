@@ -16,10 +16,12 @@ import { useDispatch } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
+import { usePathname } from "next/navigation";
 
 export default function FilterComponent({ clearFilterData, visible }) {
   let searchTimer = 2000;
   let timerRef = useRef(null);
+  const pathname = usePathname();
 
   const searchParams = useSearchParams();
   const dispatch = useDispatch();
@@ -36,11 +38,14 @@ export default function FilterComponent({ clearFilterData, visible }) {
   });
 
   const addSearchParam = (key, value) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set(key, value);
-    const cleanQueryString = decodeURIComponent(params.toString());
+    if (pathname == "/list") {
+      
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(key, value);
+      const cleanQueryString = decodeURIComponent(params.toString());
 
-    router.push(`?${cleanQueryString}`, { scroll: false });
+      router.push(`?${cleanQueryString}`, { scroll: false });
+    }
   };
 
   const onchangeKeyword = (value) => {
@@ -113,7 +118,6 @@ export default function FilterComponent({ clearFilterData, visible }) {
   };
 
   useEffect(() => {
-
     searchParams.forEach((value, key) => {
       if (key == "search") onchangeKeyword(value);
       if (key == "gender") onchangeGender(value);
@@ -133,7 +137,6 @@ export default function FilterComponent({ clearFilterData, visible }) {
   }, []);
 
   useEffect(() => {
-    console.log("calling", clearFilterData);
 
     if (clearFilterData) {
       resetForm();

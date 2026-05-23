@@ -20,7 +20,7 @@ export default function Detail() {
   const heroDetail = useSelector((state) => state.heroes);
 
   useEffect(() => {
-    console.log("detail", heroDetail.details.images);
+    // console.log("detail", heroDetail.details.images);
   }, [heroDetail]);
 
   useEffect(() => {
