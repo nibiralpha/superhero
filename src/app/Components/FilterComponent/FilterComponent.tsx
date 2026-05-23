@@ -11,6 +11,7 @@ import {
   searchByPower,
   searchBySpeed,
   searchByDurability,
+  clearFilter,
 } from "@/src/redux/searchSlice";
 import { useDispatch } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -118,6 +119,7 @@ export default function FilterComponent({ clearFilterData, visible }) {
   };
 
   useEffect(() => {
+    dispatch(clearFilter(""))
     searchParams.forEach((value, key) => {
       if (key == "search") onchangeKeyword(value);
       if (key == "gender") onchangeGender(value);
