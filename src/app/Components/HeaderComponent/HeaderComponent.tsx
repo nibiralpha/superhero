@@ -9,7 +9,7 @@ import style from "./Header.module.css";
 import { setFilter } from "@/src/redux/settingSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { clearFilter } from "@/src/redux/searchSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function HeaderComponent({
   setClearFilterData,
@@ -17,6 +17,7 @@ export default function HeaderComponent({
   showMenu = true,
 }) {
   const [showFilterClearBtn, setShowFilterClearBtn] = useState(false);
+  const [showClearFilter, setShowClearFilter] = useState(false);
 
   const dispatch = useDispatch();
   const pathname = usePathname();
@@ -24,6 +25,7 @@ export default function HeaderComponent({
   const path = pathname.split("/");
 
   const showFilter = useSelector((state) => state.filter.showFilter);
+  const filter = useSelector((state) => state.search);
 
   const route = path[1];
 
@@ -42,6 +44,11 @@ export default function HeaderComponent({
 
     setClearFilterData(true);
   };
+
+  useEffect(() => {
+    let isFiltered = !Object.values(filter).every((value) => value == "");
+    setShowClearFilter(isFiltered);
+  }, [filter]);
 
   return (
     <div className={style.bar}>
