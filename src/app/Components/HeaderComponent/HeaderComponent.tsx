@@ -16,7 +16,6 @@ export default function HeaderComponent({
   clearFilterData,
   showMenu = true,
 }) {
-  const [showFilterClearBtn, setShowFilterClearBtn] = useState(false);
   const [showClearFilter, setShowClearFilter] = useState(false);
 
   const dispatch = useDispatch();
@@ -40,7 +39,6 @@ export default function HeaderComponent({
   const clearAllFilterData = () => {
     dispatch(clearFilter(""));
     router.replace(window.location.pathname);
-    setShowFilterClearBtn(false);
 
     setClearFilterData(true);
   };
@@ -75,7 +73,7 @@ export default function HeaderComponent({
             <div className={style.right_side}>
               {showMenu && (
                 <div className={style.filter}>
-                  {!clearFilterData && (
+                  {showClearFilter && (
                     <div className={style.clear_filter}>
                       <div className={style.close_icon}>
                         <img
