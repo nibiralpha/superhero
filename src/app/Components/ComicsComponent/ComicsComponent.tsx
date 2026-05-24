@@ -11,7 +11,7 @@ import { selectFilteredHeroes } from "../../Selectors/heroSelectors";
 
 export default function ComicsComponent() {
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.heroes);
+  const { loading, list } = useSelector((state) => state.heroes);
   const filteredHeroes = useSelector(selectFilteredHeroes);
 
   useEffect(() => {

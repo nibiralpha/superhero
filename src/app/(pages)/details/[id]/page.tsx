@@ -24,9 +24,7 @@ export default function Detail() {
   // }, [heroDetail]);
 
   useEffect(() => {
-    dispatch(getHeroDetail(id));
-    console.log("updateeeee", heroDetail);
-    
+    dispatch(getHeroDetail(id));    
   }, []);
 
   return (

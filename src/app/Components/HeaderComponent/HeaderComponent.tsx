@@ -13,6 +13,7 @@ import { useState } from "react";
 
 export default function HeaderComponent({
   setClearFilterData,
+  clearFilterData,
   showMenu = true,
 }) {
   const [showFilterClearBtn, setShowFilterClearBtn] = useState(false);
@@ -34,12 +35,12 @@ export default function HeaderComponent({
     dispatch(setFilter(!showFilter));
   };
 
-  const clearFilterData = () => {
+  const clearAllFilterData = () => {
     dispatch(clearFilter(""));
     router.replace(window.location.pathname);
     setShowFilterClearBtn(false);
-    
-    setClearFilterData(false)
+
+    setClearFilterData(true);
   };
 
   return (
@@ -67,23 +68,23 @@ export default function HeaderComponent({
             <div className={style.right_side}>
               {showMenu && (
                 <div className={style.filter}>
-                  {/* {showFilterClearBtn && ( */}
-                  <div className={style.clear_filter}>
-                    <div className={style.close_icon}>
-                      <img
-                        className={style.close_icon_img}
-                        width="14px"
-                        src="/close.png"
-                      />
+                  {!clearFilterData && (
+                    <div className={style.clear_filter}>
+                      <div className={style.close_icon}>
+                        <img
+                          className={style.close_icon_img}
+                          width="14px"
+                          src="/close.png"
+                        />
+                      </div>
+                      <div
+                        onClick={clearAllFilterData}
+                        className={style.clear_filter_text}
+                      >
+                        Clear filter
+                      </div>
                     </div>
-                    <div
-                      onClick={clearFilterData}
-                      className={style.clear_filter_text}
-                    >
-                      Clear filter
-                    </div>
-                  </div>
-                  {/* )} */}
+                  )}
 
                   <div className={style.clear_filter_button}>
                     <Button

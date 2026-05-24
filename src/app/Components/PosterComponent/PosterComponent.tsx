@@ -10,7 +10,6 @@ import ModalComponent from "../ModalComponent/ModalComponent";
 import { useSelector } from "react-redux";
 
 export default function PosterComponent({ data, hero }) {
-  console.log("data", data);
 
   const [modalMessage, setModalMessage] = useState({
     mainText: "",
@@ -22,8 +21,6 @@ export default function PosterComponent({ data, hero }) {
 
   const params = useParams();
   const id = params.id;
-
-  console.log("hero loading", loading);
 
   useEffect(() => {
     const savedHeroes = JSON.parse(localStorage.getItem("heroes")) || [];

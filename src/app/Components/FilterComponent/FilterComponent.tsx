@@ -19,7 +19,7 @@ import { useEffect, useState } from "react";
 import { useRef } from "react";
 import { usePathname } from "next/navigation";
 
-export default function FilterComponent({ clearFilterData, visible }) {
+export default function FilterComponent({ setClearFilterData, clearFilterData, visible }) {
   let searchTimer = 2000;
   let timerRef = useRef(null);
   const pathname = usePathname();
@@ -107,6 +107,7 @@ export default function FilterComponent({ clearFilterData, visible }) {
   };
 
   const resetForm = () => {
+    
     setSearch("");
     setGender("all");
     setAlignment("all");
@@ -139,9 +140,10 @@ export default function FilterComponent({ clearFilterData, visible }) {
   }, []);
 
   useEffect(() => {
-
+    
     if (clearFilterData) {
       resetForm();
+      setClearFilterData(false);
     }
   }, [clearFilterData]);
 
