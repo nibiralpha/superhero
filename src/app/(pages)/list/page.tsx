@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import React, { useState } from "react";
 import HeaderComponent from "../../Components/HeaderComponent/HeaderComponent";
 import ComicComponent from "../../Components/ComicsComponent/ComicsComponent";
@@ -8,22 +9,24 @@ import { useSelector } from "react-redux";
 
 export default function Search() {
   const showFilter = useSelector((state) => state.filter.showFilter);
-  const [clearFilterData, setClearFilterData] = useState(false);  
+  const [clearFilterData, setClearFilterData] = useState(false);
 
   return (
     <>
       <div>
-        <HeaderComponent
-          setClearFilterData={setClearFilterData}
-          clearFilterData={clearFilterData}
-          showMenu={true}
-        />
-        <FilterComponent
-          clearFilterData={clearFilterData}
-          setClearFilterData={setClearFilterData}
-          visible={showFilter}
-        />
-        <ComicComponent />
+        <Suspense fallback={<span />}>
+          <HeaderComponent
+            setClearFilterData={setClearFilterData}
+            clearFilterData={clearFilterData}
+            showMenu={true}
+          />
+          <FilterComponent
+            clearFilterData={clearFilterData}
+            setClearFilterData={setClearFilterData}
+            visible={showFilter}
+          />
+          <ComicComponent />
+        </Suspense>
       </div>
     </>
   );
