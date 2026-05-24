@@ -3,20 +3,27 @@
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import style from "./Poster.module.css";
+import { Spin } from "antd";
 import { Switch } from "antd";
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 import ModalComponent from "../ModalComponent/ModalComponent";
+import { useSelector } from "react-redux";
 
 export default function PosterComponent({ data, hero }) {
+  console.log("data", data);
+
   const [modalMessage, setModalMessage] = useState({
     mainText: "",
     subText: "",
   });
   const [heroesOnTeam, setHeroesOnTeam] = useState([]);
   const [openModal, setOpenModal] = useState(false);
+  const { loading } = useSelector((state) => state.heroes);
 
   const params = useParams();
   const id = params.id;
+
+  console.log("hero loading", loading);
 
   useEffect(() => {
     const savedHeroes = JSON.parse(localStorage.getItem("heroes")) || [];
@@ -76,7 +83,13 @@ export default function PosterComponent({ data, hero }) {
 
   return (
     <div className={style.container}>
-      <img key={id} src={data?.images?.lg} className={style.image} />
+      {loading ? (
+        <div className={style.Spin_container}>
+          <Spin />
+        </div>
+      ) : (
+        <img key={id} src={data?.images?.lg} className={style.image} />
+      )}
 
       <div className={style.detail}>
         <div className={`${style.title} obelix`}>{data?.name}</div>

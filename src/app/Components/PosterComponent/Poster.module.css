@@ -40,6 +40,13 @@
   padding: 20px 0;
 }
 
+.Spin_container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 /* MOBILE */
 
 @media screen and (max-width: 430px) {
@@ -47,7 +54,7 @@
     font-size: 2.5em;
   }
 
-  .image{
+  .image {
     height: auto;
   }
 }
