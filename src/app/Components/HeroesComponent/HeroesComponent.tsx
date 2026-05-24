@@ -121,7 +121,7 @@ export default function HeroesComponent({ hero, reRednder }) {
       className={style.img_container}
     >
       {/* <div onClick={() => setOpenModal(true)}>Open</div> */}
-      <img src={hero.images.lg} onClick={changeRoute} />
+      <img src={hero.images.md} onClick={changeRoute} />
 
       <div
         className={`${style.overlay_detail} ${showDetail ? style.show : ""}`}
