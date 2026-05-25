@@ -35,14 +35,17 @@ export const searchSlice = createSlice({
       return { ...state, durability: action.payload };
     },
     clearFilter: (state, action) => {
-      state.keyword = "";
-      state.gender = "";
-      state.alignment = "";
-      state.powerstate = "";
-      state.intelligence = "";
-      state.speed = "";
-      state.power = "";
-      state.durability = "";
+      return {
+        ...state,
+        keyword: "",
+        gender: "",
+        alignment: "",
+        powerstate: "",
+        intelligence: "",
+        speed: "",
+        power: "",
+        durability: "",
+      };
     },
   },
 });
