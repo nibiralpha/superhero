@@ -21,7 +21,7 @@ export default function HeroesComponent({ hero, reRednder }) {
   const router = useRouter();
   const [openModal, setOpenModal] = useState(false);
 
-  const { heroesOnTheTeam } = useHero();
+  const { heroesOnTheTeam, getTeamMembersCount } = useHero();
 
   useEffect(() => {
     let team = isOnTeam();
@@ -40,7 +40,7 @@ export default function HeroesComponent({ hero, reRednder }) {
     // const heroesOnTeam = JSON.parse(localStorage.getItem("heroes")) || [];
     const heroesOnTeam = heroesOnTheTeam();
     if (status) {
-      let teamMemberCount = getTeamMembersCount();
+      const teamMemberCount = getTeamMembersCount();
 
       //teams cant be more than 8
       if (teamMemberCount >= 8) {
@@ -115,11 +115,11 @@ export default function HeroesComponent({ hero, reRednder }) {
     return false;
   };
 
-  const getTeamMembersCount = () => {
-    const heroesOnTeam = heroesOnTheTeam();
-    // const heroesOnTeam = JSON.parse(localStorage.getItem("heroes")) || [];
-    return heroesOnTeam.length;
-  };
+  // const getTeamMembersCount = () => {
+  //   const heroesOnTeam = heroesOnTheTeam();
+  //   // const heroesOnTeam = JSON.parse(localStorage.getItem("heroes")) || [];
+  //   return heroesOnTeam.length;
+  // };
 
   return (
     <div

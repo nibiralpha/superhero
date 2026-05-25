@@ -6,9 +6,15 @@ const useHero = () => {
     const data = storedHeroes ? JSON.parse(storedHeroes) : [];
     return data;
   };
+
+  const getTeamMembersCount = () => {
+    const heroes = heroesOnTheTeam();
+    return heroes.length;
+  };
+
   const allHeroes = useSelector((state: any) => state.heroes);
 
-  return { allHeroes, heroesOnTheTeam };
+  return { allHeroes, heroesOnTheTeam, getTeamMembersCount };
 };
 
 export default useHero;
