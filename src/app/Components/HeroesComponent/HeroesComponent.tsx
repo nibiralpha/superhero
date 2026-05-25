@@ -9,6 +9,7 @@ import "animate.css";
 import { Switch } from "antd";
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 import ModalComponent from "../ModalComponent/ModalComponent";
+import useHero from "../../Hooks/useHero";
 
 export default function HeroesComponent({ hero, reRednder }) {
   const [showDetail, setShowDetail] = useState(false);
@@ -19,6 +20,8 @@ export default function HeroesComponent({ hero, reRednder }) {
   const [onTeam, setOnTeam] = useState(false);
   const router = useRouter();
   const [openModal, setOpenModal] = useState(false);
+
+  const { heroesOnTheTeam } = useHero();
 
   useEffect(() => {
     let team = isOnTeam();
@@ -34,7 +37,8 @@ export default function HeroesComponent({ hero, reRednder }) {
   };
 
   const onClickAddRemoveToTeam = (status) => {
-    let heroesOnTeam = JSON.parse(localStorage.getItem("heroes")) || [];
+    // const heroesOnTeam = JSON.parse(localStorage.getItem("heroes")) || [];
+    const heroesOnTeam = heroesOnTheTeam();
     if (status) {
       let teamMemberCount = getTeamMembersCount();
 
@@ -99,7 +103,8 @@ export default function HeroesComponent({ hero, reRednder }) {
   };
 
   const isOnTeam = () => {
-    const heroesOnTeam = JSON.parse(localStorage.getItem("heroes")) || [];
+    // const heroesOnTeam = JSON.parse(localStorage.getItem("heroes")) || [];
+    const heroesOnTeam = heroesOnTheTeam();
 
     for (let i = 0; i < heroesOnTeam.length; i++) {
       if (heroesOnTeam[i].id == hero.id) {
@@ -111,7 +116,8 @@ export default function HeroesComponent({ hero, reRednder }) {
   };
 
   const getTeamMembersCount = () => {
-    const heroesOnTeam = JSON.parse(localStorage.getItem("heroes")) || [];
+    const heroesOnTeam = heroesOnTheTeam();
+    // const heroesOnTeam = JSON.parse(localStorage.getItem("heroes")) || [];
     return heroesOnTeam.length;
   };
 

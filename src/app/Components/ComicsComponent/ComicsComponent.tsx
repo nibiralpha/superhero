@@ -15,17 +15,8 @@ export default function ComicsComponent() {
   const filteredHeroes = useSelector(selectFilteredHeroes);
 
   useEffect(() => {
-    // optimized fetch
     dispatch(fetchHeroes());
   }, [dispatch]);
-
-  // const getHeroData = async () => {
-  //   dispatch(fetchHeroes());
-  // };
-
-  // useEffect(() => {
-  //   getHeroData();
-  // }, []);
 
   return (
     <div className={style.layout}>
