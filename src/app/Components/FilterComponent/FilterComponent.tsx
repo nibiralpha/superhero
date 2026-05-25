@@ -19,7 +19,11 @@ import { useEffect, useState } from "react";
 import { useRef } from "react";
 import { usePathname } from "next/navigation";
 
-export default function FilterComponent({ setClearFilterData, clearFilterData, visible }) {
+export default function FilterComponent({
+  setClearFilterData,
+  clearFilterData,
+  visible,
+}) {
   let searchTimer = 2000;
   let timerRef = useRef(null);
   const pathname = usePathname();
@@ -40,7 +44,6 @@ export default function FilterComponent({ setClearFilterData, clearFilterData, v
 
   const addSearchParam = (key, value) => {
     if (pathname == "/list") {
-      
       const params = new URLSearchParams(searchParams.toString());
       params.set(key, value);
       const cleanQueryString = decodeURIComponent(params.toString());
@@ -107,7 +110,6 @@ export default function FilterComponent({ setClearFilterData, clearFilterData, v
   };
 
   const resetForm = () => {
-    
     setSearch("");
     setGender("all");
     setAlignment("all");
@@ -120,27 +122,40 @@ export default function FilterComponent({ setClearFilterData, clearFilterData, v
   };
 
   useEffect(() => {
-    dispatch(clearFilter(""))
+    dispatch(clearFilter(""));
     searchParams.forEach((value, key) => {
-      if (key == "search") onchangeKeyword(value);
-      if (key == "gender") onchangeGender(value);
-      if (key == "alignment") onchangeAlignment(value);
-
+      if (key === "search") {
+        setSearch(value);
+        dispatch(searchBykeyword(value));
+      }
+      if (key === "gender") {
+        setGender(value);
+        dispatch(searchByGender(value));
+      }
+      if (key === "alignment") {
+        setAlignment(value);
+        dispatch(searchByAlignment(value));
+      }
       if (
-        key == "intelligence" ||
-        key == "power" ||
-        key == "speed" ||
-        key == "durability"
+        key === "intelligence" ||
+        key === "power" ||
+        key === "speed" ||
+        key === "durability"
       ) {
-        handleChangeSlider(key, value);
-
-        handleChangeSliderEnter(key, value);
+        const data = covertToArray(value);
+        setPowerState((prev) => ({ ...prev, [key]: data }));
+        if (key === "intelligence") dispatch(searchByIntelligence(data));
+        if (key === "power") dispatch(searchByPower(data));
+        if (key === "speed") dispatch(searchBySpeed(data));
+        if (key === "durability") dispatch(searchByDurability(data));
       }
     });
+    return () => {
+      clearTimeout(timerRef.current);
+    };
   }, []);
 
   useEffect(() => {
-    
     if (clearFilterData) {
       resetForm();
       setClearFilterData(false);
