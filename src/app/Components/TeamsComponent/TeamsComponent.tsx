@@ -5,8 +5,10 @@ import "animate.css";
 import { Col, Row } from "antd";
 import HeroesComponent from "../HeroesComponent/HeroesComponent";
 import { useEffect, useState } from "react";
+import useHero from "../../Hooks/useHero";
 
 export default function TeamsComponent() {
+  const { heroesOnTheTeam } = useHero();
   const [heroList, setHeroList] = useState(null);
 
   useEffect(() => {
@@ -14,7 +16,7 @@ export default function TeamsComponent() {
   }, []);
 
   const reRednder = () => {
-    let heroList = JSON.parse(localStorage.getItem("heroes")) || [];
+    let heroList = heroesOnTheTeam();
     setHeroList(heroList);
   };
 

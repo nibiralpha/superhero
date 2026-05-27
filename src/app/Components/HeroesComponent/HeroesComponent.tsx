@@ -23,10 +23,10 @@ export default function HeroesComponent({ hero, reRednder }) {
   const [onTeam, setOnTeam] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
-  const { heroesOnTheTeam, getTeamMembersCount } = useHero();
+  const { heroesOnTheTeam, getTeamMembersCount, isOnTeam } = useHero();
 
   useEffect(() => {
-    let team = isOnTeam();
+    let team = isOnTeam(hero);
     setOnTeam(team);
   }, []);
 
@@ -72,12 +72,12 @@ export default function HeroesComponent({ hero, reRednder }) {
       let newEntry = !heroesOnTeam.some((h) => h.id == hero.id);
 
       data.push(...heroesOnTeam);
-      if (newEntry) {
-        data.push(hero);
-      }
+      
+      newEntry && data.push(hero)
+      
       setOnTeam(true);
       localStorage.setItem("heroes", JSON.stringify(data));
-      isOnTeam();
+      isOnTeam(hero);
     } else {
       const updatedTeam = heroesOnTeam.filter(
         (dbHero) => dbHero.id !== hero.id,
@@ -86,11 +86,9 @@ export default function HeroesComponent({ hero, reRednder }) {
       setOnTeam(false);
       localStorage.setItem("heroes", JSON.stringify(updatedTeam));
       reRednder?.();
-      isOnTeam();
+      isOnTeam(hero);
     }
   };
-
-  const isOnTeam = () => heroesOnTheTeam().some((h) => h.id == hero.id);
 
   return (
     <div
