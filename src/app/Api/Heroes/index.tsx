@@ -6,7 +6,7 @@ const getHeroes = async () => {
   return response;
 };
 
-const getHero = async (id) => {
+const getHero = async (id: number) => {
   const response = await axios.get(`${BASEURL}/superhero-api/api/id/` + id + `.json`);
   return response;
 };

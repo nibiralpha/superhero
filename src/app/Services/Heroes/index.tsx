@@ -1,13 +1,14 @@
 import { startHeroLoading, heroData, singleHero } from "@/src/redux/heroSlice";
 import { getHero, getHeroes } from "../../Api/Heroes";
+import { Dispatch } from "@reduxjs/toolkit";
 
 const fetchHeroes = () => {
-  return async (dispatch) => {
-    try {      
+  return async (dispatch: Dispatch) => {
+    try {
       dispatch(startHeroLoading(true));
       const heroResponse = await getHeroes();
       const heroes = heroResponse.data;
-      
+
       dispatch(heroData(heroes));
       dispatch(startHeroLoading(false));
     } catch (error) {
@@ -20,9 +21,9 @@ const fetchHeroes = () => {
   };
 };
 
-const getHeroDetail = (id) => {
+const getHeroDetail = (id: number) => {
   return async (dispatch) => {
-    try {      
+    try {
       dispatch(startHeroLoading(true));
       const heroResponse = await getHero(id);
       const hero = heroResponse.data;
