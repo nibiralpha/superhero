@@ -9,26 +9,32 @@ import style from "./Header.module.css";
 import { setFilter } from "@/src/redux/settingSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { clearFilter } from "@/src/redux/searchSlice";
-import { useEffect, useState } from "react";
+import type { RootState } from "@/src/redux/store";
+
+type HeaderProps = {
+  setClearFilterData: React.Dispatch<React.SetStateAction<boolean>>;
+  showMenu?: boolean;
+};
 
 export default function HeaderComponent({
   setClearFilterData,
-  clearFilterData,
   showMenu = true,
-}) {
-  const [showClearFilter, setShowClearFilter] = useState(false);
+}: HeaderProps) {
+  // const [showClearFilter, setShowClearFilter] = useState(false);
 
   const dispatch = useDispatch();
   const pathname = usePathname();
   const router = useRouter();
   const path = pathname.split("/");
 
-  const showFilter = useSelector((state) => state.filter.showFilter);
-  const filter = useSelector((state) => state.search);
+  const showFilter = useSelector((state: RootState) => state.filter.showFilter);
+  const filter = useSelector((state: RootState) => state.search);
+  const showClearFilter =
+  !Object.values(filter).every((value) => value === "");
 
   const route = path[1];
 
-  const changePage = (page) => {
+  const changePage = (page: string) => {
     router.push(`/${page}`);
   };
 
@@ -42,11 +48,6 @@ export default function HeaderComponent({
 
     setClearFilterData(true);
   };
-
-  useEffect(() => {
-    let isFiltered = !Object.values(filter).every((value) => value == "");
-    setShowClearFilter(isFiltered);
-  }, [filter]);
 
   return (
     <div className={style.bar}>

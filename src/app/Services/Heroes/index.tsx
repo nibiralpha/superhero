@@ -22,7 +22,7 @@ const fetchHeroes = () => {
 };
 
 const getHeroDetail = (id: number) => {
-  return async (dispatch) => {
+  return async (dispatch: Dispatch) => {
     try {
       dispatch(startHeroLoading(true));
       const heroResponse = await getHero(id);

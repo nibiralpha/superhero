@@ -5,23 +5,23 @@ import { useParams } from "next/navigation";
 import HeaderComponent from "@/src/app/Components/HeaderComponent/HeaderComponent";
 import PosterComponent from "@/src/app/Components/PosterComponent/PosterComponent";
 import DetailComponent from "@/src/app/Components/DetailComponent/DetailComponent";
-import type { RootState } from "../../../../redux/store";
+import type { AppDispatch, RootState } from "@/src/redux/store";
 
 import { Col, Row } from "antd";
 
 import style from "./Details.module.css";
 import { useDispatch, useSelector } from "react-redux";
+
 import { getHeroDetail } from "@/src/app/Services/Heroes";
 
 export default function Detail() {
   const params = useParams();
-  const dispatch = useDispatch();
-  const id = params.id;
-
+  const dispatch = useDispatch<AppDispatch>();
+  const id = Number(params.id);
   const heroDetail = useSelector((state: RootState) => state.heroes);
 
   useEffect(() => {
-    dispatch(getHeroDetail(id));    
+    dispatch(getHeroDetail(id));
   }, []);
 
   return (
