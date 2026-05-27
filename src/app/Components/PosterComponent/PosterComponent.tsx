@@ -8,8 +8,10 @@ import { Switch } from "antd";
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 import ModalComponent from "../ModalComponent/ModalComponent";
 import { useSelector } from "react-redux";
+import useHero from "../../Hooks/useHero";
 
 export default function PosterComponent({ data, hero }) {
+  const { heroesOnTheTeam, getTeamMembersCount, isOnTeam } = useHero();
 
   const [modalMessage, setModalMessage] = useState({
     mainText: "",
@@ -23,7 +25,7 @@ export default function PosterComponent({ data, hero }) {
   const id = params.id;
 
   useEffect(() => {
-    const savedHeroes = JSON.parse(localStorage.getItem("heroes")) || [];
+    const savedHeroes = heroesOnTheTeam();
     setHeroesOnTeam(savedHeroes);
   }, []);
 
@@ -42,7 +44,6 @@ export default function PosterComponent({ data, hero }) {
         setOpenModal(true);
         return;
       }
-      //end
 
       //only able to add good/bad
       if (heroesOnTeam[0] !== undefined && heroesOnTeam[0] !== null) {
@@ -57,7 +58,6 @@ export default function PosterComponent({ data, hero }) {
           return;
         }
       }
-      //end
 
       const exists = updatedList.some((h) => h.id == id);
       if (!exists) {
@@ -69,11 +69,6 @@ export default function PosterComponent({ data, hero }) {
 
     localStorage.setItem("heroes", JSON.stringify(updatedList));
     setHeroesOnTeam(updatedList);
-  };
-
-  const getTeamMembersCount = () => {
-    const heroesOnTeam = JSON.parse(localStorage.getItem("heroes")) || [];
-    return heroesOnTeam.length;
   };
 
   const isCurrentlyOnTeam = heroesOnTeam.some((h) => h.id == id);
