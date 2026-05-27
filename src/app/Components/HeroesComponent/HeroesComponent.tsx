@@ -12,13 +12,15 @@ import ModalComponent from "../ModalComponent/ModalComponent";
 import useHero from "../../Hooks/useHero";
 
 export default function HeroesComponent({ hero, reRednder }) {
+  const router = useRouter();
+
   const [showDetail, setShowDetail] = useState(false);
   const [modalMessage, setModalMessage] = useState({
     mainText: "",
     subText: "",
   });
+
   const [onTeam, setOnTeam] = useState(false);
-  const router = useRouter();
   const [openModal, setOpenModal] = useState(false);
 
   const { heroesOnTheTeam, getTeamMembersCount } = useHero();
@@ -37,8 +39,9 @@ export default function HeroesComponent({ hero, reRednder }) {
   };
 
   const onClickAddRemoveToTeam = (status) => {
-    // const heroesOnTeam = JSON.parse(localStorage.getItem("heroes")) || [];
     const heroesOnTeam = heroesOnTheTeam();
+    let data = [];
+
     if (status) {
       const teamMemberCount = getTeamMembersCount();
 
@@ -51,7 +54,6 @@ export default function HeroesComponent({ hero, reRednder }) {
         setOpenModal(true);
         return;
       }
-      //end
 
       //only able to add good/bad
       if (heroesOnTeam[0] !== undefined && heroesOnTeam[0] !== null) {
@@ -66,20 +68,9 @@ export default function HeroesComponent({ hero, reRednder }) {
           return;
         }
       }
-      //end
 
-      let data = [];
-      let newEntry = true;
-      // let heroes = JSON.parse(localStorage.getItem("heroes")) || [];
+      let newEntry = !heroesOnTeam.some((h) => h.id == hero.id);
 
-      for (let i = 0; i < heroesOnTeam.length; i++) {
-        if (heroesOnTeam[i].id == hero.id) {
-          newEntry = false;
-          break;
-        }
-      }
-
-      // data.push(...heroes);
       data.push(...heroesOnTeam);
       if (newEntry) {
         data.push(hero);
@@ -88,38 +79,18 @@ export default function HeroesComponent({ hero, reRednder }) {
       localStorage.setItem("heroes", JSON.stringify(data));
       isOnTeam();
     } else {
-      // let heroes = JSON.parse(localStorage.getItem("heroes")) || [];
+      const updatedTeam = heroesOnTeam.filter(
+        (dbHero) => dbHero.id !== hero.id,
+      );
 
-      heroesOnTeam.forEach((dbHero, index) => {
-        if (dbHero.id == hero.id) {
-          heroesOnTeam.splice(index, 1);
-        }
-      });
       setOnTeam(false);
-      localStorage.setItem("heroes", JSON.stringify(heroesOnTeam));
+      localStorage.setItem("heroes", JSON.stringify(updatedTeam));
       reRednder?.();
       isOnTeam();
     }
   };
 
-  const isOnTeam = () => {
-    // const heroesOnTeam = JSON.parse(localStorage.getItem("heroes")) || [];
-    const heroesOnTeam = heroesOnTheTeam();
-
-    for (let i = 0; i < heroesOnTeam.length; i++) {
-      if (heroesOnTeam[i].id == hero.id) {
-        return true;
-      }
-    }
-
-    return false;
-  };
-
-  // const getTeamMembersCount = () => {
-  //   const heroesOnTeam = heroesOnTheTeam();
-  //   // const heroesOnTeam = JSON.parse(localStorage.getItem("heroes")) || [];
-  //   return heroesOnTeam.length;
-  // };
+  const isOnTeam = () => heroesOnTheTeam().some((h) => h.id == hero.id);
 
   return (
     <div
