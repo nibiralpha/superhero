@@ -5,10 +5,11 @@ import React, { useState } from "react";
 import HeaderComponent from "../../Components/HeaderComponent/HeaderComponent";
 import ComicComponent from "../../Components/ComicsComponent/ComicsComponent";
 import FilterComponent from "../../Components/FilterComponent/FilterComponent";
+import type { RootState } from "../../../redux/store";
 import { useSelector } from "react-redux";
 
 export default function Search() {
-  const showFilter = useSelector((state) => state.filter.showFilter);
+  const showFilter = useSelector((state: RootState) => state.filter.showFilter);
   const [clearFilterData, setClearFilterData] = useState(false);
 
   return (

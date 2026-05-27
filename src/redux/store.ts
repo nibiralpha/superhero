@@ -9,6 +9,9 @@ const rootReducer = combineReducers({
   filter: settingSlice,
 });
 
-export default configureStore({
+export const store = configureStore({
   reducer: rootReducer,
 });
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

@@ -8,10 +8,12 @@ import { useEffect } from "react";
 import { fetchHeroes } from "../../Services/Heroes";
 import { useDispatch, useSelector } from "react-redux";
 import { selectFilteredHeroes } from "../../Selectors/heroSelectors";
+import type { RootState, AppDispatch } from "../../../redux/store";
 
 export default function ComicsComponent() {
-  const dispatch = useDispatch();
-  const { loading, list } = useSelector((state) => state.heroes);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const { loading } = useSelector((state: RootState) => state.heroes);
   const filteredHeroes = useSelector(selectFilteredHeroes);
 
   useEffect(() => {

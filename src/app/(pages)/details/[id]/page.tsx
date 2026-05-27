@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import HeaderComponent from "@/src/app/Components/HeaderComponent/HeaderComponent";
 import PosterComponent from "@/src/app/Components/PosterComponent/PosterComponent";
 import DetailComponent from "@/src/app/Components/DetailComponent/DetailComponent";
+import type { RootState } from "../../../../redux/store";
 
 import { Col, Row } from "antd";
 
@@ -17,11 +18,7 @@ export default function Detail() {
   const dispatch = useDispatch();
   const id = params.id;
 
-  const heroDetail = useSelector((state) => state.heroes);
-
-  // useEffect(() => {
-  //   // console.log("detail", heroDetail.details.images);
-  // }, [heroDetail]);
+  const heroDetail = useSelector((state: RootState) => state.heroes);
 
   useEffect(() => {
     dispatch(getHeroDetail(id));    

@@ -9,9 +9,10 @@ import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 import ModalComponent from "../ModalComponent/ModalComponent";
 import { useSelector } from "react-redux";
 import useHero from "../../Hooks/useHero";
+import type { RootState } from "../../../redux/store";
 
 export default function PosterComponent({ data, hero }) {
-  const { heroesOnTheTeam, getTeamMembersCount, isOnTeam } = useHero();
+  const { heroesOnTheTeam, getTeamMembersCount } = useHero();
 
   const [modalMessage, setModalMessage] = useState({
     mainText: "",
@@ -19,7 +20,7 @@ export default function PosterComponent({ data, hero }) {
   });
   const [heroesOnTeam, setHeroesOnTeam] = useState([]);
   const [openModal, setOpenModal] = useState(false);
-  const { loading } = useSelector((state) => state.heroes);
+  const { loading } = useSelector((state: RootState) => state.heroes);
 
   const params = useParams();
   const id = params.id;
@@ -29,11 +30,11 @@ export default function PosterComponent({ data, hero }) {
     setHeroesOnTeam(savedHeroes);
   }, []);
 
-  const onClickAddRemoveToTeam = (status) => {
+  const onClickAddRemoveToTeam = (status: boolean) => {
     let updatedList = [...heroesOnTeam];
 
     if (status) {
-      let teamMemberCount = getTeamMembersCount();
+      const teamMemberCount = getTeamMembersCount();
 
       //teams cant be more than 8
       if (teamMemberCount >= 8) {

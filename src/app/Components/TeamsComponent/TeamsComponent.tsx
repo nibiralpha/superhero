@@ -11,14 +11,14 @@ export default function TeamsComponent() {
   const { heroesOnTheTeam } = useHero();
   const [heroList, setHeroList] = useState(null);
 
+  const reRednder = () => {
+    const heroList = heroesOnTheTeam();
+    setHeroList(heroList);
+  };
+
   useEffect(() => {
     reRednder();
   }, []);
-
-  const reRednder = () => {
-    let heroList = heroesOnTheTeam();
-    setHeroList(heroList);
-  };
 
   if (heroList === null) return null;
 
