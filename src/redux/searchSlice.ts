@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const defaultPowerStat = [0, 100];
+
 export const searchSlice = createSlice({
   name: "search",
   initialState: {
@@ -7,10 +9,10 @@ export const searchSlice = createSlice({
     gender: "",
     alignment: "",
     powerstate: "",
-    intelligence: "",
-    speed: "",
-    power: "",
-    durability: "",
+    intelligence: defaultPowerStat,
+    speed: defaultPowerStat,
+    power: defaultPowerStat,
+    durability: defaultPowerStat,
   },
   reducers: {
     searchBykeyword: (state, action) => {
@@ -41,10 +43,10 @@ export const searchSlice = createSlice({
         gender: "",
         alignment: "",
         powerstate: "",
-        intelligence: "",
-        speed: "",
-        power: "",
-        durability: "",
+        intelligence: defaultPowerStat,
+        speed: defaultPowerStat,
+        power: defaultPowerStat,
+        durability: defaultPowerStat,
       };
     },
   },

@@ -47,17 +47,16 @@ export const selectFilteredHeroes = createSelector(
 
     const searchByPowerState = (
       heroes: Hero[],
-      name: string,
-      value: unknown,
+      name: keyof Powerstats,
+      value: number[],
     ) => {
-      if (value == "") {
-        value = [0, 100];
-      }
+      // if (value == "") {
+      //   value = [0, 100];
+      // }
+      const [min, max] = value;
+
       return heroes.filter((hero) => {
-        if (
-          hero.powerstats[name] >= value[0] &&
-          hero.powerstats[name] <= value[1]
-        ) {
+        if (hero.powerstats[name] >= min && hero.powerstats[name] <= max) {
           return hero;
         }
       });
