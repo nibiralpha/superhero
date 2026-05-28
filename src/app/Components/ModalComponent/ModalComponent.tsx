@@ -3,7 +3,21 @@ import style from "./Modal.module.css";
 import React from "react";
 import { Modal } from "antd";
 
-const ModalComponent: React.FC = ({ openModal, setOpenModal, message }) => {
+interface MessageType {
+  mainText: string;
+  subText: string;
+}
+interface ModalComponentProps {
+  openModal: boolean;
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  message: MessageType;
+}
+
+const ModalComponent: React.FC<ModalComponentProps> = ({
+  openModal,
+  setOpenModal,
+  message,
+}) => {
   const handleCancel = () => {
     setOpenModal(false);
   };

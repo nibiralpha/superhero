@@ -12,7 +12,7 @@ import { clearFilter } from "@/src/redux/searchSlice";
 import type { RootState } from "@/src/redux/store";
 
 type HeaderProps = {
-  setClearFilterData: React.Dispatch<React.SetStateAction<boolean>>;
+  setClearFilterData?: React.Dispatch<React.SetStateAction<boolean>>;
   showMenu?: boolean;
 };
 
@@ -46,7 +46,7 @@ export default function HeaderComponent({
     dispatch(clearFilter(""));
     router.replace(window.location.pathname);
 
-    setClearFilterData(true);
+    setClearFilterData?.(true);
   };
 
   return (

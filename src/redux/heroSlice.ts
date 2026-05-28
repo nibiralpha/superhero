@@ -1,30 +1,29 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { HeroState, Hero } from "../app/Services/Heroes/HeroInterfaces";
+
+const initialState: HeroState = {
+  list: [],
+  details: {},
+  loading: false,
+  error: false,
+  errorResponse: {},
+};
 
 export const heroSlice = createSlice({
   name: "hero",
-  initialState: {
-    list: [],
-    searchResult: [],
-    details: {},
-    loading: false,
-    error: false,
-    errorResponse: {},
-  },
+  initialState,
   reducers: {
-    startHeroLoading: (state, action) => {
+    startHeroLoading: (state, action: PayloadAction<boolean>) => {
       return { ...state, loading: action.payload };
     },
-    heroData: (state, action) => {
+    heroData: (state, action: PayloadAction<Hero[]>) => {
       return { ...state, list: action.payload };
     },
-    searchResult: (state, action) => {
-      return { ...state, searchResult: action.payload };
-    },
-    singleHero: (state, action) => {
+    singleHero: (state, action: PayloadAction<Hero>) => {
       return { ...state, details: action.payload };
     },
   },
 });
 
-export const { startHeroLoading, heroData, singleHero, searchResult } = heroSlice.actions;
+export const { startHeroLoading, heroData, singleHero } = heroSlice.actions;
 export default heroSlice.reducer;

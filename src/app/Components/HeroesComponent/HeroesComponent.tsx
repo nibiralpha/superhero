@@ -11,39 +11,58 @@ import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 import ModalComponent from "../ModalComponent/ModalComponent";
 import useHero from "../../Hooks/useHero";
 
-export default function HeroesComponent({ hero, reRednder }) {
+import { Hero } from "../../Services/Heroes/HeroInterfaces";
+
+interface HeroesComponentProps {
+  hero: Hero;
+  reRednder: () => void;
+}
+interface ModalMessage {
+  mainText: string;
+  subText: string;
+}
+
+export default function HeroesComponent({
+  hero,
+  reRednder,
+}: HeroesComponentProps) {
   const router = useRouter();
 
-  const [showDetail, setShowDetail] = useState(false);
-  const [modalMessage, setModalMessage] = useState({
+  const [showDetail, setShowDetail] = useState<boolean>(false);
+  const [modalMessage, setModalMessage] = useState<ModalMessage>({
     mainText: "",
     subText: "",
   });
 
-  const [onTeam, setOnTeam] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
+  const [onTeam, setOnTeam] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
   const { heroesOnTheTeam, getTeamMembersCount, isOnTeam } = useHero();
 
   useEffect(() => {
-    let team = isOnTeam(hero);
-    setOnTeam(team);
+
+    const timer = setTimeout(() => {
+      const team = isOnTeam(hero);
+      setOnTeam(team);
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
-  const changeRoute = () => {
+  const changeRoute = (): void => {
     router.push(`/details/${hero.id}`);
   };
 
-  const showDetailCard = (status: boolean) => {
+  const showDetailCard = (status: boolean): void => {
     setShowDetail(status);
   };
 
-  const onClickAddRemoveToTeam = (status) => {
-    const heroesOnTeam = heroesOnTheTeam();
-    let data = [];
+  const onClickAddRemoveToTeam = (status: boolean): void => {
+    const heroesOnTeam: Hero[] = heroesOnTheTeam();
+    const data: Hero[] = [];
 
     if (status) {
-      const teamMemberCount = getTeamMembersCount();
+      const teamMemberCount: number = getTeamMembersCount();
 
       //teams cant be more than 8
       if (teamMemberCount >= 8) {
@@ -69,12 +88,12 @@ export default function HeroesComponent({ hero, reRednder }) {
         }
       }
 
-      let newEntry = !heroesOnTeam.some((h) => h.id == hero.id);
+      const newEntry = !heroesOnTeam.some((h: Hero) => h.id == hero.id);
 
       data.push(...heroesOnTeam);
-      
-      newEntry && data.push(hero)
-      
+
+      newEntry && data.push(hero);
+
       setOnTeam(true);
       localStorage.setItem("heroes", JSON.stringify(data));
       isOnTeam(hero);
