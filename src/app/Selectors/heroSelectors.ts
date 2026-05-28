@@ -20,7 +20,10 @@ export const selectFilteredHeroes = createSelector(
 
     const searchByName = (heroes: Hero[]) => {
       return heroes.filter((hero) => {
-        hero.name.toLowerCase().startsWith(keyword.toLowerCase());
+        const heroLowerCase = hero.name.toLowerCase();
+        const result = heroLowerCase.startsWith(keyword.toLowerCase());
+
+        return result;
       });
     };
 
@@ -44,8 +47,8 @@ export const selectFilteredHeroes = createSelector(
 
     const searchByPowerState = (
       heroes: Hero[],
-      name: keyof Powerstats,
-      value: [number, number] | string,
+      name: string,
+      value: unknown,
     ) => {
       if (value == "") {
         value = [0, 100];
