@@ -6,14 +6,16 @@ const useHero = () => {
   const allHeroes = useSelector((state: RootState) => state.heroes);
 
   const heroesOnTheTeam = (): Hero[] => {
+    if (typeof window === "undefined") {
+      return [];
+    }
     const storedHeroes = localStorage.getItem("heroes");
     const data = storedHeroes ? JSON.parse(storedHeroes) : [];
     return data;
   };
 
   const getTeamMembersCount = (): number => {
-    const heroes = heroesOnTheTeam();
-    return heroes.length;
+    return heroesOnTheTeam().length;
   };
 
   const isOnTeam = (hero: Hero): boolean =>

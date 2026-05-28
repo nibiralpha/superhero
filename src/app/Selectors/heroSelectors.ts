@@ -18,7 +18,7 @@ export const selectFilteredHeroes = createSelector(
       durability,
     } = filters;
 
-    const searchByName = (heroes: Hero[]) => {
+    const searchByName = (heroes: Hero[]): Hero[] => {
       return heroes.filter((hero) => {
         const heroLowerCase = hero.name.toLowerCase();
         const result = heroLowerCase.startsWith(keyword.toLowerCase());
@@ -27,7 +27,7 @@ export const selectFilteredHeroes = createSelector(
       });
     };
 
-    const searchByGender = (heroes: Hero[]) => {
+    const searchByGender = (heroes: Hero[]): Hero[] => {
       if (gender == "all" || gender == "") return heroes;
 
       return heroes.filter((hero) => {
@@ -35,7 +35,7 @@ export const selectFilteredHeroes = createSelector(
       });
     };
 
-    const searchByAlignment = (heroes: Hero[]) => {
+    const searchByAlignment = (heroes: Hero[]): Hero[] => {
       if (alignment == "all" || alignment == "") return heroes;
 
       return heroes.filter((hero) => {
@@ -49,7 +49,7 @@ export const selectFilteredHeroes = createSelector(
       heroes: Hero[],
       name: keyof Powerstats,
       value: number[],
-    ) => {
+    ): Hero[] => {
       // if (value == "") {
       //   value = [0, 100];
       // }
@@ -62,7 +62,7 @@ export const selectFilteredHeroes = createSelector(
       });
     };
 
-    const filterHerores = () => {
+    const filterHerores = (): Hero[] => {
       const filterData = [...heroes];
 
       const nameSearch = searchByName(filterData);

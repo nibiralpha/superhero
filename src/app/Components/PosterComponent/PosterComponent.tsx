@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/set-state-in-effect */
+
 "use client";
 
 import { useParams } from "next/navigation";
@@ -10,20 +12,42 @@ import ModalComponent from "../ModalComponent/ModalComponent";
 import { useSelector } from "react-redux";
 import useHero from "../../Hooks/useHero";
 import type { RootState } from "../../../redux/store";
+import { Hero } from "../../Services/Heroes/HeroInterfaces";
 
-export default function PosterComponent({ data, hero }) {
+export interface HeroImageSizes {
+  lg: string;
+  md: string;
+  sm: string;
+  xs: string;
+}
+export interface CharacterItem {
+  name: string;
+  images: HeroImageSizes;
+}
+
+export interface PosterComponentProps {
+  data: CharacterItem;
+  hero: Hero;
+}
+export interface ModalMessage {
+  mainText: string;
+  subText: string;
+}
+
+export default function PosterComponent({ data, hero }: PosterComponentProps) {
   const { heroesOnTheTeam, getTeamMembersCount } = useHero();
 
-  const [modalMessage, setModalMessage] = useState({
+  const [modalMessage, setModalMessage] = useState<ModalMessage>({
     mainText: "",
     subText: "",
   });
-  const [heroesOnTeam, setHeroesOnTeam] = useState([]);
-  const [openModal, setOpenModal] = useState(false);
+  const [heroesOnTeam, setHeroesOnTeam] = useState<Hero[]>([]);
+
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const { loading } = useSelector((state: RootState) => state.heroes);
 
   const params = useParams();
-  const id = params.id;
+  const id = Number(params.id);
 
   useEffect(() => {
     const savedHeroes = heroesOnTheTeam();
@@ -34,7 +58,7 @@ export default function PosterComponent({ data, hero }) {
     let updatedList = [...heroesOnTeam];
 
     if (status) {
-      const teamMemberCount = getTeamMembersCount();
+      const teamMemberCount: number = getTeamMembersCount();
 
       //teams cant be more than 8
       if (teamMemberCount >= 8) {
