@@ -9,6 +9,7 @@ import { fetchHeroes } from "../../Services/Heroes";
 import { useDispatch, useSelector } from "react-redux";
 import { selectFilteredHeroes } from "../../Selectors/heroSelectors";
 import type { RootState, AppDispatch } from "../../../redux/store";
+import { Hero } from "../../Services/Heroes/HeroInterfaces";
 
 export default function ComicsComponent() {
   const dispatch = useDispatch<AppDispatch>();
@@ -29,7 +30,7 @@ export default function ComicsComponent() {
           </div>
         ) : (
           <Row gutter={[24, 24]}>
-            {filteredHeroes.map((hero: any) => (
+            {filteredHeroes.map((hero: Hero) => (
               <Col key={hero.id} sm={24} xs={24} md={8} lg={6}>
                 <HeroesComponent hero={hero} />
               </Col>

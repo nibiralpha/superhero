@@ -15,7 +15,7 @@ import { Hero } from "../../Services/Heroes/HeroInterfaces";
 
 interface HeroesComponentProps {
   hero: Hero;
-  reRednder: () => void;
+  reRednder?: () => void;
 }
 interface ModalMessage {
   mainText: string;

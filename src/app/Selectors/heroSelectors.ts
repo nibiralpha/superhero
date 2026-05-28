@@ -1,7 +1,9 @@
 import { createSelector } from "@reduxjs/toolkit";
+import { RootState } from "../../redux/store";
+import { Hero, Powerstats } from "../Services/Heroes/HeroInterfaces";
 
-const selectAllHeroes = (state) => state.heroes.list;
-const selectFilters = (state) => state.search;
+const selectAllHeroes = (state: RootState) => state.heroes.list;
+const selectFilters = (state: RootState) => state.search;
 
 export const selectFilteredHeroes = createSelector(
   [selectAllHeroes, selectFilters],
@@ -16,16 +18,13 @@ export const selectFilteredHeroes = createSelector(
       durability,
     } = filters;
 
-    const searchByName = (heroes) => {
+    const searchByName = (heroes: Hero[]) => {
       return heroes.filter((hero) => {
-        let heroLowerCase = hero.name.toLowerCase();
-        let result = heroLowerCase.startsWith(keyword.toLowerCase());
-
-        return result;
+        hero.name.toLowerCase().startsWith(keyword.toLowerCase());
       });
     };
 
-    const searchByGender = (heroes) => {
+    const searchByGender = (heroes: Hero[]) => {
       if (gender == "all" || gender == "") return heroes;
 
       return heroes.filter((hero) => {
@@ -33,7 +32,7 @@ export const selectFilteredHeroes = createSelector(
       });
     };
 
-    const searchByAlignment = (heroes) => {
+    const searchByAlignment = (heroes: Hero[]) => {
       if (alignment == "all" || alignment == "") return heroes;
 
       return heroes.filter((hero) => {
@@ -43,7 +42,11 @@ export const selectFilteredHeroes = createSelector(
       });
     };
 
-    const searchByPowerState = (heroes, name, value) => {
+    const searchByPowerState = (
+      heroes: Hero[],
+      name: keyof Powerstats,
+      value: [number, number] | string,
+    ) => {
       if (value == "") {
         value = [0, 100];
       }
@@ -58,30 +61,33 @@ export const selectFilteredHeroes = createSelector(
     };
 
     const filterHerores = () => {
-      let filterData = [...heroes];
+      const filterData = [...heroes];
 
-      let nameSearch = searchByName(filterData);
-      let genderSearch = searchByGender(nameSearch);
-      let alignmentSearch = searchByAlignment(genderSearch);
+      const nameSearch = searchByName(filterData);
+      const genderSearch = searchByGender(nameSearch);
+      const alignmentSearch = searchByAlignment(genderSearch);
 
-      let intelligenceSearch = searchByPowerState(
+      const intelligenceSearch = searchByPowerState(
         alignmentSearch,
         "intelligence",
         intelligence,
       );
-      let speedSearch = searchByPowerState(intelligenceSearch, "speed", speed);
-      let powerSearch = searchByPowerState(speedSearch, "power", power);
-      let durabilitySearch = searchByPowerState(
+      const speedSearch = searchByPowerState(
+        intelligenceSearch,
+        "speed",
+        speed,
+      );
+      const powerSearch = searchByPowerState(speedSearch, "power", power);
+      const durabilitySearch = searchByPowerState(
         powerSearch,
         "durability",
         durability,
       );
-    
+
       return durabilitySearch;
     };
 
     const filteredData = filterHerores();
-    // console.log(filteredData);
 
     return filteredData;
   },
