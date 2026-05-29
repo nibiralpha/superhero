@@ -20,7 +20,6 @@ export default function HeaderComponent({
   setClearFilterData,
   showMenu = true,
 }: HeaderProps) {
-  // const [showClearFilter, setShowClearFilter] = useState(false);
 
   const dispatch = useDispatch();
   const pathname = usePathname();
@@ -29,9 +28,15 @@ export default function HeaderComponent({
 
   const showFilter = useSelector((state: RootState) => state.filter.showFilter);
   const filter = useSelector((state: RootState) => state.search);
-  const showClearFilter = !Object.values(filter).every((value) => value === "");
-
   const route = path[1];
+
+  const showClearFilter: boolean = !Object.values(filter).every((value) => {
+    if (typeof value === "string") return value === "";
+
+    if (Array.isArray(value)) return value[0] === 0 && value[1] === 100;
+
+    return true;
+  });
 
   const changePage = (page: string) => {
     router.push(`/${page}`);
