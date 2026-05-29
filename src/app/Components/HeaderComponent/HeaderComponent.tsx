@@ -11,10 +11,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearFilter } from "@/src/redux/searchSlice";
 import type { RootState } from "@/src/redux/store";
 
-type HeaderProps = {
+type HeaderProps = Readonly<{
   setClearFilterData?: React.Dispatch<React.SetStateAction<boolean>>;
   showMenu?: boolean;
-};
+}>;
 
 export default function HeaderComponent({
   setClearFilterData,
@@ -29,8 +29,7 @@ export default function HeaderComponent({
 
   const showFilter = useSelector((state: RootState) => state.filter.showFilter);
   const filter = useSelector((state: RootState) => state.search);
-  const showClearFilter =
-  !Object.values(filter).every((value) => value === "");
+  const showClearFilter = !Object.values(filter).every((value) => value === "");
 
   const route = path[1];
 

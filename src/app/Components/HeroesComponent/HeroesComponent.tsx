@@ -25,7 +25,7 @@ interface ModalMessage {
 export default function HeroesComponent({
   hero,
   reRednder,
-}: HeroesComponentProps) {
+}: Readonly<HeroesComponentProps>) {
   const router = useRouter();
 
   const [showDetail, setShowDetail] = useState<boolean>(false);

@@ -1,1 +1,1 @@
-export const BASEURL = 'https://akabab.github.io/'
+export const BASEURL: string = "https://akabab.github.io/";

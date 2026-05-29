@@ -6,7 +6,8 @@ import { Col, Row } from "antd";
 import { Hero } from "../../Services/Heroes/HeroInterfaces";
 
 interface DetailComponentProps {
-  data: Partial<Hero>;
+  // data: Partial<Hero>;
+  data: Hero;
 }
 
 export default function DetailComponent({ data }: DetailComponentProps) {

@@ -19,22 +19,27 @@ import { useEffect, useState } from "react";
 import { useRef } from "react";
 import { usePathname } from "next/navigation";
 
+interface FilterComponentProps {
+  setClearFilterData: React.Dispatch<React.SetStateAction<boolean>>;
+  clearFilterData: boolean;
+  visible: boolean;
+}
 export default function FilterComponent({
   setClearFilterData,
   clearFilterData,
   visible,
-}) {
-  let searchTimer = 2000;
-  let timerRef = useRef(null);
+}: Readonly<FilterComponentProps>) {
+  const searchTimer: number = 2000;
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
 
   const searchParams = useSearchParams();
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const [search, setSearch] = useState("");
-  const [gender, setGender] = useState("all");
-  const [alignment, setAlignment] = useState("all");
+  const [search, setSearch] = useState<string>("");
+  const [gender, setGender] = useState<string>("all");
+  const [alignment, setAlignment] = useState<string>("all");
   const [powerState, setPowerState] = useState({
     intelligence: [0, 100],
     speed: [0, 100],
@@ -42,7 +47,7 @@ export default function FilterComponent({
     durability: [0, 100],
   });
 
-  const addSearchParam = (key, value) => {
+  const addSearchParam = (key: string, value: string) => {
     if (pathname == "/list") {
       const params = new URLSearchParams(searchParams.toString());
       params.set(key, value);
@@ -52,10 +57,12 @@ export default function FilterComponent({
     }
   };
 
-  const onchangeKeyword = (value) => {
+  const onchangeKeyword = (value: string) => {
     setSearch(value);
 
-    clearTimeout(timerRef.current);
+    if (timerRef.current !== null) {
+      clearTimeout(timerRef.current);
+    }
 
     timerRef.current = setTimeout(() => {
       addSearchParam("search", value);
@@ -63,26 +70,26 @@ export default function FilterComponent({
     }, searchTimer);
   };
 
-  const onchangeGender = (value) => {
+  const onchangeGender = (value: string) => {
     setGender(value);
     addSearchParam("gender", value);
     dispatch(searchByGender(value));
   };
 
-  const onchangeAlignment = (value) => {
+  const onchangeAlignment = (value: string) => {
     setAlignment(value);
     addSearchParam("alignment", value);
     dispatch(searchByAlignment(value));
   };
 
-  const handleChangeSlider = (name, value) => {
+  const handleChangeSlider = (name: string, value: number[]) => {
     setPowerState((prev) => ({
       ...prev,
       [name]: covertToArray(value),
     }));
   };
 
-  const handleChangeSliderEnter = (name, value) => {
+  const handleChangeSliderEnter = (name: string, value: string | number[]) => {
     let stringData;
 
     if (Array.isArray(value)) {
@@ -93,7 +100,7 @@ export default function FilterComponent({
 
     addSearchParam(name, stringData);
 
-    let data = covertToArray(value);
+    const data = covertToArray(value);
 
     if (name == "intelligence") dispatch(searchByIntelligence(data));
     if (name == "power") dispatch(searchByPower(data));
@@ -101,7 +108,7 @@ export default function FilterComponent({
     if (name == "durability") dispatch(searchByDurability(data));
   };
 
-  const covertToArray = (data) => {
+  const covertToArray = (data: string | number[]) => {
     if (Array.isArray(data)) {
       return data.map(Number);
     }
@@ -109,7 +116,7 @@ export default function FilterComponent({
     return data.split(",").map(Number);
   };
 
-  const resetForm = () => {
+  const resetForm = (): void => {
     setSearch("");
     setGender("all");
     setAlignment("all");
@@ -151,12 +158,13 @@ export default function FilterComponent({
       }
     });
     return () => {
-      clearTimeout(timerRef.current);
+      timerRef.current && clearTimeout(timerRef.current);
     };
   }, []);
 
   useEffect(() => {
     if (clearFilterData) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       resetForm();
       setClearFilterData(false);
     }

@@ -2,7 +2,6 @@ import React from "react";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider } from "antd";
 import "./globals.css";
-// Import your NEW client wrapper
 import StoreProvider from "../redux/StorePrvider";
 
 export default function RootLayout({
@@ -13,7 +12,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {/* Wrap everything inside body with the StoreProvider */}
         <StoreProvider>
           <AntdRegistry>
             <ConfigProvider
