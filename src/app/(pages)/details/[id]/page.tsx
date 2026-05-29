@@ -13,6 +13,7 @@ import style from "./Details.module.css";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getHeroDetail } from "@/src/app/Services/Heroes";
+import { Hero } from "@/src/app/Services/Heroes/HeroInterfaces";
 
 export default function Detail() {
   const params = useParams();
@@ -31,15 +32,20 @@ export default function Detail() {
         <Row>
           <Col xs={24} md={12}>
             <PosterComponent
-              hero={heroDetail?.details}
+              hero={heroDetail?.details as Hero}
               data={{
-                images: heroDetail?.details?.images,
-                name: heroDetail?.details?.name,
+                images: heroDetail?.details?.images ?? {
+                  xs: "",
+                  sm: "",
+                  md: "",
+                  lg: "",
+                },
+                name: heroDetail?.details?.name ?? "",
               }}
             />
           </Col>
           <Col xs={24} md={12}>
-            <DetailComponent data={heroDetail?.details} />
+            <DetailComponent data={heroDetail?.details as Hero} />
           </Col>
         </Row>
       </div>

@@ -12,15 +12,14 @@ import { clearFilter } from "@/src/redux/searchSlice";
 import type { RootState } from "@/src/redux/store";
 
 type HeaderProps = Readonly<{
-  setClearFilterData?: React.Dispatch<React.SetStateAction<boolean>>;
+  // setClearFilterData?: React.Dispatch<React.SetStateAction<boolean>>;
   showMenu?: boolean;
 }>;
 
 export default function HeaderComponent({
-  setClearFilterData,
+  // setClearFilterData,
   showMenu = true,
 }: HeaderProps) {
-
   const dispatch = useDispatch();
   const pathname = usePathname();
   const router = useRouter();
@@ -50,7 +49,7 @@ export default function HeaderComponent({
     dispatch(clearFilter(""));
     router.replace(window.location.pathname);
 
-    setClearFilterData?.(true);
+    // setClearFilterData?.(true);
   };
 
   return (

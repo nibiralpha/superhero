@@ -16,11 +16,7 @@ export default function Search() {
     <>
       <div>
         <Suspense fallback={<span />}>
-          <HeaderComponent
-            setClearFilterData={setClearFilterData}
-            // clearFilterData={clearFilterData}
-            showMenu={true}
-          />
+          <HeaderComponent showMenu={true} />
           <FilterComponent
             clearFilterData={clearFilterData}
             setClearFilterData={setClearFilterData}

@@ -24,6 +24,15 @@ interface FilterComponentProps {
   clearFilterData: boolean;
   visible: boolean;
 }
+
+type Range = [number, number];
+interface PowerState {
+  intelligence: Range;
+  speed: Range;
+  power: Range;
+  durability: Range;
+}
+
 export default function FilterComponent({
   setClearFilterData,
   clearFilterData,
@@ -40,7 +49,7 @@ export default function FilterComponent({
   const [search, setSearch] = useState<string>("");
   const [gender, setGender] = useState<string>("all");
   const [alignment, setAlignment] = useState<string>("all");
-  const [powerState, setPowerState] = useState({
+  const [powerState, setPowerState] = useState<PowerState>({
     intelligence: [0, 100],
     speed: [0, 100],
     power: [0, 100],
@@ -210,23 +219,7 @@ export default function FilterComponent({
                   ]}
                 />
               </Col>
-              {/* <Col xs={24} md={4}>
-            <div className={style.key}>Powerstats</div>
-            <Select
-              mode="multiple"
-              allowClear
-              style={{ width: "100%" }}
-              placeholder="Please select"
-              // defaultValue={["a10", "c12"]}
-              // onChange={handleChangeSlider}
-              options={[
-                { label: "Speed", value: "speed" },
-                { label: "Intelligence", value: "intelligence" },
-                { label: "Power", value: "power" },
-                { label: "Durability", value: "durability" },
-              ]}
-            />
-          </Col> */}
+
               <Col xs={24} md={5}>
                 <div className={style.key}>Intelligence</div>
 

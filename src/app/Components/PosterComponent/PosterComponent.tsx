@@ -34,7 +34,10 @@ export interface ModalMessage {
   subText: string;
 }
 
-export default function PosterComponent({ data, hero }: PosterComponentProps) {
+export default function PosterComponent({
+  data,
+  hero,
+}: Readonly<PosterComponentProps>) {
   const { heroesOnTheTeam, getTeamMembersCount } = useHero();
 
   const [modalMessage, setModalMessage] = useState<ModalMessage>({
