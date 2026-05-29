@@ -18,6 +18,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
 import { usePathname } from "next/navigation";
+import useHero from "../../Hooks/useHero";
 
 interface FilterComponentProps {
   setClearFilterData: React.Dispatch<React.SetStateAction<boolean>>;
@@ -38,6 +39,8 @@ export default function FilterComponent({
   clearFilterData,
   visible,
 }: Readonly<FilterComponentProps>) {
+  const { covertToArray } = useHero();
+
   const searchTimer: number = 2000;
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
@@ -99,13 +102,7 @@ export default function FilterComponent({
   };
 
   const handleChangeSliderEnter = (name: string, value: string | number[]) => {
-    let stringData;
-
-    if (Array.isArray(value)) {
-      stringData = value.join(",");
-    } else {
-      stringData = value;
-    }
+    const stringData = Array.isArray(value) ? value.join(",") : value;
 
     addSearchParam(name, stringData);
 
@@ -115,14 +112,6 @@ export default function FilterComponent({
     if (name == "power") dispatch(searchByPower(data));
     if (name == "speed") dispatch(searchBySpeed(data));
     if (name == "durability") dispatch(searchByDurability(data));
-  };
-
-  const covertToArray = (data: string | number[]) => {
-    if (Array.isArray(data)) {
-      return data.map(Number);
-    }
-
-    return data.split(",").map(Number);
   };
 
   const resetForm = (): void => {

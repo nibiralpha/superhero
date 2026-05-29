@@ -21,7 +21,21 @@ const useHero = () => {
   const isOnTeam = (hero: Hero): boolean =>
     heroesOnTheTeam().some((h) => h.id == hero.id);
 
-  return { allHeroes, heroesOnTheTeam, getTeamMembersCount, isOnTeam };
+  const covertToArray = (data: string | number[]) => {
+    if (Array.isArray(data)) {
+      return data.map(Number);
+    }
+
+    return data.split(",").map(Number);
+  };
+
+  return {
+    allHeroes,
+    heroesOnTheTeam,
+    getTeamMembersCount,
+    isOnTeam,
+    covertToArray,
+  };
 };
 
 export default useHero;
