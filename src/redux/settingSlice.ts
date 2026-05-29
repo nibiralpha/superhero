@@ -1,12 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+export interface SettingState {
+  showFilter: boolean;
+}
+
+const initialState: SettingState = {
+  showFilter: false,
+};
 
 export const settingSlice = createSlice({
   name: "setting",
-  initialState: {
-    showFilter: false,
-  },
+  initialState,
   reducers: {
-    setFilter: (state, action) => {
+    setFilter: (state, action: PayloadAction<boolean>) => {
       return { ...state, showFilter: action.payload };
     },
   },
