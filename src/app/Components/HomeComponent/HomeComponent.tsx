@@ -9,7 +9,7 @@ import "animate.css";
 export default function HomeComponent() {
   const router = useRouter();
 
-  const changeRoute = () => {    
+  const changeRoute = (): void => {
     router.push("/list");
   };
 

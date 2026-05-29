@@ -63,7 +63,7 @@ export default function PosterComponent({
     if (status) {
       const teamMemberCount: number = getTeamMembersCount();
 
-      //teams cant be more than 8
+      //teams can't be more than 8
       if (teamMemberCount >= 8) {
         setModalMessage({
           mainText: "Ops! You have too many team members",

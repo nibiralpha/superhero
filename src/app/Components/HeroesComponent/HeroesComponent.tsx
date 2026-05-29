@@ -114,7 +114,6 @@ export default function HeroesComponent({
       onMouseLeave={() => showDetailCard(false)}
       className={style.img_container}
     >
-      {/* <div onClick={() => setOpenModal(true)}>Open</div> */}
       <img src={hero.images.md} onClick={changeRoute} />
 
       <div
