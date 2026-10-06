@@ -26,7 +26,7 @@ export default function HomeComponent() {
         const img = new Image();
 
         img.onload = () => resolve();
-        img.onerror = () => resolve(); // don't block the page if an image fails
+        img.onerror = () => resolve();
 
         img.src = src;
       });
