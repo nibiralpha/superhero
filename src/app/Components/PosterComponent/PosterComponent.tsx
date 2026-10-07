@@ -108,7 +108,11 @@ export default function PosterComponent({
           <Spin />
         </div>
       ) : (
-        <img key={id} src={data?.images?.lg} className={style.image} />
+        <img
+          key={id}
+          src={data?.images?.lg || "/images/no-img.png"}
+          className={style.image}
+        />
       )}
 
       <div className={style.detail}>
