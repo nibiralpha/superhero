@@ -132,4 +132,8 @@
   .layout {
     margin: 30px 30px;
   }
+
+  .img_thumb{
+    width: 100% !important;
+  }
 }

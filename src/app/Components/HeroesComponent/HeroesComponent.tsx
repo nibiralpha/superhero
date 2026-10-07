@@ -13,6 +13,7 @@ import useHero from "@Hooks/useHero";
 
 import { Hero } from "@Services/Heroes/HeroInterfaces";
 import Link from "next/link";
+import Image from "next/image";
 
 interface HeroesComponentProps {
   hero: Hero;
@@ -116,7 +117,7 @@ export default function HeroesComponent({
     >
       {/* <img src={hero.images.md} onClick={changeRoute} /> */}
       <Link href={`/details/${hero.id}`}>
-        <img src={hero.images.md} onClick={changeRoute} />
+        <img className={`${style.img_thumb}`} src={hero.images.md} />
       </Link>
 
       <div
@@ -182,11 +183,19 @@ export default function HeroesComponent({
           )}
         </div>
         <div className={style.rot_button}>
-          <img
+          {/* <img
             onMouseEnter={() => showDetailCard(true)}
             className={style.detail_icon}
             src={"/details.svg"}
             width="25px"
+          /> */}
+          <Image
+            onMouseEnter={() => showDetailCard(true)}
+            className={`${style.detail_icon} ${style.detail}`}
+            src="/details.svg"
+            width={25}
+            height={25}
+            alt="Details"
           />
         </div>
       </div>

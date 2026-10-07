@@ -4,7 +4,15 @@ const nextConfig: NextConfig = {
   typescript: {
     // ✅ Ignore any build error
     // ignoreBuildErrors: true,
-  }
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.jsdelivr.net",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
