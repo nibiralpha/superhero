@@ -35,6 +35,16 @@
   justify-content: center;
 }
 
+.hero_link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hero_link:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
 .text {
   font-family: var(--ant-font-family);
   margin-right: 10px;

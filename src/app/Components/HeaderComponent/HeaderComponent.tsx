@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "@redux/settingSlice";
 import { clearFilter } from "@redux/searchSlice";
 import type { RootState } from "@redux/store";
+import Link from "next/link";
 
 type HeaderProps = Readonly<{
   // setClearFilterData?: React.Dispatch<React.SetStateAction<boolean>>;
@@ -60,18 +61,22 @@ export default function HeaderComponent({
             <div className={style.left_side}>
               <div className={style.logo}>SUPERSEARaCH</div>
               <div className={style.menus}>
-                <div
-                  className={`${style.menu} ${route === "list" ? style.active : ""}`}
-                  onClick={() => changePage("list")}
-                >
-                  Super Heroes
-                </div>
-                <div
-                  className={`${style.menu} ${route === "team" ? style.active : ""}`}
-                  onClick={() => changePage("team")}
-                >
-                  Team
-                </div>
+                <Link className={style.hero_link} href={`/list`}>
+                  <div
+                    className={`${style.menu} ${route === "list" ? style.active : ""}`}
+                    // onClick={() => changePage("list")}
+                  >
+                    Super Heroes
+                  </div>
+                </Link>
+                <Link className={style.hero_link} href={`/team`}>
+                  <div
+                    className={`${style.menu} ${route === "team" ? style.active : ""}`}
+                    // onClick={() => changePage("team")}
+                  >
+                    Team
+                  </div>
+                </Link>
               </div>
             </div>
             <div className={style.right_side}>

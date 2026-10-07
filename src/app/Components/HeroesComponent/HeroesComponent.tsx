@@ -12,6 +12,7 @@ import ModalComponent from "@Components/ModalComponent/ModalComponent";
 import useHero from "@Hooks/useHero";
 
 import { Hero } from "@Services/Heroes/HeroInterfaces";
+import Link from "next/link";
 
 interface HeroesComponentProps {
   hero: Hero;
@@ -40,7 +41,6 @@ export default function HeroesComponent({
   const { heroesOnTheTeam, getTeamMembersCount, isOnTeam } = useHero();
 
   useEffect(() => {
-
     const timer = setTimeout(() => {
       const team = isOnTeam(hero);
       setOnTeam(team);
@@ -114,7 +114,10 @@ export default function HeroesComponent({
       onMouseLeave={() => showDetailCard(false)}
       className={style.img_container}
     >
-      <img src={hero.images.md} onClick={changeRoute} />
+      {/* <img src={hero.images.md} onClick={changeRoute} /> */}
+      <Link href={`/details/${hero.id}`}>
+        <img src={hero.images.md} onClick={changeRoute} />
+      </Link>
 
       <div
         className={`${style.overlay_detail} ${showDetail ? style.show : ""}`}
@@ -152,7 +155,15 @@ export default function HeroesComponent({
       </div>
 
       <div className={style.content}>
-        {showDetail ? "" : <div className={style.name}>{hero.name}</div>}
+        {showDetail ? (
+          ""
+        ) : (
+          <div className={style.name}>
+            <Link className={style.hero_link} href={`/details/${hero.id}`}>
+              {hero.name}
+            </Link>
+          </div>
+        )}
         <div className={style.team}>
           {showDetail ? (
             <></>
