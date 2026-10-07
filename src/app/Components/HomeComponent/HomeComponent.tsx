@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import style from "./Home.module.css";
 
 import "animate.css";
+import Link from "next/link";
 
 export default function HomeComponent() {
   const router = useRouter();
@@ -15,11 +16,7 @@ export default function HomeComponent() {
   };
 
   useEffect(() => {
-    const images = [
-      "/enter_bg.png",
-      "/all-heroes.png",
-      "/spider-man.png",
-    ];
+    const images = ["/enter_bg.png", "/all-heroes.png", "/spider-man.png"];
 
     const imagePromises = images.map((src) => {
       return new Promise<void>((resolve) => {
@@ -71,9 +68,13 @@ export default function HomeComponent() {
             <h1>Create Your own Team of Superheroes</h1>
           </div>
 
-          <div className={style.enter_button} onClick={changeRoute}>
+          {/* <div className={style.enter_button} onClick={changeRoute}>
             ENTER
-          </div>
+          </div> */}
+
+          <Link href="/list" className={style.enter_button}>
+            ENTER
+          </Link>
         </div>
       </div>
     </div>
