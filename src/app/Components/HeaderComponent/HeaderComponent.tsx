@@ -6,10 +6,10 @@ import { MenuUnfoldOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 
 import style from "./Header.module.css";
-import { setFilter } from "@/src/redux/settingSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { clearFilter } from "@/src/redux/searchSlice";
-import type { RootState } from "@/src/redux/store";
+import { setFilter } from "@redux/settingSlice";
+import { clearFilter } from "@redux/searchSlice";
+import type { RootState } from "@redux/store";
 
 type HeaderProps = Readonly<{
   // setClearFilterData?: React.Dispatch<React.SetStateAction<boolean>>;

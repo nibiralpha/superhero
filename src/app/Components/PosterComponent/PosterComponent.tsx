@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/set-state-in-effect */
-
 "use client";
 
 import { useParams } from "next/navigation";
@@ -8,11 +6,11 @@ import style from "./Poster.module.css";
 import { Spin } from "antd";
 import { Switch } from "antd";
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
-import ModalComponent from "../ModalComponent/ModalComponent";
+import ModalComponent from "@Components/ModalComponent/ModalComponent";
 import { useSelector } from "react-redux";
-import useHero from "../../Hooks/useHero";
-import type { RootState } from "../../../redux/store";
-import { Hero } from "../../Services/Heroes/HeroInterfaces";
+import useHero from "@Hooks/useHero";
+import type { RootState } from "@redux/store";
+import { Hero } from "@Services/Heroes/HeroInterfaces";
 
 export interface HeroImageSizes {
   lg: string;
@@ -54,6 +52,8 @@ export default function PosterComponent({
 
   useEffect(() => {
     const savedHeroes = heroesOnTheTeam();
+    
+    /* eslint-disable react-hooks/set-state-in-effect */
     setHeroesOnTeam(savedHeroes);
   }, []);
 

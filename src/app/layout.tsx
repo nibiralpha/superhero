@@ -2,7 +2,7 @@ import React from "react";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider } from "antd";
 import "./globals.css";
-import StoreProvider from "../redux/StorePrvider";
+import StoreProvider from "@redux/StorePrvider";
 
 export default function RootLayout({
   children,

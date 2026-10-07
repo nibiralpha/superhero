@@ -8,10 +8,10 @@ import style from "./Heroes.module.css";
 import "animate.css";
 import { Switch } from "antd";
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
-import ModalComponent from "../ModalComponent/ModalComponent";
-import useHero from "../../Hooks/useHero";
+import ModalComponent from "@Components/ModalComponent/ModalComponent";
+import useHero from "@Hooks/useHero";
 
-import { Hero } from "../../Services/Heroes/HeroInterfaces";
+import { Hero } from "@Services/Heroes/HeroInterfaces";
 
 interface HeroesComponentProps {
   hero: Hero;

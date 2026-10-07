@@ -3,7 +3,7 @@
 import React from "react";
 import style from "./Detail.module.css";
 import { Col, Row } from "antd";
-import { Hero } from "../../Services/Heroes/HeroInterfaces";
+import { Hero } from "@Services/Heroes/HeroInterfaces";
 
 interface DetailComponentProps {
   // data: Partial<Hero>;

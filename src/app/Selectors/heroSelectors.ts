@@ -1,6 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { RootState } from "../../redux/store";
-import { Hero, Powerstats } from "../Services/Heroes/HeroInterfaces";
+import { RootState } from "@redux/store";
+import { Hero, Powerstats } from "@Services/Heroes/HeroInterfaces";
 
 const selectAllHeroes = (state: RootState) => state.heroes.list;
 const selectFilters = (state: RootState) => state.search;

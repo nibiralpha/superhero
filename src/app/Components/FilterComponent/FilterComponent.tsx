@@ -18,7 +18,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
 import { usePathname } from "next/navigation";
-import useHero from "../../Hooks/useHero";
+import useHero from "@Hooks/useHero";
 
 interface FilterComponentProps {
   setClearFilterData: React.Dispatch<React.SetStateAction<boolean>>;

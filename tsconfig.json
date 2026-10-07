@@ -19,7 +19,15 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@app/*": ["./src/app/*"],
+      "@redux/*": ["./src/redux/*"],
+      "@Api/*": ["./src/app/Api/*"],
+      "@Hooks/*": ["./src/app/Hooks/*"],
+      "@Components/*": ["./src/app/Components/*"],
+      "@Services/*": ["./src/app/Services/*"],
+      "@Constant/*": ["./src/app/Constant/*"],
+      "@Selectors/*": ["./src/app/Selectors/*"],
     }
   },
   "include": [

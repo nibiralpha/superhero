@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { HeroState, Hero } from "../app/Services/Heroes/HeroInterfaces";
+import { HeroState, Hero } from "@Services/Heroes/HeroInterfaces";
 
 const initialState: HeroState = {
   list: [],

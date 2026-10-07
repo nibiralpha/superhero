@@ -1,5 +1,5 @@
 import { startHeroLoading, heroData, singleHero } from "@/src/redux/heroSlice";
-import { getHero, getHeroes } from "../../Api/Heroes";
+import { getHero, getHeroes } from "@Api/Heroes";
 import { Dispatch } from "@reduxjs/toolkit"; 
 
 const fetchHeroes = () => {

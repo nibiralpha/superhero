@@ -12,8 +12,8 @@ import { Col, Row } from "antd";
 import style from "./Details.module.css";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getHeroDetail } from "@/src/app/Services/Heroes";
-import { Hero } from "@/src/app/Services/Heroes/HeroInterfaces";
+import { getHeroDetail } from "@Services/Heroes";
+import { Hero } from "@Services/Heroes/HeroInterfaces";
 
 export default function Detail() {
   const params = useParams();

@@ -3,10 +3,10 @@ import style from "./Teams.module.css";
 
 import "animate.css";
 import { Col, Row } from "antd";
-import HeroesComponent from "../HeroesComponent/HeroesComponent";
+import HeroesComponent from "@Components/HeroesComponent/HeroesComponent";
 import { useEffect, useState } from "react";
-import useHero from "../../Hooks/useHero";
-import { Hero } from "../../Services/Heroes/HeroInterfaces";
+import useHero from "@Hooks/useHero";
+import { Hero } from "@Services/Heroes/HeroInterfaces";
 
 export default function TeamsComponent() {
   const { heroesOnTheTeam } = useHero();

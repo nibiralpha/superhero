@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Hero } from "../Services/Heroes/HeroInterfaces";
+import { Hero } from "@Services/Heroes/HeroInterfaces";
 import { RootState } from "@/src/redux/store";
 
 const useHero = () => {

@@ -5,11 +5,11 @@ import style from "./Comics.module.css";
 import { Col, Row, Spin } from "antd";
 import HeroesComponent from "../HeroesComponent/HeroesComponent";
 import { useEffect } from "react";
-import { fetchHeroes } from "../../Services/Heroes";
+import { fetchHeroes } from "@Services/Heroes";
 import { useDispatch, useSelector } from "react-redux";
-import { selectFilteredHeroes } from "../../Selectors/heroSelectors";
-import type { RootState, AppDispatch } from "../../../redux/store";
-import { Hero } from "../../Services/Heroes/HeroInterfaces";
+import { selectFilteredHeroes } from "@Selectors/heroSelectors";
+import type { RootState, AppDispatch } from "@redux/store";
+import { Hero } from "@Services/Heroes/HeroInterfaces";
 
 export default function ComicsComponent() {
   const dispatch = useDispatch<AppDispatch>();
