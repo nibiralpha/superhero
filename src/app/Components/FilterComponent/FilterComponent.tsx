@@ -70,20 +70,12 @@ export default function FilterComponent({
   // };
 
   const addSearchParam = (key: string, value: string) => {
-    if (pathname == "/list") {
-      const params = new URLSearchParams(searchParams.toString());
+    if (pathname !== "/list") return;
 
-      if (value === "all" || value === "") {
-        params.delete(key);
-      } else {
-        params.set(key, value);
-      }
+    const params = new URLSearchParams(window.location.search);
+    params.set(key, value);
 
-      const queryString = params.toString();
-      const url = queryString ? `${pathname}?${queryString}` : pathname;
-
-      router.replace(url, { scroll: false });
-    }
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
   const onchangeKeyword = (value: string) => {
