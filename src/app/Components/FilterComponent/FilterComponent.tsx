@@ -59,13 +59,30 @@ export default function FilterComponent({
     durability: [0, 100],
   });
 
+  // const addSearchParam = (key: string, value: string) => {
+  //   if (pathname == "/list") {
+  //     const params = new URLSearchParams(searchParams.toString());
+  //     params.set(key, value);
+  //     const cleanQueryString = decodeURIComponent(params.toString());
+
+  //     router.push(`?${cleanQueryString}`, { scroll: false });
+  //   }
+  // };
+
   const addSearchParam = (key: string, value: string) => {
     if (pathname == "/list") {
       const params = new URLSearchParams(searchParams.toString());
-      params.set(key, value);
-      const cleanQueryString = decodeURIComponent(params.toString());
 
-      router.push(`?${cleanQueryString}`, { scroll: false });
+      if (value === "all" || value === "") {
+        params.delete(key);
+      } else {
+        params.set(key, value);
+      }
+
+      const queryString = params.toString();
+      const url = queryString ? `${pathname}?${queryString}` : pathname;
+
+      router.replace(url, { scroll: false });
     }
   };
 
@@ -87,6 +104,12 @@ export default function FilterComponent({
     addSearchParam("gender", value);
     dispatch(searchByGender(value));
   };
+
+  // const onchangeAlignment = (value: string) => {
+  //   setAlignment(value);
+  //   addSearchParam("alignment", value);
+  //   dispatch(searchByAlignment(value));
+  // };
 
   const onchangeAlignment = (value: string) => {
     setAlignment(value);
