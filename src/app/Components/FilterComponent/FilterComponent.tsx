@@ -59,28 +59,14 @@ export default function FilterComponent({
     durability: [0, 100],
   });
 
-  // const addSearchParam = (key: string, value: string) => {
-  //   if (pathname == "/list") {
-  //     const params = new URLSearchParams(searchParams.toString());
-  //     params.set(key, value);
-  //     const cleanQueryString = decodeURIComponent(params.toString());
-
-  //     router.push(`?${cleanQueryString}`, { scroll: false });
-  //   }
-  // };
-
   const addSearchParam = (key: string, value: string) => {
-    if (pathname !== "/list") return;
-    console.log("calling addSearchParam");
-    
-    const params = new URLSearchParams(window.location.search);
-    console.log(params);
-    
-    params.set(key, value);
+    if (pathname == "/list") {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(key, value);
+      const cleanQueryString = decodeURIComponent(params.toString());
 
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-    console.log(`${pathname}?${params.toString()}`);
-    
+      router.push(`?${cleanQueryString}`, { scroll: false });
+    }
   };
 
   const onchangeKeyword = (value: string) => {
