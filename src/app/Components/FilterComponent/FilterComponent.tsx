@@ -59,13 +59,29 @@ export default function FilterComponent({
     durability: [0, 100],
   });
 
+  // const addSearchParam = (key: string, value: string) => {
+  //   if (pathname == "/list") {
+  //     const params = new URLSearchParams(searchParams.toString());
+  //     params.append("asd", "zxc");
+  //     console.log("params", searchParams.toString());
+
+  //     params.set(key, value);
+  //     const cleanQueryString = decodeURIComponent(params.toString());
+  //     console.log(cleanQueryString);
+  //     console.log("decode", decodeURIComponent(params.toString()));
+  //     // router.push(`?${cleanQueryString}`, { scroll: false });
+  //   }
+  // };
+
   const addSearchParam = (key: string, value: string) => {
     if (pathname == "/list") {
-      const params = new URLSearchParams(searchParams.toString());
+      const params = new URLSearchParams();
       params.set(key, value);
-      const cleanQueryString = decodeURIComponent(params.toString());
+      // return decodeURIComponent(params.toString());
+      window.history.pushState(null, "", `?${params.toString()}`);
 
-      router.push(`?${cleanQueryString}`, { scroll: false });
+      // const cleanQueryString = decodeURIComponent(params.toString());
+      // router.push(`?${cleanQueryString}`, { scroll: false });
     }
   };
 
