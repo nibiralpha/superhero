@@ -71,11 +71,16 @@ export default function FilterComponent({
 
   const addSearchParam = (key: string, value: string) => {
     if (pathname !== "/list") return;
-
+    console.log("calling addSearchParam");
+    
     const params = new URLSearchParams(window.location.search);
+    console.log(params);
+    
     params.set(key, value);
 
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    console.log(`${pathname}?${params.toString()}`);
+    
   };
 
   const onchangeKeyword = (value: string) => {
