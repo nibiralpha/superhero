@@ -75,9 +75,10 @@ export default function FilterComponent({
 
   const addSearchParam = (key: string, value: string) => {
     if (pathname == "/list") {
-      const params = new URLSearchParams();
-      params.set(key, value);
-      // return decodeURIComponent(params.toString());
+      const params = new URLSearchParams(searchParams.toString());
+      params.append(key, value);
+      decodeURIComponent(params.toString());
+
       window.history.pushState(null, "", `?${params.toString()}`);
 
       // const cleanQueryString = decodeURIComponent(params.toString());
