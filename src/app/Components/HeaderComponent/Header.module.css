@@ -103,6 +103,9 @@
 
   .top_bar {
     padding: 30px 20px;
+    position: fixed;
+    z-index: 99;
+    width: 92%;
   }
 
   .logo {
@@ -112,4 +115,9 @@
   .menu {
     width: 25px;
   }
+  /* 
+  .bar {
+    position: fixed;
+    z-index: 99;
+  } */
 }
