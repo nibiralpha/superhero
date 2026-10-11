@@ -9,6 +9,14 @@
   padding: 20px 0;
 }
 
+.layout :global(.infinite-scroll-component) {
+  overflow-x: hidden !important;
+}
+
+.seen_all_heroes{
+  text-align: center;
+  margin-top: 10px;
+}
 /* MOBILE */
 
 @media screen and (max-width: 430px) {
