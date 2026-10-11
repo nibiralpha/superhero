@@ -47,29 +47,32 @@ export default function ComicsComponent() {
       ) : filteredHeroes.length === 0 ? (
         <div>No result found</div>
       ) : (
-        <InfiniteScroll
-          dataLength={visibleHeroes.length}
-          next={loadMoreHeroes}
-          hasMore={visibleCount < filteredHeroes.length}
-          loader={
-            <div className={style.center}>
-              <Spin />
-            </div>
-          }
-          // endMessage={
-          //   <p className={style.seen_all_heroes}>
-          //     <b>You have seen all heroes!</b>
-          //   </p>
-          // }
-        >
-          <Row gutter={[24, 24]}>
-            {visibleHeroes.map((hero: Hero) => (
-              <Col key={hero.id} sm={24} xs={24} md={8} lg={6}>
-                <HeroesComponent hero={hero} />
-              </Col>
-            ))}
-          </Row>
-        </InfiniteScroll>
+        <>
+          <div className={style.no_result}>Total result found: {filteredHeroes.length}</div>
+          <InfiniteScroll
+            dataLength={visibleHeroes.length}
+            next={loadMoreHeroes}
+            hasMore={visibleCount < filteredHeroes.length}
+            loader={
+              <div className={style.center}>
+                <Spin />
+              </div>
+            }
+            // endMessage={
+            //   <p className={style.seen_all_heroes}>
+            //     <b>You have seen all heroes!</b>
+            //   </p>
+            // }
+          >
+            <Row gutter={[24, 24]}>
+              {visibleHeroes.map((hero: Hero) => (
+                <Col key={hero.id} sm={24} xs={24} md={8} lg={6}>
+                  <HeroesComponent hero={hero} />
+                </Col>
+              ))}
+            </Row>
+          </InfiniteScroll>
+        </>
       )}
     </div>
   );
