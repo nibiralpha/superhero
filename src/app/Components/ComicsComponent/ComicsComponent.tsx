@@ -18,7 +18,7 @@ export default function ComicsComponent() {
   const { loading } = useSelector((state: RootState) => state.heroes);
   const filteredHeroes = useSelector(selectFilteredHeroes);
 
-  const [visibleCount, setVisibleCount] = useState(10);
+  const [visibleCount, setVisibleCount] = useState(12);
 
   useEffect(() => {
     dispatch(fetchHeroes());

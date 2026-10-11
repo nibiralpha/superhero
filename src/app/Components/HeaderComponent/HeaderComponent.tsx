@@ -121,7 +121,7 @@ export default function HeaderComponent({
             <div className={style.logo}>SUPERSEARCH</div>
           </div>
           <div className={style.right}>
-            <Button>
+            <Button onClick={visibleMenu}>
               <MenuUnfoldOutlined />
             </Button>
           </div>
