@@ -117,27 +117,24 @@ export default function PosterComponent({
           alt={hero?.name || "Hero image"}
           sizes="100vw"
         />
-        // <img
-        //   key={id}
-        //   src={data?.images?.lg || "/images/no-img.png"}
-        //   className={style.image}
-        // />
       )}
 
-      <div className={style.detail}>
-        <div className={`${style.title} obelix`}>{data?.name}</div>
-        <div className={style.buttons}>
-          <div className={style.text}>Add to team</div>
-          <div className={style.switch}>
-            <Switch
-              checkedChildren={<CheckOutlined />}
-              unCheckedChildren={<CloseOutlined />}
-              onChange={onClickAddRemoveToTeam}
-              checked={isCurrentlyOnTeam}
-            />
+      {!loading && (
+        <div className={style.detail}>
+          <div className={`${style.title} obelix`}>{data?.name}</div>
+          <div className={style.buttons}>
+            <div className={style.text}>Add to team</div>
+            <div className={style.switch}>
+              <Switch
+                checkedChildren={<CheckOutlined />}
+                unCheckedChildren={<CloseOutlined />}
+                onChange={onClickAddRemoveToTeam}
+                checked={isCurrentlyOnTeam}
+              />
+            </div>
           </div>
         </div>
-      </div>
+      )}
       <ModalComponent
         message={modalMessage}
         openModal={openModal}
