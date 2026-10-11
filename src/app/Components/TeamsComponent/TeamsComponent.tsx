@@ -7,6 +7,7 @@ import HeroesComponent from "@Components/HeroesComponent/HeroesComponent";
 import { useEffect, useState } from "react";
 import useHero from "@Hooks/useHero";
 import { Hero } from "@Services/Heroes/HeroInterfaces";
+import Link from "next/link";
 
 export default function TeamsComponent() {
   const { heroesOnTheTeam } = useHero();
@@ -22,10 +23,11 @@ export default function TeamsComponent() {
     reRednder();
   }, []);
 
-  if (heroList.length === 0) return null;
+  // if (heroList.length === 0) return null;
 
   return (
-    <div className={heroList.length === 0 ? style.alt_layout : style.layout}>
+    <div className={style.layout}>
+    {/* <div className={heroList.length === 0 ? style.alt_layout : style.layout}> */}
       <div>
         {heroList.length === 0 ? (
           <div className={style.no_team}>
@@ -33,7 +35,7 @@ export default function TeamsComponent() {
               You do not have any team members selected. Please make selections
               on
             </div>
-            <div className={style.list_page}>Superheroes page</div>
+            <div className={style.list_page}><Link href="/list">Superheroes page</Link></div>
           </div>
         ) : (
           <Row gutter={[24, 24]}>

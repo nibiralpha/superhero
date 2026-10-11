@@ -1,43 +1,45 @@
-"use client";
+  "use client";
 
-import "animate.css";
-import style from "./Comics.module.css";
-import { Col, Row, Spin } from "antd";
-import HeroesComponent from "../HeroesComponent/HeroesComponent";
-import { useEffect } from "react";
-import { fetchHeroes } from "@Services/Heroes";
-import { useDispatch, useSelector } from "react-redux";
-import { selectFilteredHeroes } from "@Selectors/heroSelectors";
-import type { RootState, AppDispatch } from "@redux/store";
-import { Hero } from "@Services/Heroes/HeroInterfaces";
+  import "animate.css";
+  import style from "./Comics.module.css";
+  import { Col, Row, Spin } from "antd";
+  import HeroesComponent from "../HeroesComponent/HeroesComponent";
+  import { useEffect } from "react";
+  import { fetchHeroes } from "@Services/Heroes";
+  import { useDispatch, useSelector } from "react-redux";
+  import { selectFilteredHeroes } from "@Selectors/heroSelectors";
+  import type { RootState, AppDispatch } from "@redux/store";
+  import { Hero } from "@Services/Heroes/HeroInterfaces";
 
-export default function ComicsComponent() {
-  const dispatch = useDispatch<AppDispatch>();
+  export default function ComicsComponent() {
+    const dispatch = useDispatch<AppDispatch>();
 
-  const { loading } = useSelector((state: RootState) => state.heroes);
-  const filteredHeroes = useSelector(selectFilteredHeroes);
+    const { loading } = useSelector((state: RootState) => state.heroes);
+    const filteredHeroes = useSelector(selectFilteredHeroes);
 
-  useEffect(() => {
-    dispatch(fetchHeroes());
-  }, [dispatch]);
+    useEffect(() => {
+      dispatch(fetchHeroes());
+    }, [dispatch]);
 
-  return (
-    <div className={style.layout}>
-      <div>
-        {loading ? (
-          <div className={style.center}>
-            <Spin />
-          </div>
-        ) : (
-          <Row gutter={[24, 24]}>
-            {filteredHeroes.map((hero: Hero) => (
-              <Col key={hero.id} sm={24} xs={24} md={8} lg={6}>
-                <HeroesComponent hero={hero} />
-              </Col>
-            ))}
-          </Row>
-        )}
+    return (
+      <div className={style.layout}>
+        <div>
+          {loading ? (
+            <div className={style.center}>
+              <Spin />
+            </div>
+          ) : (filteredHeroes.length === 0) ? (
+            "No result found"
+          ) : (
+            <Row gutter={[24, 24]}>
+              {filteredHeroes.map((hero: Hero) => (
+                <Col key={hero.id} sm={24} xs={24} md={8} lg={6}>
+                  <HeroesComponent hero={hero} />
+                </Col>
+              ))}
+            </Row>
+          )}
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }

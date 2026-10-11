@@ -4,7 +4,7 @@ import { HeroState, Hero } from "@Services/Heroes/HeroInterfaces";
 const initialState: HeroState = {
   list: [],
   details: {},
-  loading: false,
+  loading: true,
   error: false,
   errorResponse: {},
 };
