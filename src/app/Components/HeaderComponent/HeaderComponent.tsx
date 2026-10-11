@@ -13,12 +13,12 @@ import type { RootState } from "@redux/store";
 import Link from "next/link";
 
 type HeaderProps = Readonly<{
-  // setClearFilterData?: React.Dispatch<React.SetStateAction<boolean>>;
+  setClearFilterData?: React.Dispatch<React.SetStateAction<boolean>>;
   showMenu?: boolean;
 }>;
 
 export default function HeaderComponent({
-  // setClearFilterData,
+  setClearFilterData,
   showMenu = true,
 }: HeaderProps) {
   const dispatch = useDispatch();
@@ -50,7 +50,7 @@ export default function HeaderComponent({
     dispatch(clearFilter(""));
     router.replace(window.location.pathname);
 
-    // setClearFilterData?.(true);
+    setClearFilterData?.(true);
   };
 
   return (
