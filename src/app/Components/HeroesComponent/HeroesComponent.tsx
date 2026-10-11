@@ -195,7 +195,7 @@ export default function HeroesComponent({
             src="/details.svg"
             width={25}
             height={25}
-            alt="Details"
+            alt={hero?.name}
           />
         </div>
       </div>

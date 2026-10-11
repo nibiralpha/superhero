@@ -6,9 +6,15 @@
   border-top: 0;
 }
 
-.image {
-  /* width: 100%; */
+/* .image {
   height: 85vh;
+} */
+
+.image {
+  width: auto;
+  height: 85vh;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 .buttons {
@@ -47,6 +53,17 @@
   transform: translate(-50%, -50%);
 }
 
+/* Tablets */
+
+@media screen and (min-width: 431px) and (max-width: 1024px) {
+  .image {
+    object-fit: initial;
+    height: auto;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
 /* MOBILE */
 
 @media screen and (max-width: 430px) {
@@ -56,5 +73,6 @@
 
   .image {
     height: auto;
+    width: 100%;
   }
 }

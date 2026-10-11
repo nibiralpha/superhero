@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import useHero from "@Hooks/useHero";
 import type { RootState } from "@redux/store";
 import { Hero } from "@Services/Heroes/HeroInterfaces";
+import Image from "next/image";
 
 export interface HeroImageSizes {
   lg: string;
@@ -52,7 +53,7 @@ export default function PosterComponent({
 
   useEffect(() => {
     const savedHeroes = heroesOnTheTeam();
-    
+
     /* eslint-disable react-hooks/set-state-in-effect */
     setHeroesOnTeam(savedHeroes);
   }, []);
@@ -108,11 +109,19 @@ export default function PosterComponent({
           <Spin />
         </div>
       ) : (
-        <img
-          key={id}
-          src={data?.images?.lg || "/images/no-img.png"}
+        <Image
           className={style.image}
+          src={data?.images?.lg || "/images/no-img.png"}
+          width={100}
+          height={25}
+          alt={hero?.name || "Hero image"}
+          sizes="100vw"
         />
+        // <img
+        //   key={id}
+        //   src={data?.images?.lg || "/images/no-img.png"}
+        //   className={style.image}
+        // />
       )}
 
       <div className={style.detail}>
