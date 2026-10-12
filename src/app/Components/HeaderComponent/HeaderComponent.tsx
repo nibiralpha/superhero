@@ -3,13 +3,14 @@
 import { usePathname, useRouter } from "next/navigation";
 
 import { MenuUnfoldOutlined } from "@ant-design/icons";
-import { Button } from "antd";
+import { Button, Drawer } from "antd";
 
 import style from "./Header.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "@redux/settingSlice";
 import { clearFilter } from "@redux/searchSlice";
 import type { RootState } from "@redux/store";
+import { useState } from "react";
 import Link from "next/link";
 
 type HeaderProps = Readonly<{
@@ -25,6 +26,7 @@ export default function HeaderComponent({
   const pathname = usePathname();
   const router = useRouter();
   const path = pathname.split("/");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const showFilter = useSelector((state: RootState) => state.filter.showFilter);
   const filter = useSelector((state: RootState) => state.search);
@@ -42,8 +44,16 @@ export default function HeaderComponent({
     router.push(`/${page}`);
   };
 
-  const visibleMenu = () => {
+  const visibleFilters = () => {
     dispatch(setFilter(!showFilter));
+  };
+
+  const visibleMenu = () => {
+    setIsMenuOpen(true);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
   };
 
   const clearAllFilterData = () => {
@@ -103,7 +113,7 @@ export default function HeaderComponent({
                   <div className={style.clear_filter_button}>
                     <Button
                       type={showFilter ? "primary" : "default"}
-                      onClick={visibleMenu}
+                      onClick={visibleFilters}
                     >
                       <MenuUnfoldOutlined /> Filter
                     </Button>
@@ -113,19 +123,57 @@ export default function HeaderComponent({
             </div>
           </div>
         </div>
+
         <div className={style.mobile}>
           <div className={style.left}>
-            <img className={style.menu} src="/menu.svg" />
+            <img
+              onClick={visibleMenu}
+              className={style.menu}
+              src="/menu.svg"
+              alt="Open navigation menu"
+            />
           </div>
+
           <div className={style.center}>
             <div className={style.logo}>SUPERSEARCH</div>
           </div>
+
           <div className={style.right}>
-            <Button onClick={visibleMenu}>
+            <Button onClick={visibleFilters}>
               <MenuUnfoldOutlined />
             </Button>
           </div>
         </div>
+
+        <Drawer
+          title="SUPERSEARCH"
+          placement="left"
+          open={isMenuOpen}
+          onClose={closeMenu}
+          size={280}
+        >
+          <nav className={style.drawer_menu}>
+            <Link
+              href="/list"
+              onClick={closeMenu}
+              className={`${style.drawer_menu_item} ${
+                route === "list" ? style.active : ""
+              }`}
+            >
+              Super Heroes
+            </Link>
+
+            <Link
+              href="/team"
+              onClick={closeMenu}
+              className={`${style.drawer_menu_item} ${
+                route === "team" ? style.active : ""
+              }`}
+            >
+              Team
+            </Link>
+          </nav>
+        </Drawer>
       </div>
     </div>
   );

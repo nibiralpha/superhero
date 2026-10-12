@@ -115,9 +115,46 @@
   .menu {
     width: 25px;
   }
-  /* 
-  .bar {
-    position: fixed;
-    z-index: 99;
-  } */
+  .mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+  }
+
+  .left,
+  .right {
+    flex: 0 0 auto;
+  }
+
+  .center {
+    flex: 1;
+    text-align: center;
+  }
+
+  .drawer_menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .drawer_menu_item {
+    display: block;
+    padding: 12px 16px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+  }
+
+  .drawer_menu_item:hover {
+    background: #f5f5f5;
+  }
+
+  .drawer_menu_item.active {
+    background: #e6f4ff;
+    color: #1677ff;
+    font-weight: 600;
+  }
 }
