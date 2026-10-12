@@ -115,9 +115,15 @@ export default function HeroesComponent({
       onMouseLeave={() => showDetailCard(false)}
       className={style.img_container}
     >
-      {/* <img src={hero.images.md} onClick={changeRoute} /> */}
       <Link href={`/details/${hero.id}`}>
-        <img className={`${style.img_thumb}`} src={hero.images.md} />
+        <Image
+          className={style.img_thumb}
+          src={hero.images.md}
+          alt={hero.name}
+          width={300}
+          height={450}
+          sizes="(max-width: 430px) 100vw, 300px"
+        />
       </Link>
 
       <div
