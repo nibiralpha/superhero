@@ -48,7 +48,7 @@ export default function ComicsComponent() {
         <div>No result found</div>
       ) : (
         <>
-          <div className={style.no_result}>Total result found: {filteredHeroes.length}</div>
+          {/* <div className={style.no_result}>Total result found: {filteredHeroes.length}</div> */}
           <InfiniteScroll
             dataLength={visibleHeroes.length}
             next={loadMoreHeroes}
