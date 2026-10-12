@@ -146,11 +146,19 @@ export default function HeaderComponent({
         </div>
 
         <Drawer
-          title="SUPERSEARCH"
           placement="left"
           open={isMenuOpen}
           onClose={closeMenu}
           size={280}
+          closable={false}
+          title={
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <span>SUPERSEARCH</span>
+              <Button type="text" onClick={closeMenu}>
+                ✕
+              </Button>
+            </div>
+          }
         >
           <nav className={style.drawer_menu}>
             <Link
